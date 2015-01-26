@@ -35,6 +35,7 @@ namespace Resume
                     new Button
                     {
                         Text = "Resume",
+                        TextColor = Color.Black,
                         Command = new Command(o =>
                         {
                             App.MasterDetailPage.Detail = NavigationResume;
@@ -44,6 +45,7 @@ namespace Resume
                     new Button
                     {
                         Text = "Code",
+                        TextColor = Color.Black,
                         Command = new Command(o =>
                         {
                             if (NavigationCode == null)

@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics; 
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Net;
 using Xamarin.Forms;
+using RestSharp;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Resume
 {
@@ -31,11 +36,19 @@ namespace Resume
                 }
             };
 
-            WebClient webClient = new WebClient();
-            webClient.Encoding = Encoding.UTF8;
-            webClient.DownloadStringCompleted += (s, e) =>
+            var client = new RestClient("http://swooby.com/pv/");
+            var request = new RestRequest("resume/resume.json", Method.GET);
+            request.RequestFormat = DataFormat.Json;
+            var asyncHandle = client.ExecuteAsync(request, response =>
             {
-                var text = e.Result;
+                var content = response.Content;
+
+                // Parse text in to JSON dictionary of objects
+                var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(content, new JsonConverter[] { new MyConverter() });
+
+                // TODO:(pv) Build JSON in to resume PDF
+                // TODO:(pv) Do the above async
+
                 Content = new StackLayout
                 {
                     VerticalOptions = LayoutOptions.Center,
@@ -43,12 +56,41 @@ namespace Resume
                     {
                         new Label
                         {
-                            Text = text,
+                            Text = content,
                         },
                     },
                 };
-            };
-            webClient.DownloadStringAsync(new Uri("http://swooby.com/pv/resume/resume.json"));
+            });
+        }
+
+        /// <summary>
+        /// From http://stackoverflow.com/a/6417753
+        /// </summary>
+        class MyConverter : CustomCreationConverter<IDictionary<string, object>>
+        {
+            public override IDictionary<string, object> Create(Type objectType)
+            {
+                return new Dictionary<string, object>();
+            }
+
+            public override bool CanConvert(Type objectType)
+            {
+                // in addition to handling IDictionary<string, object>
+                // we want to handle the deserialization of dict value
+                // which is of type object
+                return objectType == typeof(object) || base.CanConvert(objectType);
+            }
+
+            public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+            {
+                if (reader.TokenType == JsonToken.StartObject
+                    || reader.TokenType == JsonToken.Null)
+                    return base.ReadJson(reader, objectType, existingValue, serializer);
+
+                // if the next token is not an object
+                // then fall back on standard deserializer (strings, numbers etc.)
+                return serializer.Deserialize(reader);
+            }
         }
     }
 }
