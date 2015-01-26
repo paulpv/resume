@@ -10,5 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)App.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MasterPage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ResumePage.cs" />
   </ItemGroup>
 </Project>

@@ -45,10 +45,25 @@ namespace Resume.Droid
 		{
 			
 			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			public const int about = 2130837504;
 			
 			// aapt resource value: 0x7f020001
-			public const int monoandroidsplash = 2130837505;
+			public const int ic_launcher = 2130837505;
+			
+			// aapt resource value: 0x7f020002
+			public const int Icon = 2130837506;
+			
+			// aapt resource value: 0x7f020003
+			public const int monoandroidsplash = 2130837507;
+			
+			// aapt resource value: 0x7f020004
+			public const int pv_batman = 2130837508;
+			
+			// aapt resource value: 0x7f020005
+			public const int refresh = 2130837509;
+			
+			// aapt resource value: 0x7f020006
+			public const int slideout = 2130837510;
 			
 			static Drawable()
 			{
@@ -60,11 +75,36 @@ namespace Resume.Droid
 			}
 		}
 		
-		public partial class Style
+		public partial class String
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Mono_Android_Theme_Splash = 2130903040;
+			public const int app_name = 2130903040;
+			
+			static String()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f040003
+			public const int Mono_Android_Theme_Splash = 2130968579;
+			
+			// aapt resource value: 0x7f040000
+			public const int MyTheme = 2130968576;
+			
+			// aapt resource value: 0x7f040002
+			public const int MyTheme_ActionBar_TitleTextStyle = 2130968578;
+			
+			// aapt resource value: 0x7f040001
+			public const int MyTheme_ActionBarStyle = 2130968577;
 			
 			static Style()
 			{

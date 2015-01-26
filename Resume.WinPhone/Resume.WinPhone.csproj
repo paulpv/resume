@@ -123,7 +123,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="about.png" />
+    <Content Include="pv_batman.jpg" />
     <Content Include="README_FIRST.txt" />
+    <Content Include="refresh.png" />
+    <Content Include="slideout.png" />
     <Content Include="SplashScreenImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

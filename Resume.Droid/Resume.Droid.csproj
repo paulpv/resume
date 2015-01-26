@@ -79,7 +79,26 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\Drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+    <AndroidResource Include="Resources\drawable\pv_batman.jpg" />
+    <AndroidResource Include="Resources\drawable-hdpi\about.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\slideout.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\about.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\slideout.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\about.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\slideout.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\about.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\refresh.png" />
+    <AndroidResource Include="Resources\drawable-xxhdpi\slideout.png" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AndroidManifest.xml" />
