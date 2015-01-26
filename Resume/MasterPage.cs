@@ -14,6 +14,12 @@ namespace Resume
             private set;
         }
 
+        public NavigationPage NavigationCode
+        {
+            get;
+            private set;
+        }
+
         public MasterPage()
         {
             NavigationResume = new NavigationPage(new ResumePage());
@@ -32,6 +38,19 @@ namespace Resume
                         Command = new Command(o =>
                         {
                             App.MasterDetailPage.Detail = NavigationResume;
+                            App.MasterDetailPage.IsPresented = false;
+                        }),
+                    },
+                    new Button
+                    {
+                        Text = "Code",
+                        Command = new Command(o =>
+                        {
+                            if (NavigationCode == null)
+                            {
+                                NavigationCode = new NavigationPage(new CodePage());
+                            }
+                            App.MasterDetailPage.Detail = NavigationCode;
                             App.MasterDetailPage.IsPresented = false;
                         }),
                     },
