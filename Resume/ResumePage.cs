@@ -165,6 +165,7 @@ namespace Resume
                 Hobbies = new ReadOnlyCollection<string>(hobbies.ToObject<List<string>>() as List<string>);
                 values.Remove("Hobbies");
                 
+                // The last KeyValuePair in the dictionary should be "Full Name": { "Email":..., "Phone":..., ... }
                 FullName = values.Keys.ElementAt(0);
                 var contactInfo = values[FullName] as IDictionary<string, object>;
                 values.Remove(FullName);
