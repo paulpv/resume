@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Net;
 using Xamarin.Forms;
 using RestSharp;
@@ -24,7 +25,11 @@ namespace Resume
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            RefreshResume();
+        }
 
+        private async void RefreshResume()
+        {
             Content = new StackLayout
             {
                 VerticalOptions = LayoutOptions.Center,
@@ -38,33 +43,45 @@ namespace Resume
                 }
             };
 
+            var content = await GetResume();
+
+            // Parse text in to JSON dictionary of objects
+            var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(content, new JsonConverter[] { new MyConverter() });
+
+            // Build resume class from JSON dictionary of objects
+            var resume = new MyResume(values);
+
+            // TODO:(pv) Build PDF from resume class
+
+            Content = new StackLayout
+            {
+                VerticalOptions = LayoutOptions.Center,
+                Children =
+                {
+                    new Label
+                    {
+                        Text = content,
+                    },
+                },
+            };
+        }
+
+        private Task<string> GetResume()
+        {
             var client = new RestClient("http://swooby.com/pv/");
             var request = new RestRequest("resume/resume.json", Method.GET);
             request.RequestFormat = DataFormat.Json;
+
+            var tcs = new TaskCompletionSource<string>();
             var asyncHandle = client.ExecuteAsync(request, response =>
             {
-                var content = response.Content;
-
-                // Parse text in to JSON dictionary of objects
-                var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(content, new JsonConverter[] { new MyConverter() });
-
-                var resume = new MyResume(values);
-
-                // TODO:(pv) Build JSON in to resume PDF
-                // TODO:(pv) Do the above async
-
-                Content = new StackLayout
-                {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children =
-                    {
-                        new Label
-                        {
-                            Text = content,
-                        },
-                    },
-                };
+                if (response.ErrorException != null)
+                    tcs.TrySetException(response.ErrorException);
+                else
+                    tcs.TrySetResult(response.Content);
             });
+
+            return tcs.Task;
         }
 
         /// <summary>
