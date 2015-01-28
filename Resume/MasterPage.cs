@@ -20,7 +20,7 @@ namespace Resume
         {
             NavigationResume = new NavigationPage(new ResumePage());
 
-            Title = "Master";
+            Title = "Menu";
             Icon = "slideout.png";
             Content = new StackLayout
             {
