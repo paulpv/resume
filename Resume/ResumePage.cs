@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics; 
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
-using Xamarin.Forms;
-using RestSharp;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace Resume
 {
@@ -43,13 +39,7 @@ namespace Resume
                 }
             };
 
-            var content = await GetResume();
-
-            // Parse text in to JSON dictionary of objects
-            var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(content, new JsonConverter[] { new MyConverter() });
-
-            // Build resume class from JSON dictionary of objects
-            var resume = new MyResume(values);
+            var resume = await GetResume();
 
             // TODO:(pv) Build PDF from resume class
 
@@ -58,24 +48,36 @@ namespace Resume
                 VerticalOptions = LayoutOptions.FillAndExpand,
                 Source = new HtmlWebViewSource()
                 {
-                    Html = content,
+                    Html = resume.ToHTML(),
                 },
             };
         }
 
-        private Task<string> GetResume()
+        private Task<MyResume> GetResume()
         {
             var client = new RestClient("http://swooby.com/pv/");
             var request = new RestRequest("resume/resume.json", Method.GET);
             request.RequestFormat = DataFormat.Json;
 
-            var tcs = new TaskCompletionSource<string>();
+            var tcs = new TaskCompletionSource<MyResume>();
+
             var asyncHandle = client.ExecuteAsync(request, response =>
             {
                 if (response.ErrorException != null)
+                {
                     tcs.TrySetException(response.ErrorException);
-                else
-                    tcs.TrySetResult(response.Content);
+                    return;
+                }
+
+                if (response.ResponseStatus == ResponseStatus.Completed)
+                {
+                    var content = response.Content;
+
+                    var resume = new MyResume(content);
+                    resume.Process();
+
+                    tcs.TrySetResult(resume);
+                }
             });
 
             return tcs.Task;
@@ -113,6 +115,9 @@ namespace Resume
 
         class MyResume
         {
+            private string json;
+            private string html;
+
             public string FullName { get; private set; }
             public string Email { get; private set; }
             public string Phone { get; private set; }
@@ -132,13 +137,31 @@ namespace Resume
             public IReadOnlyCollection<string> Miscellaneous { get; private set; }
             public IReadOnlyCollection<string> Hobbies { get; private set; }
 
-            public MyResume(Dictionary<string, object> values)
+            public MyResume(string json)
             {
-                Process(values);
+                this.json = json;
             }
 
-            public void Process(Dictionary<string, object> values)
+            public override string ToString()
             {
+                return json;
+            }
+
+            public string ToHTML()
+            {
+                if (html == null)
+                {
+                    html = String.Format("<pre>{0}</pre>", json);
+                }
+                return html;
+            }
+
+            public void Process()
+            {
+                // Parse text in to JSON dictionary of objects
+                var values = JsonConvert.DeserializeObject<Dictionary<string, object>>(json, new JsonConverter[] { new MyConverter() });
+
+                // Build resume class from JSON dictionary of objects
                 var objective = values["Objective"] as IDictionary<string, object>;
                 Objective = new ReadOnlyDictionary<string, object>(objective);
                 values.Remove("Objective");
