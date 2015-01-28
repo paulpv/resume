@@ -12,8 +12,6 @@ namespace Resume
 
 		public App()
 		{
-            // The root page of your application
-
             MasterPage master = new MasterPage();
 
             MasterDetailPage = new MasterDetailPage
