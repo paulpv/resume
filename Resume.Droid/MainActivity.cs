@@ -6,7 +6,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace Resume.Droid
 {
-    [Activity(Label = "Resume of Paul Peavyhouse",
+    [Activity(Label = "Pv's Resume",
               Icon = "@drawable/ic_launcher",
               MainLauncher = true,
               ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
