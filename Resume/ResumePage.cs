@@ -53,13 +53,13 @@ namespace Resume
 
             // TODO:(pv) Build PDF from resume class
 
-            var source = new HtmlWebViewSource();
-            source.Html = content;
-
             Content = new WebView
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                Source = source,
+                Source = new HtmlWebViewSource()
+                {
+                    Html = content,
+                },
             };
         }
 
