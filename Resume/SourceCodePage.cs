@@ -10,6 +10,7 @@ namespace Resume
     {
         public SourceCodePage()
         {
+            Title = "Source Code";
             Content = new WebView
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,

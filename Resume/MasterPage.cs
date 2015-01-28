@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Resume
 {
@@ -14,7 +10,7 @@ namespace Resume
             private set;
         }
 
-        public NavigationPage NavigationCode
+        public NavigationPage NavigationSourceCode
         {
             get;
             private set;
@@ -25,7 +21,6 @@ namespace Resume
             NavigationResume = new NavigationPage(new ResumePage());
 
             Title = "Master";
-            BackgroundColor = Color.Gray.WithLuminosity(0.9);
             Icon = "slideout.png";
             Content = new StackLayout
             {
@@ -35,7 +30,6 @@ namespace Resume
                     new Button
                     {
                         Text = "Resume",
-                        TextColor = Color.Black,
                         Command = new Command(o =>
                         {
                             App.MasterDetailPage.Detail = NavigationResume;
@@ -44,15 +38,14 @@ namespace Resume
                     },
                     new Button
                     {
-                        Text = "Code",
-                        TextColor = Color.Black,
+                        Text = "Source Code",
                         Command = new Command(o =>
                         {
-                            if (NavigationCode == null)
+                            if (NavigationSourceCode == null)
                             {
-                                NavigationCode = new NavigationPage(new SourceCodePage());
+                                NavigationSourceCode = new NavigationPage(new SourceCodePage());
                             }
-                            App.MasterDetailPage.Detail = NavigationCode;
+                            App.MasterDetailPage.Detail = NavigationSourceCode;
                             App.MasterDetailPage.IsPresented = false;
                         }),
                     },
