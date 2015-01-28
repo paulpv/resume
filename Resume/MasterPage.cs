@@ -50,7 +50,7 @@ namespace Resume
                         {
                             if (NavigationCode == null)
                             {
-                                NavigationCode = new NavigationPage(new CodePage());
+                                NavigationCode = new NavigationPage(new SourceCodePage());
                             }
                             App.MasterDetailPage.Detail = NavigationCode;
                             App.MasterDetailPage.IsPresented = false;

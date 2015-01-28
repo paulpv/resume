@@ -6,9 +6,9 @@ using Xamarin.Forms;
 
 namespace Resume
 {
-    class CodePage : ContentPage
+    class SourceCodePage : ContentPage
     {
-        public CodePage()
+        public SourceCodePage()
         {
             Content = new WebView
             {
