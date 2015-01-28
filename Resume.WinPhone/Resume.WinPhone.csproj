@@ -132,22 +132,22 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\AlignmentGrid.png" />
-    <Content Include="Assets\ApplicationIcon.png">
+    <Content Include="Assets\ApplicationIcon100x100.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
+    <Content Include="Assets\Tiles\FlipCycleTileLarge691x336.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tiles\FlipCycleTileMedium.png">
+    <Content Include="Assets\Tiles\FlipCycleTileMedium336x336.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
+    <Content Include="Assets\Tiles\FlipCycleTileSmall159x159.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
+    <Content Include="Assets\Tiles\IconicTileMediumLarge134x202.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Tiles\IconicTileSmall.png">
+    <Content Include="Assets\Tiles\IconicTileSmall71x110.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Toolkit.Content\ApplicationBar.Add.png" />
