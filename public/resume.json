@@ -1,0 +1,61 @@
+{
+  "Paul Alexander Peavyhouse":
+  {
+      "Email": "pv@swooby.com",
+      "Phone": ["619-SWO-OBY9", "619-796-6299"],
+    "Address": "8904 NE 144th Pl, Kirkland, WA 98034",
+      "Links":
+      {
+               "Resume": "https://swooby.com/pv/resume/",
+             "LinkedIn": "https://linkedin.com/in/paulpv",
+               "GitHub": "https://github.com/paulpv",
+        "StackOverflow": "https://stackoverflow.name/swooby"
+      }
+  },
+  "Summary": "Experienced developer with a passion for building user-friendly applications and learning new technologies.",
+  "Objective":
+  {
+    "Title": "Architect/Principle/Staff/Senior Mobile/C#/C++/Python/Qt Software Developer/Engineer",
+    "Emphasis": "AI, Android, Audio/Video, Embedded, IoT, Mobile, RTC/WebRTC, Streaming",
+    "Locations": ["Seattle", "Denver", "Nashville"]
+  },
+  "Employment":
+  [
+    {
+      "Company": "Tech Co. | Seattle, WA",
+      "Position": "Senior Developer",
+      "Duration": "2019 - Present",
+      "Details":
+      [
+        "Lead a team of 5 engineers to develop web applications using React and Node.js.",
+        "Improved performance of critical projects by 30% through optimization and code refactoring."
+      ]
+    },
+    {
+      "Company": "Web Solutions Inc.",
+      "Position": "Frontend Developer",
+      "Duration": "2016 - 2019",
+      "Details":
+      [
+        "Built responsive user interfaces with React and modern CSS techniques.",
+        "Collaborated with designers and backend developers to create a seamless user experience."
+      ]
+    }
+  ],
+  "Skills":
+  [
+    "JavaScript",
+    "React",
+    "Node.js",
+    "CSS",
+    "TailwindCSS"
+  ],
+  "Education":
+  [
+    {
+      "Institution": "University of Somewhere",
+      "Degree": "B.S. in Computer Science",
+      "GraduationYear": 2016
+    }
+  ]
+}
