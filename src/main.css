@@ -3,8 +3,8 @@
 /* Base theme: Light mode (default) */
 :root {
   /* Background and text */
-  --background: #f9fafb; /* off-white, like a sheet of paper */
-  --foreground: #060504; /* dark off-black */
+  --background: #f9fafb; /* off-white paper */
+  --foreground: #060504; /* off-black ink */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -12,11 +12,15 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark mode overrides – add the "dark" class to an ancestor (for example, the body) */
+/*
+ Dark mode overrides
+ add the "dark" class to an ancestor
+ for example, the `document.documentElement` (<html>) element
+ */
 .dark {
   /* Background and text */
-  --background: #060504; /* dark becomes background */
-  --foreground: #f9fafb; /* off-white becomes text */
+  --background: #181818;
+  --foreground: #d1d1d1;
 }
 
 html,
@@ -45,24 +49,19 @@ body {
 
 a {
   /* Darker blue for light mode */
-  color: #1e3a8a; /* Tailwind blue-900 is even darker, adjust as needed */
+  color: #1e3a8a;
 
-  text-decoration: underline;
+  font-weight: 500;
 }
 
 a:hover,
 a:focus {
-  color: #1e40af; /* Even darker on hover */
+  text-decoration: underline;
 }
 
 /* Dark mode link colors remain light for contrast */
 .dark a {
-  color: #acccf1; /* Light blue for dark backgrounds */
-}
-
-.dark a:hover,
-.dark a:focus {
-  color: #cfe3fb; /* Slightly darker on hover */
+  color: #70b2fd;
 }
 
 .table, th, td {
