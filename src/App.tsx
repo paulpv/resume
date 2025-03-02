@@ -278,18 +278,20 @@ function App() {
       )}
       */}
       
-      <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
-        <tbody>
-          <tr>
-            <td className="text-left text-[60%]">
-              <a href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
-            </td>
-            <td className="text-right text-[60%]">
-              <a href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <footer className="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 p-2">
+        <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
+          <tbody>
+            <tr>
+              <td className="text-left text-[60%]">
+                <a href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
+              </td>
+              <td className="text-right text-[60%]">
+                <a href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </footer>
 
     </div>
   )
