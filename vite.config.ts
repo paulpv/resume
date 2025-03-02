@@ -2,9 +2,14 @@ import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react-swc'
 import fs from 'fs'
+import { execSync } from 'child_process'
 
 function getModifiedTime(path: string): Date {
-  return fs.statSync(path).mtime
+  try {
+    return new Date(parseInt(execSync(`git log -1 --format=%ct ${path}`, { encoding: 'utf-8' }).trim(), 10) * 1000)
+  } catch {
+    return fs.statSync(path).mtime
+  }
 }
 
 const resumeJsonModifiedTime = getModifiedTime('./public/resume.json')
