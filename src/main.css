@@ -1,23 +1,10 @@
-/*
-@tailwind base; adds base styles to all elements:
-https://tailwindcss.com/docs/preflight
 @import 'tailwindcss';
-*/
-@layer theme, base, components, utilities;
-@import "tailwindcss/theme.css" layer(theme);
-/*@import "tailwindcss/preflight.css" layer(base);*/
-@import "tailwindcss/utilities.css" layer(utilities);
 
+/* Base theme: Light mode (default) */
 :root {
-  /*
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-  */
+  /* Background and text */
+  --background: #f9fafb; /* off-white, like a sheet of paper */
+  --foreground: #060504; /* dark off-black */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,58 +12,85 @@ https://tailwindcss.com/docs/preflight
   -moz-osx-font-smoothing: grayscale;
 }
 
-/*
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Dark mode overrides – add the "dark" class to an ancestor (for example, the body) */
+.dark {
+  /* Background and text */
+  --background: #060504; /* dark becomes background */
+  --foreground: #f9fafb; /* off-white becomes text */
 }
-a:hover {
-  color: #535bf2;
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: var(--background);
+  color: var(--foreground);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 body {
+  display: block;
+  font-size: clamp(12px, 2vw, 36px);
+  font-family: courier new;
+  font-weight: 400;
+}
+
+#root {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
 }
 
+a {
+  /* Darker blue for light mode */
+  color: #1e3a8a; /* Tailwind blue-900 is even darker, adjust as needed */
+
+  text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+  color: #1e40af; /* Even darker on hover */
+}
+
+/* Dark mode link colors remain light for contrast */
+.dark a {
+  color: #acccf1; /* Light blue for dark backgrounds */
+}
+
+.dark a:hover,
+.dark a:focus {
+  color: #cfe3fb; /* Slightly darker on hover */
+}
+
+.table, th, td {
+  border-color: var(--foreground);
+}
+
+/* Additional styles for headings and lists */
 h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+  font-size: 165%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+h2 {
+  font-size: 140%;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+h3 {
+  font-size: 120%;
 }
-*/
+
+h1, h2, h3, h4, h5, h6, hr, ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  height: 1px;
+  color: var(--foreground);
+  background-color: var(--foreground);
+}

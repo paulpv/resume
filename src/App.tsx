@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './App.css'
 import { ResumeData } from './resume'
 
 declare const APP_MODIFIED_TIMESTAMP: string
@@ -14,6 +13,47 @@ const appModifiedTimestampString = timeToYYYYMMDDHHMM(new Date(APP_MODIFIED_TIME
 const resumeModifiedTimestampString = timeToYYYYMMDDHHMM(new Date(RESUME_MODIFIED_TIMESTAMP))
 
 function App() {
+  // Initialize theme from localStorage if present, otherwise use system preference
+  const darkMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const [theme, setTheme] = useState(() => {
+    const stored = localStorage.getItem("theme")
+    return stored ? stored : (darkMediaQuery.matches ? "dark" : "light")
+  });
+
+  // Tracks if the user has manually set a theme
+  const [userSetTheme, setUserSetTheme] = useState(() => {
+    return localStorage.getItem("theme") !== null
+  });
+
+  // Listen for system theme changes only if the user hasn't manually chosen a theme.
+  useEffect(() => {
+    const handler = (e: MediaQueryListEvent) => {
+      if (!userSetTheme) {
+        setTheme(e.matches ? "dark" : "light")
+      }
+    }
+    darkMediaQuery.addEventListener('change', handler)
+    return () => darkMediaQuery.removeEventListener('change', handler)
+  }, [darkMediaQuery, userSetTheme])
+
+  // Update the document class whenever theme changes.
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark")
+    } else {
+      document.documentElement.classList.remove("dark")
+    }
+  }, [theme]);
+
+  function toggleTheme() {
+    setTheme(prev => {
+      const newTheme = prev === "dark" ? "light" : "dark"
+      localStorage.setItem("theme", newTheme)
+      return newTheme
+    })
+    setUserSetTheme(true)
+  }
+
   const [resumeData, setResumeData] = useState<ResumeData | null>(null)
 
   // Fetch resume JSON on component mount
@@ -39,7 +79,44 @@ function App() {
   //const education = resumeData.Education
 
   return (
-    <div className="p-0">
+    <div className="m-2 relative">
+
+      <button
+        onClick={toggleTheme}
+        className="absolute top-0 right-0 h-5 p-1 border border-gray-300 rounded"
+      >
+        {theme === "light" ? (
+          <svg xmlns="http://www.w3.org/2000/svg"
+            className="lucide lucide-moon"
+            width="12" height="12" viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg"
+            className="lucide lucide-sun"
+            width="12" height="12" viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        )}
+      </button>
 
       {/* Contact */}
       <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
@@ -114,7 +191,7 @@ function App() {
                   <div className="py-1 pl-4 text-[100%]">
                     <div className="font-bold pt-1">{job.Company}</div>
                     <div className="italic">{job.Duration} : {job.Position}</div>
-                    <ul className="list-disc list-inside pl-0 text-gray-700">
+                    <ul className="list-disc list-inside pl-0">
                       {job.Details.map((detail, i) => (
                         <li key={i}>{detail}</li>
                       ))}
