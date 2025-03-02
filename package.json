@@ -4,9 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "copy-src": "cp -R ./src ./public/src",
-    "dev": "npm run copy-src && vite",
-    "build": "npm run copy-src && tsc -b && vite build",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },

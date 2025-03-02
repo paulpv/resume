@@ -5,6 +5,14 @@ import { ResumeData } from './resume'
 declare const APP_MODIFIED_TIMESTAMP: string
 declare const RESUME_MODIFIED_TIMESTAMP: string
 
+function timeToYYYYMMDDHHMM(time: Date): string {
+  const pad = (num: number) => num.toString().padStart(2, '0')
+  return `${time.getFullYear()}/${pad(time.getMonth() + 1)}/${pad(time.getDate())} ${pad(time.getHours())}:${pad(time.getMinutes())}`
+}
+
+const appModifiedTimestampString = timeToYYYYMMDDHHMM(new Date(APP_MODIFIED_TIMESTAMP))
+const resumeModifiedTimestampString = timeToYYYYMMDDHHMM(new Date(RESUME_MODIFIED_TIMESTAMP))
+
 function App() {
   const [resumeData, setResumeData] = useState<ResumeData | null>(null)
 
@@ -197,10 +205,10 @@ function App() {
         <tbody>
           <tr>
             <td className="text-left text-[60%]">
-              <a href="./resume.json">resume.json</a> v{RESUME_MODIFIED_TIMESTAMP}
+              <a href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
             </td>
             <td className="text-right text-[60%]">
-              <a href="./src/App.tsx">App</a> v{APP_MODIFIED_TIMESTAMP}
+              <a href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
             </td>
           </tr>
         </tbody>
