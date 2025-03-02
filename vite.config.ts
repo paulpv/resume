@@ -12,7 +12,6 @@ const appModifiedTime = getModifiedTime('./src/App.tsx')
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/resume/',
   plugins: [
     tailwindcss(),
     react(),
