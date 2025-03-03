@@ -79,44 +79,46 @@ function App() {
   //const education = resumeData.Education
 
   return (
-    <div className="m-2 relative">
+    <div className="m-2">
 
-      <button
-        onClick={toggleTheme}
-        className="absolute top-0 right-0 h-5 p-1 border border-gray-300 rounded"
-      >
-        {theme === "light" ? (
-          <svg xmlns="http://www.w3.org/2000/svg"
-            className="lucide lucide-moon"
-            width="12" height="12" viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round">
-            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-          </svg>
-        ) : (
-          <svg xmlns="http://www.w3.org/2000/svg"
-            className="lucide lucide-sun"
-            width="12" height="12" viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round">
-            <circle cx="12" cy="12" r="4"></circle>
-            <path d="M12 2v2"></path>
-            <path d="M12 20v2"></path>
-            <path d="m4.93 4.93 1.41 1.41"></path>
-            <path d="m17.66 17.66 1.41 1.41"></path>
-            <path d="M2 12h2"></path>
-            <path d="M20 12h2"></path>
-            <path d="m6.34 17.66-1.41 1.41"></path>
-            <path d="m19.07 4.93-1.41 1.41"></path>
-          </svg>
-        )}
-      </button>
+      <header className="fixed top-0 right-0 m-0 p-0">
+        <button
+          onClick={toggleTheme}
+          className="absolute top-0 right-0 h-5 p-1 border border-gray-300 rounded"
+        >
+          {theme === "light" ? (
+            <svg xmlns="http://www.w3.org/2000/svg"
+              className="lucide lucide-moon"
+              width="12" height="12" viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg"
+              className="lucide lucide-sun"
+              width="12" height="12" viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.41 1.41"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.41"></path>
+            </svg>
+          )}
+        </button>
+      </header>
 
       {/* Contact */}
       <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
@@ -215,8 +217,8 @@ function App() {
             <td colSpan={2}>
               <div><h4>Employment</h4></div>
               {employment ? employment.map((job, idx) => (
-                <div key={idx}>
-                  <div className="py-1 pl-4 text-[100%]">
+                <div key={idx} className="text-[80%]">
+                  <div className="pl-4">
                     <div className="font-bold pt-1">{job.Company}</div>
                     <div className="italic">{job.Duration} : {job.Position}</div>
                     <ul className="list-disc list-inside pl-0">
@@ -227,7 +229,7 @@ function App() {
                   </div>
                 </div>
               )) :
-                <div className="py-1 pl-4 text-[80%]">No employment history</div>
+                <div className="pl-4 text-[80%]">No employment history</div>
               }
             </td>
           </tr>
@@ -305,15 +307,15 @@ function App() {
         </section>
       )}
       */}
-      
-      <footer className="fixed bottom-0 left-0 w-full bg-white dark:bg-gray-800 p-2">
+
+      <footer className="fixed bottom-0 left-0 w-full p-2 text-white">
         <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
           <tbody>
             <tr>
-              <td className="text-left text-[60%]">
+              <td className="text-[60%]">
                 <a href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
               </td>
-              <td className="text-right text-[60%]">
+              <td className="text-[60%] text-right pr-4">
                 <a href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
               </td>
             </tr>

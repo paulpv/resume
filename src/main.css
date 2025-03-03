@@ -53,6 +53,11 @@ body {
   padding: 0;
 }
 
+footer {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
 a {
   /* Darker blue for light mode */
   color: #1e3a8a;
