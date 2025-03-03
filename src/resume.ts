@@ -15,6 +15,7 @@ export interface Contact {
 export interface Objective {
   readonly Title: string;
   readonly Emphasis: string;
+  readonly Technologies: string;
   readonly Locations: ReadonlyArray<string>;
 }
 

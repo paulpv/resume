@@ -1,4 +1,12 @@
-@import 'tailwindcss';
+/*
+Tailwind preflight can have some unintended consequences:
+https://tailwindcss.com/docs/preflight
+*/
+/*@import 'tailwindcss';*/
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+/*@import "tailwindcss/preflight.css" layer(base);*/
+@import "tailwindcss/utilities.css" layer(utilities);
 
 /* Base theme: Light mode (default) */
 :root {
@@ -38,7 +46,6 @@ body {
   display: block;
   font-size: clamp(12px, 2vw, 36px);
   font-family: courier new;
-  font-weight: 400;
 }
 
 #root {
@@ -49,6 +56,8 @@ body {
 a {
   /* Darker blue for light mode */
   color: #1e3a8a;
+
+  text-decoration: none;
 
   font-weight: 500;
 }
@@ -67,20 +76,7 @@ a:focus {
   border-color: var(--foreground);
 }
 
-/* Additional styles for headings and lists */
-h1 {
-  font-size: 165%;
-}
-
-h2 {
-  font-size: 140%;
-}
-
-h3 {
-  font-size: 120%;
-}
-
-h1, h2, h3, h4, h5, h6, hr, ul {
+h1, h2, h3, h4, h5, h6, ul {
   margin-top: 0;
   margin-bottom: 0;
 }

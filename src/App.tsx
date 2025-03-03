@@ -71,7 +71,7 @@ function App() {
 
   const name = Object.keys(resumeData)[0]
   const contact = resumeData[name]
-  //const summary = resumeData.Summary
+  const summary = resumeData.Summary
   const objective = resumeData.Objective
   const employment = resumeData.Employment
   //const projects = resumeData.Projects
@@ -124,7 +124,7 @@ function App() {
           <tr>
             <td valign="middle">
               <div className="text-[140%] whitespace-nowrap font-bold">{name}</div>
-              <div className="text-[120%]"><a href={contact.Links.Resume.toString()}>{contact.Links.Resume.toString()}</a></div>
+              <div className="text-[110%]"><a href={contact.Links.Resume.toString()}>{contact.Links.Resume.toString()}</a></div>
             </td>
             <td valign="middle" className="text-[80%] text-right px-2 border-r border-black whitespace-nowrap">
               {(() => {
@@ -154,6 +154,13 @@ function App() {
         </tbody>
       </table>
 
+      {/* Summary */}
+      {summary && (
+        <section className="flex flex-row items-center space-x-2">
+          <span className="font-semibold">Summary:</span><p className="text-[65%]">{summary}</p>
+        </section>
+      )}
+
       <hr/>
 
       {/* Objective */}
@@ -161,18 +168,39 @@ function App() {
         <tbody>
           <tr>
             <td colSpan={2}>
-              <div><h3>Objective:</h3></div>
-              <div className="py-1 pl-4 text-[80%]"><i>{objective.Emphasis}</i></div>
+              <h4>Objective</h4>
             </td>
           </tr>
           <tr>
-            <td className="pr-2 text-right whitespace-nowrap text-[80%]">
-              <div>Preferred Job Category:</div>
-              <div>Preferred Locations:</div>
+            <td className="pr-2 text-right whitespace-nowrap text-[80%] font-semibold">
+              Preferred Title:
             </td>
             <td className="whitespace-nowrap text-[80%]">
-              <div>{objective.Title}</div>
-              <div>{objective.Locations.join(", ")} areas</div>
+              {objective.Title}
+            </td>
+          </tr>
+          <tr>
+            <td className="pr-2 text-right whitespace-nowrap text-[80%] font-semibold">
+              Preferred Emphasis:
+            </td>
+            <td className="whitespace-nowrap text-[80%]">
+              {objective.Emphasis}
+            </td>
+          </tr>
+          <tr>
+            <td className="pr-2 text-right whitespace-nowrap text-[80%] font-semibold">
+              Preferred Technologies:
+            </td>
+            <td className="whitespace-nowrap text-[80%]">
+              {objective.Technologies}
+            </td>
+          </tr>
+          <tr>
+            <td className="pr-2 text-right whitespace-nowrap text-[80%] font-semibold">
+              Preferred Locations:
+            </td>
+            <td className="whitespace-nowrap text-[80%]">
+              {objective.Locations.join(", ")} areas
             </td>
           </tr>
         </tbody>
@@ -185,7 +213,7 @@ function App() {
         <tbody>
           <tr>
             <td colSpan={2}>
-              <div><h3>Employment:</h3></div>
+              <div><h4>Employment</h4></div>
               {employment ? employment.map((job, idx) => (
                 <div key={idx}>
                   <div className="py-1 pl-4 text-[100%]">
