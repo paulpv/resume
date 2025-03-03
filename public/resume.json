@@ -54,9 +54,16 @@
   "Education":
   [
     {
-      "Institution": "University of Somewhere",
-      "Degree": "B.S. in Computer Science",
-      "GraduationYear": 2016
-    }
+      "Institution": "Montana State University | Bozeman, MT",
+      "Study": "Computer Science"
+    },
+    {
+      "Institution": "Virginia Polytechnic Institute | Blacksburg, VA",
+      "Study": "General Studies"
+    },
+    {
+      "Institution": "Dobyns-Bennett High School | Kingsport, TN",
+      "Study": "Diploma with AP Calculus & AP Computer Science"
+    }    
   ]
 }

@@ -39,8 +39,7 @@ export interface Skill {
 
 export interface Education {
   readonly Institution: string;
-  readonly Degree: string;
-  //readonly GraduationYear: number;
+  readonly Study: string;
 }
 
 export type ResumeData = {

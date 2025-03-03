@@ -75,8 +75,8 @@ function App() {
   const objective = resumeData.Objective
   const employment = resumeData.Employment
   //const projects = resumeData.Projects
-  //const skills = resumeData.Skills
-  //const education = resumeData.Education
+  const skills = resumeData.Skills
+  const education = resumeData.Education
 
   return (
     <div className="m-2">
@@ -238,34 +238,6 @@ function App() {
 
       <hr/>
 
-      {/* Summary Section * /}
-      {summary && (
-        <section className="mb-6">
-          <h2 className="text-2xl font-semibold border-b border-gray-300 pb-1 mb-2">Summary</h2>
-          <p className="text-gray-800">{summary}</p>
-        </section>
-      )}
-      */}
-
-      {/* Employment Section * /}
-      {employment && (
-        <section className="mb-6">
-          <h2 className="text-2xl font-semibold border-b border-gray-300 pb-1 mb-4">Employment</h2>
-          {employment.map((job, idx) => (
-            <div className="mb-4" key={idx}>
-              <h3 className="text-xl font-medium">{job.position} – {job.company}</h3>
-              <p className="text-gray-600">{job.duration}</p>
-              <ul className="list-disc list-inside ml-5 text-gray-700">
-                {job.details.map((detail, i) => (
-                  <li key={i}>{detail}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </section>
-      )}
-      */}
-
       {/* Projects Section * /}
       {projects && (
         <section className="mb-6">
@@ -285,28 +257,34 @@ function App() {
       )}
       */}
 
-      {/* Skills Section * /}
-      {skills && (
+      {/* Skills Section */}
+      {false && skills && (
         <section>
           <h2 className="text-2xl font-semibold border-b border-gray-300 pb-1 mb-2">Skills</h2>
           <p className="text-gray-800">{skills.join(', ')}</p>
         </section>
       )}
-      */}
 
-      {/* Education Section * /}
+      {/* Education */}
       {education && (
-        <section className="mb-6">
-          <h2 className="text-2xl font-semibold border-b border-gray-300 pb-1 mb-2">Education</h2>
-          {education.map((edu, idx) => (
-            <div className="mb-2" key={idx}>
-              <h3 className="text-xl font-medium">{edu.degree}, {edu.institution}</h3>
-              <p className="text-gray-600">Class of {edu.graduationYear}</p>
-            </div>
-          ))}
-        </section>
+      <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
+        <tbody>
+          <tr>
+            <td colSpan={2}>
+              <div><h4>Education</h4></div>
+              {education.map((job, idx) => (
+                <div key={idx} className="text-[80%]">
+                  <div className="pl-4">
+                    <div className="font-bold pt-1">{job.Institution}</div>
+                    <div className="italic">{job.Study}</div>
+                  </div>
+                </div>
+              ))}
+            </td>
+          </tr>
+        </tbody>
+      </table>
       )}
-      */}
 
       <footer className="fixed bottom-0 left-0 w-full p-2 text-white">
         <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
