@@ -12,45 +12,322 @@
         "StackOverflow": "https://stackoverflow.name/swooby"
       }
   },
-  "Summary": "Experienced developer with a passion for building user-friendly applications and learning new technologies.",
+  "Summary":
+  [
+    "Experienced developer with a passion for building user-friendly applications",
+    "and learning new technologies."
+  ],
   "Objective":
   {
            "Title": "Architect/Principle/Staff/Senior Software Developer/Engineer",
-        "Emphasis": "Mobile/C#/C++/Java/Kotlin/Python/Qt",
+        "Emphasis": "Mobile/Java/Kotlin/Python/C++/C#/Qt",
     "Technologies": "AI, Android, Audio/Video, Embedded, IoT, Mobile, RTC/WebRTC, Streaming",
        "Locations": ["Seattle", "Denver", "Nashville"]
   },
   "Employment":
-  [
-    {
-      "Company": "Tech Co. | Seattle, WA",
-      "Position": "Senior Developer",
-      "Duration": "2019 - Present",
-      "Details":
-      [
-        "Lead a team of 5 engineers to develop web applications using React and Node.js.",
-        "Improved performance of critical projects by 30% through optimization and code refactoring."
-      ]
-    },
-    {
-      "Company": "Web Solutions Inc.",
-      "Position": "Frontend Developer",
-      "Duration": "2016 - 2019",
-      "Details":
-      [
-        "Built responsive user interfaces with React and modern CSS techniques.",
-        "Collaborated with designers and backend developers to create a seamless user experience."
-      ]
-    }
-  ],
+  {
+    "2020-2024 Mynd.ai / Promethean | Seattle, WA":
+    [
+      {
+        "2022/04 - 2024/12": "Staff Software Developer | ActivPanel 9 (AP9) Tech Lead",
+        "2020/12 - 2022/04": "Senior Android Developer",
+        "Description":
+        [
+          "AP9 Android Open Source Project (AOSP) OEM 20-Point Touch 65\"/75\"/86\",",
+          "Interactive Flat Panel Display (IFPD), Telemetry (MixPanel), Audio (AEC/AGC/NS),",
+          "Video (HDMI/DP/EDID/CEC/ARC/HDCP/DRM/…), Codecs (AAC/FLAC/G711/H.264/MP3/MP4/PCM/…),",
+          "AWS (S3, EC2, Route53, Lambda, CloudFront, Cognito, AppSync, DynamoDB, …),",
+          "Firebase (Crashlytics), Atlassian (Confluence/Jira/BitBucket/Bamboo), GitLab,",
+          "GitHub, Android Studio, AI/LLM/RAG/GPT [Cloud/Local]"
+        ],
+        "Major Contributions":
+        [
+          "Shipped all AP9 versions: POC/EVT/DVT/PVT/MP to 1.0 [2022/05] to 2.3 [2024/11].",
+          "On-Site Customer Support of CA school district with 1000s of AP9s.",
+          "Migrated 100+ repositories from Atlassian BitBucket to GitLab.",
+          "Migrated 100+ build jobs from Atlassian Bamboo to GitLab.",
+          "Designed Firebase Wrapper for consistent Crashlytics of 30+ apps.",
+          "Designed Data Regionalization System Architecture that spanned multiple products.",
+          "Used Local AI/LLM to organize ~4000 Confluence wiki pages.",
+          "Automated auditing millions of lines of AOSP/custom code migrated from Android9(P)",
+          "to Android11(R).",
+          "Designed and ran \"PromLab\" of 20+ test automated panels with checkout system.",
+          "Starter Project 2: AudioTest App for testing AEC/AGC/NS.",
+          "Starter Project 1: MixPanel Telemetry Library; still used."
+        ],
+        "Products":
+        {
+          "ActivPanel 9": "https://swooby.com/prom-ap9",
+          "ActivPanel 9 Pro": "https://swooby.com/prom-ap9pro"
+        },
+        "Info": [
+          "https://www.prometheanworld.com",
+          "https://www.mynd.ai"
+        ]
+      }
+    ],
+    "2015-2020 Pebblebee | Issaquah, WA":
+    [
+      {
+        "2015/02 - 2020/12": "Senior Mobile/Android Developer | Tech Lead",
+        "Description":
+        [
+          "Android, Internet-Of-Things (IoT), Bluetooth Low Energy (BLE, Bluetooth Smart),",
+          "Bluetooth Tracking, Crowd GPS Lost-And-Found, Camera[2], ACRA/Acralyzer,",
+          "BT GATT Services/Characteristics/Descriptors, ReactNative, NativeScript,",
+          "Amazon Web Services (AWS) DynamoDB/NoSQL, Realm, Firebase, Crashlytics"
+        ],
+        "Products":
+        {
+          "Pebblebee Finder":
+          {
+            "Android": "http://swooby.com/pb-afinder",
+                "iOS": "http://swooby.com/pb-ifinder"
+          },
+          "Pebblebee Stone":
+          {
+            "Android": "http://swooby.com/pb-astone"
+          }
+        }
+      }
+    ],
+    "2009-2014 Twisted Pair Solutions (TPS): A Motorola Solutions company | Seattle, WA":
+    [
+      {
+        "2014/01 - 2014/09": "Staff Principal Software Engineer [Mobile]",
+        "2012/02 - 2014/01": "Lead Mobile Senior Software Development Engineer",
+        "2011/09 - 2012/02": "Lead Mobile Software Development Engineer",
+        "2010/09 - 2011/09": "Mobile Software Development Engineer",
+        "Description":
+        [
+          "Android/Glass/Wear, BlackBerry, iOS, and Windows CE/Mobile/Phone versions of",
+          "Twisted Pair Solutions' Push-To-Talk (PTT) Radio-Over-IP (RoIP)",
+          "Mobile Communicator (WAVE/MOTOTRBO); Android SDK/NDK, Android Studio,",
+          "Eclipse, Java/J2ME, Python, QT, Visual Studio/.NET/C#, Xamarin, xCode;",
+          "Git, SVN Hooks; Ant, CocoaPods, Gradle, Jenkins, Maven; Sonar, Jacoco, Emma;",
+          "AppCompat, Google Play/Maps/Location, ActionBarSherlock; JUnit, Mockito, OCMock,",
+          "Robolectric, Robotium; Networking (Cellular/WiFi), Reachability,",
+          "Audio Codec (AMR/G711/GSM/MP3/Opus/PCM/Speex/…),",
+          "Cryptography (Key Exchange, Diffie-Hellman, Elliptic Curve, Block Cipher",
+          "(ECB/CTR), HMAC, SHA, X.509 Certificates, SSL/HTTPS), Bluetooth RFCOMM/A2DP/LE;",
+          "TPS Reports"
+        ],
+        "Products":
+        {
+          "WAVE Mobile Communicator":
+          {
+            "Android": "http://swooby.com/msi-awave",
+                "iOS": "http://swooby.com/msi-iwave"
+          },
+          "MOTOTRBO Anywhere": "Deprecated and removed"
+        }
+      },
+      {
+        "2010/06 - 2010/09": "Senior Software Development Engineer in Test",
+        "2009/05 - 2010/06": "Software [Development] Engineer in Test",
+        "Description":
+        [
+          "Design/Develop Python & C# Automation Framework; Establish Test Case Management,",
+          "Test Impact, Code Coverage & Code Review processes; Custom WireShark Dissector;",
+          "Improve Build System to drop symbols & source; Maintain TestTrack TCM;",
+          "Manual Testing; TPS Reports"
+        ],
+        "Products":
+        {
+          "WAVE Communicator": "http://swooby.com/tps-wave"
+        }
+      }
+    ],
+    "2005-2009 Google | Seattle, WA":
+    [
+      {
+        "2008/05 - 2009/01": "Software Development Engineer in Test (SDET)",
+        "Team": "GOOG411 & Google Voice Java/C++ VoIP Backend",
+        "Products":
+        {
+          "Google 411": "https://en.wikipedia.org/wiki/GOOG-411",
+          "Google Voice": "https://en.wikipedia.org/wiki/Google_Voice"
+        },
+        "Description":
+        [
+          "Design/Develop SIPp & pjproject/pjsip automation frameworks,",
+          "Design/Develop Adobe, AIR test harness for Adobe Flash client for",
+          "Google App Engine + Wowza Media Server; Empirix Hammer G5",
+          "performance/scalability/stress testing, Continuous Build, JUnit"
+        ]
+      },
+      {
+        "2005/07 - 2008/05": "Software Development Engineer in Test (SDET)",
+        "Team": "Google Pack/Update and Google Chrome Auto-Update",
+        "Products":
+        {
+          "Google Pack": "https://en.wikipedia.org/wiki/Google_Pack",
+          "Google Omaha": "https://github.com/google/omaha"
+        },
+        "Description":
+        [
+          "Design/Develop Python XMLRPC remote automation test harness to solve",
+          "company wide automation need. Design/Develop C# Windows Logon Service",
+          "to solve Vista UAC automation need; Eggplant UI automation; JMeter;",
+          "International/Local/Global-ization; Service watchdog monitoring"
+        ]
+      }
+    ],
+    "1998-2005 Microsoft | Redmond, WA":
+    [
+      {
+        "2003/09 - 2005/07": "Software Development Engineer in Test (SDET)",
+        "Team": "Microsoft RTC Distributed Meetings",
+        "Products":
+        {
+          "RoundTable": "http://swooby.com/ms-roundtable"
+        },
+        "Description":
+        [
+          "Windows CE PSTN/VoIP/SIP Audio-Gain Video-Panorama USB device; Test",
+          "client/device software, drivers, and sound quality (TIA/ITU-T",
+          "standards TIA-810, G.168, P.34x, etc); Audio, BSP, DSP, Firmware,",
+          "PSTN, UI, USB, Video:"
+        ]
+      },
+      {
+        "2003/02 - 2003/09": "Software Development Engineer in Test (SDET)",
+        "Team": "Microsoft RTC",
+        "Products":
+        {
+          "Live Communications Server": "http://swooby.com/ms-olcs"
+        },
+        "Description":
+        [
+            "Server API testing; SDK sample applications and tools"
+        ]
+      },
+      {
+        "1999/06 - 2003/02": "Software Development Engineer in Test (SDET)",
+        "Team": "Microsoft Exchange/NetDocs/Office RTC",
+        "Products":
+        {
+          "Office Conferencing Server": "http://swooby.com/ms-ocs",
+          "NetDocs": "Internal; Discontinued",
+          "Exchange Conferencing Server": "http://swooby.com/ms-ecs2k3"
+        },
+        "Description":
+        [
+          "Web Based Schedulable Audio/Video/Data conference service comparable",
+          "to WebEx/LiveMeeting/SameTime; Setup, Web Client, Web Scheduling,",
+          "MCU, Firewall/DMZ, Performance, Deployment, Monitoring, BVTs,",
+          "Automation, Tools, Localization"
+        ]
+      },
+      {
+        "1998/05 - 1999/06": "Software Test Engineer (STE)",
+        "Team": "Microsoft Exchange RTC",
+        "Products":
+        {
+          "Exchange Internet Relay Chat (IRC)": "http://swooby.com/ms-ecs2k"
+        },
+        "Description":
+        [
+          "IRC Chat Service used by TalkCity and MSN; Extensibility,",
+          "Scalability, Performance, Deployment, Monitoring"
+        ]
+      }
+    ],
+    "1997-1999 Night55 | Bozeman, MT":
+    [
+      {
+        "1997/01 - 1999/09": "Co-Founder/Co-Owner, Software Developer, Software Tester",
+        "Description":
+        [
+          "Original Creator of Vibe MP3 player:",
+          "http://www.swooby.com/night55/www/vibe2/",
+          "Co-Creator of Sonique MP3 player:",
+          "http://www.swooby.com/night55/www/sonique/",
+          "Acquired by MediaScience in 1998; Acquired by Lycos in 1999 for $38.8M.",
+          "https://en.wikipedia.org/wiki/Sonique_(media_player)"
+        ]
+      }
+    ]
+  },
   "Skills":
   [
-    "JavaScript",
-    "React",
-    "Node.js",
-    "CSS",
-    "TailwindCSS"
+    ["Skill",                                                         "Level", "From", "Last"],
+    ["AI/LLM/RAG/GPT [Cloud/Local]",                           "Intermediate",   2021,   2025],
+    ["Amazon Web Services",                                    "Intermediate",   2015,   2024],
+    ["Android/Glass/Wear, SDK, NDK, AppCompat",                    "Advanced",   2008,   2025],
+    ["AOSP, OEM, IFPD, Telemetry, Audio, AWS",                     "Advanced",   2020,   2024],
+    ["Audio/Video Processing/Testing",                         "Intermediate",   1997,   2025],
+    ["Automotive Personal Computing",                              "Advanced",   2003,   2008],
+    ["BlackBerry 7, 10, QT",                                       "Advanced",   2008,   2014],
+    ["Bluetooth: LE, A2DP, SCO, RFCOMM, Serial",                   "Advanced",   2010,   2020],
+    ["Build/CI: Ant, Gradle, Maven, Jenkins",                      "Advanced",   2010,   2025],
+    ["C/C++",                                                      "Advanced",   1991,   2025],
+    ["C#, .NET, Silverlight, Linq, Mono",                          "Advanced",   2000,   2025],
+    ["Code Coverage: Sonar, Jacoco, Emma",                         "Advanced",   1998,   2024],
+    ["Computer Music/Sequencing",                              "Intermediate",   1991,   2006],
+    ["Cryptography: Cipher, Hash, Key Exchange",                   "Advanced",   2002,   2015],
+    ["Digital Signal Processing (DSP)",                              "Novice",   2003,   2005],
+    ["DirectX, OpenGL, Unity, 3D",                             "Intermediate",   1995,   2019],
+    ["Eclipse",                                                    "Advanced",   2008,   2016],
+    ["Edge: RPi/Jetson/ESP32/Arduino",                         "Intermediate",   2015,   2025],
+    ["EE - Digital Logic (EEPROM/IC/PIC/MCU)",                 "Intermediate",   2003,   2024],
+    ["EE - Power (AC/DC)",                                     "Intermediate",   1994,   2024],
+    ["Email/Chat: Exchange, SMTP/POP, IM/XMPP",                    "Advanced",   1996,   2005],
+    ["Firebase",                                               "Intermediate",   2013,   2025],
+    ["HTML, JavaScript, Node.js, CSS",                             "Advanced",   1994,   2025],
+    ["IIS, ISAPI, ASP[.NET]",                                      "Advanced",   1995,   2017],
+    ["iOS: XCode, CocoaPods, Swift",                           "Intermediate",   2010,   2024],
+    ["Java/J2ME, Kotlin",                                          "Advanced",   1995,   2025],
+    ["MacOS",                                                      "Advanced",   1998,   2025],
+    ["NativeScript",                                           "Intermediate",   2017,   2019],
+    ["Network: Cell/WiFi, TCP/UDP, Wireshark [Dissector]",         "Advanced",   1994,   2025],
+    ["Python",                                                     "Advanced",   2005,   2025],
+    ["Qt 5/6",                                                 "Intermediate",   2016,   2025],
+    ["Radio Control",                                          "Intermediate",   2000,   2006],
+    ["React, ReactNative",                                     "Intermediate",   2017,   2019],
+    ["Realm",                                                  "Intermediate",   2015,   2024],
+    ["Scripting: Shell/Batch/JScript/VBScript",                    "Advanced",   1998,   2025],
+    ["SCM: Git, SVN, G4, P4, SD, Hooks",                           "Advanced",   1998,   2025],
+    ["SQL, MySQL, Access",                                     "Intermediate",   2009,   2025],
+    ["Test (Auto): xUnit, xMockito, UI, Mobile",                   "Advanced",   1998,   2025],
+    ["Test (Manual): Modeling, Planning, PICT",                    "Advanced",   1998,   2014],
+    ["Unix/Linux",                                                 "Advanced",   1991,   2025],
+    ["USB/HID",                                                "Intermediate",   2002,   2024],
+    ["Vue, Vuetify",                                           "Intermediate",   2017,   2019],
+    ["Visual Basic",                                               "Advanced",   1998,   2009],
+    ["VoIP, SIP, PSTN",                                            "Advanced",   2002,   2014],
+    ["Windows [3.x to 11, DOS]",                                   "Advanced",   1989,   2025],
+    ["Windows Mobile [CE/5/6, XPe, Phone]",                        "Advanced",   1999,   2014],
+    ["Windows PowerShell/Scripting",                           "Intermediate",   2006,   2025],
+    ["Xamarin",                                                "Intermediate",   2010,   2018]
   ],
+  "Patents":
+  {
+    "WO2013116741":
+    {
+      "TIP-RING-RING-SLEEVE PUSH-TO-TALK SYSTEM AND METHODS":
+      "http://swooby.com/WO2013116741"
+    },
+    "WO2013154722":
+    {
+      "PULSED INPUT PUSH-TO-TALK SYSTEMS, METHODS AND APPARATUS":
+      "http://swooby.com/WO2013154722"
+    }
+  },
+  "Publications":
+  {
+    "Using AJAX to Enable Client RPC Requests":
+    [
+      "Google Code: Google App Engine, May 2008",
+      "http://swooby.com/pub/ajax"
+    ],
+    "CarPC Hacks: Hack #65 'View Real-Time Traffic Data on the Road'":
+    [
+      "O'Reilly & Associates, July 2005",
+      "ISBN: 0-596-00871-6",
+      "http://swooby.com/pub/carpc"
+    ]
+  },
   "Education":
   [
     {
@@ -65,5 +342,39 @@
       "Institution": "Dobyns-Bennett High School | Kingsport, TN",
       "Study": "Diploma with AP Calculus & AP Computer Science"
     }    
-  ]
+  ],
+  "Miscellaneous":
+  [
+    "From 2006-2010 I owned a factory built 1998 Chevrolet S10 Electric",
+    "Vehicle/Pickup that I frequently tinkered with and wrote software (ALDL,",
+    "OBD/OBD2, PIC) to maintain it.",
+    "",
+    "I am an advocate for Automotive Personal Computing and have a web site that",
+    "details my 2003 Nissan 350Z CarPC project:",
+    "http://www.swooby.com/z/navpc/",
+    "",
+    "I worked on the Montana State University Solar Vehicle Project 1994-1996.",
+    "We competed in SunRayce95 and placed 24th out of 60 teams (2nd out of 20",
+    "\"rookie\" teams):",
+    "http://www.swooby.com/sunrayce/"
+  ],
+  "Hobbies":
+  [
+    "music", "electronics", "radio control", "robotics", "bicycling",
+    "motorcycling", "camping", "hiking", "paintball", "SCUBA"
+  ],
+  "References":
+  {
+    "Promethean, Inc":
+    [
+      "Available upon request"
+    ],
+    "Motorola Solutions":
+    [
+      "1-800-367-5690 - www.theworknumber.com - company code 10300",
+      "(Motorola company policy prohibits referrals from current employees)"
+    ],
+    "Other": "For privacy reasons, other references are available upon request"
+  },
+  "Ruler100":"56789012345678901234567890123456789012345678901234567890123456789012345678901234567890"
 }
