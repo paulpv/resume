@@ -1,8 +1,37 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { ResumeData } from './resume'
+import { ResumeData, Contact } from './resume'
 
 declare const APP_MODIFIED_TIMESTAMP: string
 declare const RESUME_MODIFIED_TIMESTAMP: string
+
+const MOBILE_BREAKPOINT = 821 // iPad Air is 820x1180
+
+function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState(false)
+
+  useEffect(() => {
+    const mediaQueryList = window.matchMedia(query)
+    const listener = (e: MediaQueryListEvent) => setMatches(e.matches)
+    setMatches(mediaQueryList.matches)
+    try {
+      mediaQueryList.addEventListener('change', listener)
+    } catch {
+      mediaQueryList.addListener(listener)
+    }
+    return () => {
+      try {
+        mediaQueryList.removeEventListener('change', listener)
+      } catch {
+        mediaQueryList.removeListener(listener)
+      }
+    }
+  }, [query])
+  return matches
+}
+
+function isMobileWidth() {
+  return useMediaQuery(`(max-width: ${MOBILE_BREAKPOINT}px)`)
+}
 
 function timeToYYYYMMDDHHMM(time: Date): string {
   const pad = (num: number) => num.toString().padStart(2, '0')
@@ -51,6 +80,95 @@ function Description(description: ReadonlyArray<string>) {
   );
 }
 
+type RenderContactProps = {
+  contactName: string;
+  contact: Contact;
+  summary: string;
+}
+
+function RenderContact({ contactName, contact, summary }: RenderContactProps) {
+
+  const isMobile = isMobileWidth()
+
+  const email = contact.Email
+  const linkEmail = <a href={`mailto:${email}`}>{email}</a>
+  const address = contact.Address
+  const phone = contact.Phone[0]
+  const resume = contact.Links.Resume.toString()
+  const linkResume = <a href={resume}>{resume}</a>
+  const linkedIn = contact.Links.LinkedIn.toString()
+  const linkLinkedIn = <a href={linkedIn}>{linkedIn}</a>
+  const gitHub = contact.Links.GitHub.toString()
+  const linkGitHub = <a href={gitHub}>{gitHub}</a>
+  const stackOverflow = contact.Links.StackOverflow.toString()
+  const linkStackOverflow = <a href={stackOverflow}>{stackOverflow}</a>
+
+  if (isMobile) {
+    return (
+      <>
+        <div className="text-[190%] font-bold">{contactName}</div>
+        <div className="flex flex-row gap-1 items-center">
+          <div className="flex-1 ext-[86%] text-left pb-1">{address}</div>
+          <div className="flex-none text-[86%] text-right pb-1">{linkEmail}</div>
+        </div>
+        <div className="grid grid-cols-[min-content_1fr_min-content_1fr] gap-x-1">
+          <div className="text-[60%] text-right font-semibold">Resume:</div>
+          <div className="text-[60%] text-left">{linkResume}</div>
+          <div className="text-[60%] text-right font-semibold">LinkedIn:</div>
+          <div className="text-[60%] text-left">{linkLinkedIn}</div>
+          <div className="text-[60%] text-right font-semibold">GitHub:</div>
+          <div className="text-[60%] text-left">{linkGitHub}</div>
+          <div className="text-[60%] text-right font-semibold">StackOverflow:</div>
+          <div className="text-[60%] text-left">{linkStackOverflow}</div>
+        </div>
+        {summary && (
+          <div className="mx-0 my-1 p-0">
+            <div className="text-[94%] font-semibold">Summary:</div>
+            <div className="text-[86%] text-pretty">{summary}</div>
+          </div>
+        )}
+      </>
+    )
+  } else {
+    return (
+      <>
+        <div className="flex flex-row gap-2">
+          <div className="flex-1 border-0 text-right mr-4">
+            <div className="text-[140%] font-bold whitespace-nowrap">{contactName}</div>
+            <div className="text-[110%]">{linkEmail}</div>
+          </div>          
+          {(() => {
+            const [first, ...rest] = address.split(',')
+            return (
+              <div className="flex-none text-[80%] text-right pr-2 border-r border-current whitespace-nowrap">
+                <div>{first.trim()}</div>
+                {rest.length > 0 && <div>{rest.join(',').trim()}</div>}
+                <div>{phone}</div>
+              </div>
+            )
+          })()}
+          <div className="flex-none mt-0 text-[60%] border-0 grid grid-cols-[auto_auto] gap-x-2">
+            <div className="text-right font-semibold">Resume:</div>
+            <div className="text-left">{linkResume}</div>
+            <div className="text-right font-semibold">LinkedIn:</div>
+            <div className="text-left">{linkLinkedIn}</div>
+            <div className="text-right font-semibold">GitHub:</div>
+            <div className="text-left">{linkGitHub}</div>
+            <div className="text-right font-semibold">StackOverflow:</div>
+            <div className="text-left">{linkStackOverflow}</div>
+          </div>
+        </div>
+        {summary && (
+          <div className="mb-2 p-0">
+            <span className="text-[86%] font-semibold">Summary:</span>
+            <span className="text-[68%] pl-2">{summary}</span>
+          </div>
+        )}
+      </>
+    )
+  }
+}
+
 function App() {
 
   // Initialize theme from localStorage if present, otherwise use system preference
@@ -94,6 +212,7 @@ function App() {
 
   const [employmentHeaderElement, setEmploymentHeaderElement] = useState<HTMLDivElement | null>(null)
   const [employmentHeaderHeight, setEmploymentHeaderHeight] = useState(0)
+  const isMobile = isMobileWidth()
   useLayoutEffect(() => {
     if (employmentHeaderElement) {
       const updateHeight = () => {
@@ -140,97 +259,50 @@ function App() {
 
       <header className="header sticky-bg mx-2 mb-0 p-0">
 
-        <button
-          onClick={toggleTheme}
-          className={`absolute top-0 right-0 flex items-center justify-center h-6 p-1 border border-gray-300 rounded no-print ${theme === "light" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"}`}
-        >
-          {theme === "light" ? (
-            <svg xmlns="http://www.w3.org/2000/svg"
-              className="lucide lucide-moon"
-              width="12" height="12" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor"
-              strokeWidth="2" strokeLinecap="round"
-              strokeLinejoin="round">
-              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-            </svg>
-          ) : (
-            <svg xmlns="http://www.w3.org/2000/svg"
-              className="lucide lucide-sun"
-              width="12" height="12" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor"
-              strokeWidth="2" strokeLinecap="round"
-              strokeLinejoin="round">
-              <circle cx="12" cy="12" r="4"></circle>
-              <path d="M12 2v2"></path>
-              <path d="M12 20v2"></path>
-              <path d="m4.93 4.93 1.41 1.41"></path>
-              <path d="m17.66 17.66 1.41 1.41"></path>
-              <path d="M2 12h2"></path>
-              <path d="M20 12h2"></path>
-              <path d="m6.34 17.66-1.41 1.41"></path>
-              <path d="m19.07 4.93-1.41 1.41"></path>
-            </svg>
-          )}
-        </button>
+        <div className="sticky-bg flex flex-row justify-between py-1 text-[55%] items-center">
+          <div className="flex-1">
+            <a href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
+          </div>
+          <div className="mr-4">
+            <a href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
+          </div>
+          <button
+            onClick={toggleTheme}
+            title={`Switch to ${theme === "dark" ? "Light Mode" : "Dark Mode"}`}
+            className={`flex items-center justify-center h-6 p-1 border border-gray-300 rounded no-print ${theme === "light" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"}`}
+          >
+            {theme === "light" ? (
+              <svg xmlns="http://www.w3.org/2000/svg"
+                className="lucide lucide-moon"
+                width="12" height="12" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                strokeWidth="2" strokeLinecap="round"
+                strokeLinejoin="round">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg"
+                className="lucide lucide-sun"
+                width="12" height="12" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor"
+                strokeWidth="2" strokeLinecap="round"
+                strokeLinejoin="round">
+                <circle cx="12" cy="12" r="4"></circle>
+                <path d="M12 2v2"></path>
+                <path d="M12 20v2"></path>
+                <path d="m4.93 4.93 1.41 1.41"></path>
+                <path d="m17.66 17.66 1.41 1.41"></path>
+                <path d="M2 12h2"></path>
+                <path d="M20 12h2"></path>
+                <path d="m6.34 17.66-1.41 1.41"></path>
+                <path d="m19.07 4.93-1.41 1.41"></path>
+              </svg>
+            )}
+          </button>
+        </div>
 
         <div className="flex flex-col m-0 p-0">
-
-          {/* Contact Section */}
-          <div className="flex flex-row gap-2">
-            <div className="flex-1 border-0">
-              <div className="text-[140%] whitespace-nowrap font-bold">{contactName}</div>
-              <div className="text-[110%]"><a href={contact.Links.Resume.toString()}>{contact.Links.Resume.toString()}</a></div>
-            </div>
-            <div className="flex-none text-[80%] text-right pr-2 border-r border-current whitespace-nowrap">
-              <div>
-                {(() => {
-                  const [first, ...rest] = contact.Address.split(',')
-                  return (
-                    <>
-                      <div>{first.trim()}</div>
-                      {rest.length > 0 && <div>{rest.join(',').trim()}</div>}
-                    </>
-                  )
-                })()}
-              </div>
-              <div>{contact.Phone[0]}</div>
-            </div>
-            <div className="flex-none mt-0 text-[60%] border-0">
-              <div className="grid grid-cols-[auto_auto] gap-x-2">
-                <div className="text-right font-semibold">Email:</div>
-                <div className="text-left">
-                  <a href={`mailto:${contact.Email}`}>{contact.Email}</a>
-                </div>
-                <div className="text-right font-semibold">LinkedIn:</div>
-                <div className="text-left">
-                  <a href={contact.Links.LinkedIn.toString()}>
-                    {contact.Links.LinkedIn.toString()}
-                  </a>
-                </div>
-                <div className="text-right font-semibold">GitHub:</div>
-                <div className="text-left">
-                  <a href={contact.Links.GitHub.toString()}>
-                    {contact.Links.GitHub.toString()}
-                  </a>
-                </div>
-                <div className="text-right font-semibold">StackOverflow:</div>
-                <div className="text-left">
-                  <a href={contact.Links.StackOverflow.toString()}>
-                    {contact.Links.StackOverflow.toString()}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Summary Section */}
-          {summary && (
-            <div className="mb-2 p-0">
-              <span className="text-[86%] font-semibold">Summary:</span>
-              <span className="text-[68%] pl-2">{summary}</span>
-            </div>
-          )}
-
+          <RenderContact contactName={contactName} contact={contact} summary={summary} />
         </div>
 
       </header>
@@ -270,7 +342,7 @@ function App() {
             {idxDateCompany > 0 && <hr className="ml-4 mr-8 my-2" />}
             <div className="text-[80%] mb-4 last:mb-0">
               <div className="pl-4">
-                <div className="font-bold pb-1 sticky z-9 sticky-bg" style={{ top: employmentHeaderHeight }}>
+                <div className="font-bold pb-1 sticky z-9 sticky-bg" style={{ top: employmentHeaderHeight + (isMobile ? 2 : 0) }}>
                   {keyDateCompany}
                 </div>
                 {jobs.map((job, idxJob) => (
@@ -384,15 +456,6 @@ function App() {
         )}
 
       </div>
-
-      <footer className="footer sticky-bg flex flex-row justify-between px-2 py-1 text-[70%]">
-        <span>
-          <a href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
-        </span>
-        <span>
-          <a href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
-        </span>
-      </footer>
 
     </div>
   )
