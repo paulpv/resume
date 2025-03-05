@@ -30,7 +30,7 @@ function useMediaQuery(query: string): boolean {
 }
 
 function isMobileWidth() {
-  return useMediaQuery(`(max-width: ${MOBILE_BREAKPOINT}px)`)
+  return useMediaQuery(`only screen and (max-width: ${MOBILE_BREAKPOINT}px)`)
 }
 
 function timeToYYYYMMDDHHMM(time: Date): string {

@@ -66,16 +66,23 @@ body {
 }
 
 @media print {
-  .no-print {
-    display: none !important;
-  }
-
-  .layout {
+  html,
+  body {
+    width: auto !important;
     height: auto !important;
+    position: static !important;
+    overflow: visible !important;
   }
-
+  .layout {
+    width: auto !important;
+    height: auto !important;
+    display: block !important;
+  }
   .content {
     overflow: visible !important;
+  }
+  .no-print {
+    display: none !important;
   }
 }
 
