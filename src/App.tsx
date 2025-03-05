@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ResumeData, Contact } from './resume'
 
 declare const APP_MODIFIED_TIMESTAMP: string
@@ -83,7 +83,7 @@ function Description(description: ReadonlyArray<string>) {
 type RenderContactProps = {
   contactName: string;
   contact: Contact;
-  summary: string;
+  summary: ReadonlyArray<string>;
 }
 
 function RenderContact({ contactName, contact, summary }: RenderContactProps) {
@@ -126,7 +126,9 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
         {summary && (
           <div className="mx-0 my-1 p-0">
             <div className="text-[94%] font-semibold">Summary:</div>
-            <div className="text-[86%] text-pretty">{summary}</div>
+            {summary.map((line, idx) => (
+              <div key={idx} className="text-[86%] pl-2">{line}</div>
+            ))}
           </div>
         )}
       </>
@@ -155,7 +157,7 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
         {summary && (
           <div className="mb-2 p-0">
             <span className="text-[86%] font-semibold">Summary:</span>
-            <span className="text-[68%] pl-2">{summary}</span>
+            <span className="text-[68%] pl-2">{summary.join(' ')}</span>
           </div>
         )}
       </>
@@ -204,20 +206,33 @@ function App() {
     setUserSetTheme(true)
   }
 
+  const isMobile = isMobileWidth()
   const [employmentHeaderElement, setEmploymentHeaderElement] = useState<HTMLDivElement | null>(null)
   const [employmentHeaderHeight, setEmploymentHeaderHeight] = useState(0)
-  const isMobile = isMobileWidth()
+  const [skillsHeaderElement, setSkillsHeaderElement] = useState<HTMLDivElement | null>(null)
+  const [skillsHeaderHeight, setSkillsHeaderHeight] = useState(0)
   useLayoutEffect(() => {
-    if (employmentHeaderElement) {
-      const updateHeight = () => {
+    const updateEmploymentHeight = () => {
+      if (employmentHeaderElement) {
         const { height } = employmentHeaderElement.getBoundingClientRect()
         setEmploymentHeaderHeight(height)
       }
-      updateHeight()
-      window.addEventListener('resize', updateHeight)
-      return () => window.removeEventListener('resize', updateHeight)
     }
-  }, [employmentHeaderElement])
+    const updateSkillsHeight = () => {
+      if (skillsHeaderElement) {
+        const { height } = skillsHeaderElement.getBoundingClientRect()
+        setSkillsHeaderHeight(height)
+      }
+    }
+    updateEmploymentHeight()
+    updateSkillsHeight()
+    window.addEventListener('resize', updateEmploymentHeight)
+    window.addEventListener('resize', updateSkillsHeight)
+    return () => {
+      window.removeEventListener('resize', updateEmploymentHeight)
+      window.removeEventListener('resize', updateSkillsHeight)
+    }
+  }, [employmentHeaderElement, skillsHeaderElement])
 
   const [resumeData, setResumeData] = useState<ResumeData | null>(null)
 
@@ -244,7 +259,7 @@ function App() {
     objective,
     employment,
     //projects,
-    //skills,
+    skills,
     education,
   } = resumeData
 
@@ -301,7 +316,7 @@ function App() {
 
       </header>
 
-      <div className="content mx-2 pb-2">
+      <div className="content mx-2">
 
         {/* Objective Section */}
         <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
@@ -310,7 +325,7 @@ function App() {
             <h4>Objective</h4>
           </div>
         </div>
-        <div className="pb-2 grid grid-cols-[max-content_1fr] gap-x-2 gap-y-0 text-[80%]">
+        <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-0 text-[80%]">
           <div className="text-right font-semibold">Preferred Title:</div>
           <div className="text-left">{objective.Title}</div>
 
@@ -323,6 +338,7 @@ function App() {
           <div className="text-right font-semibold">Preferred Locations:</div>
           <div className="text-left">{objective.Locations.join(", ")} areas</div>
         </div>
+        <div className="pb-2" />
 
         {/* Employment Section */}
         <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
@@ -331,7 +347,7 @@ function App() {
             <h4>Employment</h4>
           </div>
         </div>
-        {employment && Array.from(employment.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
+        {Array.from(employment.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
           <div key={idxDateCompany}>
             {idxDateCompany > 0 && <hr className="ml-4 mr-8 my-2" />}
             <div className="text-[80%] mb-4 last:mb-0">
@@ -403,8 +419,7 @@ function App() {
             </div>
           </div>
         ))}
-
-        <hr />
+        <div className="pb-2" />
 
         {/* Projects Section * /}
         {projects && (
@@ -425,31 +440,57 @@ function App() {
         )}
         */}
 
-        {/* Skills Section * /}
-        {false && skills && (
-          <section>
-            <h2 className="text-2xl font-semibold border-b border-gray-300 pb-1 mb-2">Skills</h2>
-            <p className="text-gray-800">{skills.join(', ')}</p>
-          </section>
-        )*/}
-
+        {/* Skills Section */}
+        <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
+          <hr className="m-0 p-0" />
+          <div ref={setSkillsHeaderElement} className="py-2">
+            <h4>Skills</h4>
+          </div>
+        </div>
+        {(() => {
+          const [header, ...rest] = skills
+          return (
+            <>
+              <div className="sticky-bg sticky z-9" style={{ top: skillsHeaderHeight + (isMobile ? 2 : 0) }}>
+                <div className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 mr-4 font-bold">
+                  <div className="ml-4">{header.Skill}</div>
+                  <div className="text-right">{header.Level}</div>
+                  <div className="text-right">{header.From}</div>
+                  <div className="text-right">{header.Last}</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 mr-4">
+                {rest.map((skill, idx) => (
+                  <React.Fragment key={idx}>
+                    <div className="ml-4">• {skill.Skill}</div>
+                    <div className="italic text-right">{skill.Level}</div>
+                    <div className="italic text-right">{skill.From}</div>
+                    <div className="italic text-right">{skill.Last}</div>
+                  </React.Fragment>
+                ))}
+              </div>
+            </>
+          )
+        })()}
+        <div className="pb-2" />
 
         {/* Education Section */}
-        {education && (
-          <section>
+        <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
+          <hr className="m-0 p-0" />
+          <div className="py-2">
             <h4>Education</h4>
-            <div className="space-y-1">
-              {education.map((job, idx) => (
-                <div key={idx} className="ml-4 text-[80%]">
-                  <div className="font-bold">{job.Institution}</div>
-                  <div className="italic">{job.Study}</div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
+          </div>
+        </div>
+        {Array.from(education.entries()).map(([where, what], idx) => (
+          <div key={idx} className="ml-4 text-[80%]">
+            <div className="font-bold">{where}</div>
+            <div className="italic">{what}</div>
+          </div>
+        ))}
+        <div className="pb-2" />
 
       </div>
+      <div className="pb-2" />
 
     </div>
   )

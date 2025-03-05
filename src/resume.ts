@@ -7,7 +7,7 @@ export interface Links {
 
 export interface Contact {
   readonly Email: string;
-  readonly Phone: string | Array<string>;
+  readonly Phone: string | ReadonlyArray<string>;
   readonly Address: string;
   readonly Links: Links;
 }
@@ -26,6 +26,7 @@ export class Job {
   readonly MajorContributions: ReadonlyArray<string>;
   readonly Products?: ReadonlyMap<string, any>;
   readonly Info: ReadonlyArray<string>;
+
   constructor(json: Record<string, any>) {
     const {
       Description: _description,
@@ -33,18 +34,18 @@ export class Job {
       Products: _products,
       Info,
       Team,
-      ..._roles
+      ...roles
     } = json;
 
-    const roles = new Map();
-    for (const [key, value] of Object.entries(_roles)) {
+    const _roles = new Map();
+    for (const [key, value] of Object.entries(roles)) {
       if (typeof value === 'string') {
-        roles.set(key, value);
+        _roles.set(key, value);
       } else {
         throw new Error(`Invalid or missing Role value for key: ${key}`);
       }
     }
-    this.Roles = roles;
+    this.Roles = _roles;
 
     this.Description = _description;
     this.MajorContributions = MajorContributions;
@@ -70,48 +71,60 @@ export interface Project {
 }
 
 export interface Skill {
-  readonly Name: string;
-}
-
-export interface Education {
-  readonly Institution: string;
-  readonly Study: string;
+  readonly Skill: string;
+  readonly Level: string;
+  readonly From: string;
+  readonly Last: string;
 }
 
 export class ResumeData {
   public contactName: string;
   public contact: Contact;
-  public summary: string;
+  public summary: ReadonlyArray<string>;
   public objective: Objective;
-  public employment: Map<string, ReadonlyArray<Job>>;
+  public employment: ReadonlyMap<string, ReadonlyArray<Job>>;
   //public projects: ReadonlyArray<Project>;
-  //public skills: ReadonlyArray<Skill>;
-  public education: ReadonlyArray<Education>;
+  public skills: ReadonlyArray<Skill>;
+  public education: ReadonlyMap<string, string>;
 
   constructor(
     contactName: string,
     contact: Contact,
-    summary: string,
+    summary: ReadonlyArray<string>,
     objective: Objective,
-    employment: Record<string, ReadonlyArray<Job>>,
+    employment: ReadonlyMap<string, ReadonlyArray<Job>>,
     //projects: ReadonlyArray<Project>,
-    //skills: ReadonlyArray<Skill>,
-    education: ReadonlyArray<Education>,
+    skills: ReadonlyArray<ReadonlyArray<any>>,
+    education: ReadonlyMap<string, string>,
   ) {
     this.contactName = contactName;
     this.contact = contact;
     this.summary = summary;
     this.objective = objective;
 
-    this.employment = new Map();
+    const _employment = new Map();
     for (const [key, value] of Object.entries(employment)) {
       const jobArray = value.map((job: Record<string, any>) => new Job(job));
-      this.employment.set(key, jobArray);
+      _employment.set(key, jobArray);
     }
+    this.employment = _employment;
 
     //this.projects = projects;
-    //this.skills = skills;
-    this.education = education;
+
+    const _skills = skills.map((skill: ReadonlyArray<any>) => {
+      if (skill.length !== 4) {
+        throw new Error('Invalid Skill');
+      }
+      const [Skill, Level, From, Last] = skill;
+      return { Skill, Level, From, Last };
+    });
+    this.skills = _skills;
+
+    const _education = new Map();
+    for (const [key, value] of Object.entries(education)) {
+      _education.set(key, value);
+    }
+    this.education = _education;
   }
 
   static fromJSON(json: any): ResumeData {
@@ -120,23 +133,14 @@ export class ResumeData {
     }
 
     const {
-      Summary: _summary,
+      Summary: summary,
       Objective: objective,
       Employment: employment,
       //Projects: projects,
-      //Skills: skills,
+      Skills: skills,
       Education: education,
       ...remainder
     } = json;
-
-    let summary: string;
-    if (typeof _summary === 'string') {
-      summary = _summary;
-    } else if (_summary && Array.isArray(_summary)) {
-      summary = _summary.join(' ');
-    } else {
-      throw new Error('Invalid or missing Summary');
-    }
 
     if (!objective || typeof objective !== 'object') {
       throw new Error('Invalid or missing Objective');
@@ -147,10 +151,10 @@ export class ResumeData {
     // if (!projects || !Array.isArray(projects)) {
     //   throw new Error('Invalid or missing Projects');
     // }
-    // if (!skills || !Array.isArray(skills)) {
-    //   throw new Error('Invalid or missing Skills');
-    // }
-    if (!education || !Array.isArray(education)) {
+    if (!skills || !Array.isArray(skills)) {
+      throw new Error('Invalid or missing Skills');
+    }
+    if (!education || typeof education !== 'object') {
       throw new Error('Invalid or missing Education');
     }
 
@@ -171,7 +175,7 @@ export class ResumeData {
       objective,
       employment,
       //projects,
-      //skills,
+      skills,
       education,
     );
   }

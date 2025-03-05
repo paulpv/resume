@@ -14,8 +14,8 @@
   },
   "Summary":
   [
-    "Experienced developer with a passion for building user-friendly applications",
-    "and learning new technologies."
+    "Experienced developer with a passion for building",
+    "user-friendly applications and learning new technologies."
   ],
   "Objective":
   {
@@ -249,6 +249,161 @@
       }
     ]
   },
+  "Projects":
+  {
+    "DistroAV (OBS-NDI) | Seattle, WA":
+    {
+      "2023/02 - Present": "Administrator/Maintainer, Lead Developer",
+      "Description":
+      [
+        "Open Broadcaster Software (OBS) Studio NDI Plugin, est 2016/10/22.",
+        ">5M Downloads, >9K Daily Launches, >3.5K Stars, >370 Forks"
+      ],
+      "Info": ["https://distroav.org", "https://github.com/DistroAV/DistroAV"]
+    },
+    "NightVsKnight | Seattle, WA":
+    {
+      "2019 - Present": "Owner",
+      "Description":
+      [
+        "Personal challenge to picture-in-picture stream two 21:9 gaming PCs.",
+        "Custom [.NET] code integrates Windows Audio, USB switches and devices,",
+        "HDMI Matrix Switch, Open Broadcaster Software [OBS] Studio, and Vocoder."
+      ],
+      "Info": [
+        ["http://nvk.gg", "http://NightVsKnight.stream"],
+        "https://www.youtube.com/@NightVsKnight",
+        {
+          "The Setup": "http://youtu.be/8rDLZBV5SII",
+          "Example Stream": "http://youtu.be/JFPww7KCanU"
+        }
+      ],
+      "AgentSmith": {
+        "Description": [
+          "2018-2024: Software based Matrix KvM to create new disruptive industry genres.",
+          "Think 'JetJVM/NanoKVM/PiKVM/TinyPilot/…', but on LSD+Steroids.",
+          "Various attempts have involved:",
+          "* 2023: Pure Software: Moonlight [NVIDIA GameStream] Client Fork",
+          "* 2021: Pure Software: NDI + USBIP-Server Base",
+          "* 2019: Software Automated Hardware (HDMI Matrix Switch, USB Switch, RS232IP)"
+        ],
+        "URLs": [
+          "https://github.com/NightVsKnight/AgentSmith"
+        ]
+      },
+      "HangarXPLOR": [
+        "https://github.com/paulpv/HangarXPLOR, fork of https://github.com/dolkensp/HangarXPLOR,",
+        "a Chrome Extension to improve Star Citizen's pretty bad Hangar UX."
+      ],
+      "http://TradeCitizen.org": [
+        "2017-2020: Vue+Vuetify crowd sourced commodities trading web app for Star Citizen.",
+        "http://github.com/trade-citizen/trade-citizen"
+      ],
+      "FleetVieweR": [
+        "2017-2018: Unity Daydream VR app to view & manipulate multiple Star Citizen ships",
+        "http://github.com/swooby/fleet-viewer",
+        "https://swooby.com/fleetviewr/youtube"
+      ]  
+    },
+    "swooby.com | Seattle, WA":
+    {
+      "1998/01 - Present": "Owner",
+      "Description": "Custom/Hobby Software Development",
+      "Projects": {
+        "AI Studies": {
+          "AlfredAI": {
+            "URL": "https://github.com/swooby/AlfredAI",
+            "Description": [
+              "2025: Kotlin OpenAI Realtime WebRTC API Android Push-To-Talk AI Assistant App",
+              "Phone[/Mobile] + Watch[/Wear] + [Bluetooth]AudioRouting"
+            ]
+          },
+          "PhoneWearRemote": {
+            "URL": "https://github.com/swooby/PhoneWearRemote",
+            "Description": [
+              "2025: Android Phone[/Mobile] + Watch[/Wear] App: Used to improve AlfredAI."
+            ]
+          },
+          "openai-openapi-kotlin": {
+            "URL": "https://github.com/swooby/openai-openapi-kotlin",
+            "Description": [
+              "2025: Kotlin generation [+ tweaks] of OpenAI's entire OpenAPI Specification.",
+              "Used by AlfredAI."
+            ]
+          },
+          "openai-realtime-api-beta": {
+            "URL": "https://github.com/swooby/openai-realtime-api-beta",
+            "Description": [
+              "2025: Fork of https://github.com/openai/openai-realtime-api-beta;",
+              "Adds WebRTC to OpenAI's still [as of 2025/02/10] WebSocket only Realtime API.",
+              "Used to A/B test behavior differences between OpenAI Realtime WebRTC vs WebSocket.",
+              "Used to improve AlfredAI's Kotlin implementation."
+            ]
+          },
+          "openai-realtime-push-to-talk": {
+            "URL": "https://github.com/swooby/openai-realtime-push-to-talk",
+            "Description": [
+              "2025: Fork of https://github.com/openai/openai-realtime-console;",
+              "Adds PushToTalk, Interrupt, … and cleans up and fixes their code a bit.",
+              "Used to improve AlfredAI's Kotlin implementation."
+            ]
+          }
+        },
+        "FreeWatch": {
+          "Description": [
+            "2025: Chrome Extension highlights Free movies as Green and Expiring movies as Red."
+          ],
+          "URL": "https://github.com/swooby/FreeWatch"
+        },
+        "EV1Dash": {
+          "Description": "2006-2016: Palm m500 OBDII for 1997-1998 Saturn/GM EV1 and Chevy S10EV",
+          "URLs": [
+            "http://sourceforge.net/projects/ev1dash/",
+            "http://www.ohler.com/palm/EV1Dash.html"
+          ]
+        },
+        "CFMapPoint": {
+          "Description": "2004-2008: MapPoint plugin for Centrafuse",
+          "URLs": [
+            "http://www.swooby.com/CFMapPoint/",
+            "https://youtu.be/98XcaJZ7RaQ"
+          ]
+        },
+        "CarPC Hack #65 | (July 2005 ISBN-10: 0-596-00871-6)": {
+          "Description": "2005 View Real-Time Traffic Data on the Road",
+          "URLs": [
+            "http://www.swooby.com/z/navpc/",
+            "http://swooby.com/pub/carpc",
+            "https://www.oreilly.com/library/view/car-pc-hacks/0596008716/",
+            "https://www.amazon.com/_/dp/0596008716"
+          ]
+        },
+        "Electronics": [
+          "ESP32 based MicroController Unit (MCU) projects and Printed Circuit Board",
+          "(PCB) design for Capacitive Touch Screen RGB LED Controller & other gizmos.",
+          "http://swooby.com/PCB/TP",
+          "http://youtu.be/h2mYaycwUxg",
+          "http://youtu.be/9nb01vvdYeU",
+          "http://youtu.be/oxMuTyb_urs"
+        ]
+      }
+    },
+    "smartfoo.com":
+    [
+        "2014/03 - Present | Founder",
+        "WIP: API framework that transcends all \"SmartPhone\" platforms"
+    ],
+    "sio2ware.com (pronounced \"GlassWare\": SiO2 == \"Silicon Dioxide\" == Glass)":
+    [
+        "2014/02 - 2017 | Founder",
+        "WIP: Development and Consulting for Google Glass Software (GlassWare)"
+    ],
+    "TeamYogaBlade":
+    [
+        "2013/12 - 2017 | Founder",
+        "Defunct: CyanogenMod for Lenovo Yoga Android \"blade\" tablets"
+    ]
+  },
   "Skills":
   [
     ["Skill",                                                         "Level", "From", "Last"],
@@ -329,20 +484,14 @@
     ]
   },
   "Education":
-  [
-    {
-      "Institution": "Montana State University | Bozeman, MT",
-      "Study": "Computer Science"
-    },
-    {
-      "Institution": "Virginia Polytechnic Institute | Blacksburg, VA",
-      "Study": "General Studies"
-    },
-    {
-      "Institution": "Dobyns-Bennett High School | Kingsport, TN",
-      "Study": "Diploma with AP Calculus & AP Computer Science"
-    }    
-  ],
+  {
+    "Montana State University | Bozeman, MT":
+      "Computer Science",
+    "Virginia Polytechnic Institute | Blacksburg, VA":
+      "General Studies",
+    "Dobyns-Bennett High School | Kingsport, TN":
+      "Diploma with AP Calculus & AP Computer Science"
+  },
   "Miscellaneous":
   [
     "From 2006-2010 I owned a factory built 1998 Chevrolet S10 Electric",
