@@ -18,7 +18,7 @@ function isUrl(value: string): boolean {
 
 function RenderPossibleLink(value: string) {
   if (isUrl(value)) {
-      return <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>;
+    return <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>;
   } else {
     return <span>{value}</span>;
   }
@@ -142,10 +142,8 @@ function App() {
 
         <button
           onClick={toggleTheme}
-          className={`absolute top-0 right-0 flex items-center justify-center h-6 p-1 border border-gray-300 rounded no-print ${
-            theme === "light" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"
-          }`}
-          >
+          className={`absolute top-0 right-0 flex items-center justify-center h-6 p-1 border border-gray-300 rounded no-print ${theme === "light" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"}`}
+        >
           {theme === "light" ? (
             <svg xmlns="http://www.w3.org/2000/svg"
               className="lucide lucide-moon"
@@ -177,43 +175,55 @@ function App() {
 
         <div className="flex flex-col m-0 p-0">
 
-          {/* Contact */}
-          <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
-            <tbody>
-              <tr>
-                <td valign="middle">
-                  <div className="text-[140%] whitespace-nowrap font-bold">{contactName}</div>
-                  <div className="text-[110%]"><a href={contact.Links.Resume.toString()}>{contact.Links.Resume.toString()}</a></div>
-                </td>
-                <td valign="middle" className="text-[80%] text-right px-2 border-r border-black whitespace-nowrap">
-                  {(() => {
-                    const [first, ...rest] = contact.Address.split(',');
-                    return (
-                      <>
-                        <div>{first.trim()}</div>
-                        {rest.length > 0 && <div>{rest.join(',').trim()}</div>}
-                      </>
-                    );
-                  })()}
-                  <div>{contact.Phone[0]}</div>
-                </td>
-                <td valign="middle" className="text-[60%] text-right pl-2">
-                  <div>Email:</div>
-                  <div>LinkedIn:</div>
-                  <div>GitHub:</div>
-                  <div>StackOverflow:</div>
-                </td>
-                <td valign="middle" className="text-[60%] pl-1 pr-2">
-                  <div><a href={`mailto:${contact.Email}`}>{contact.Email}</a></div>
-                  <div><a href={contact.Links.LinkedIn.toString()}>{contact.Links.LinkedIn.toString()}</a></div>
-                  <div><a href={contact.Links.GitHub.toString()}>{contact.Links.GitHub.toString()}</a></div>
-                  <div><a href={contact.Links.StackOverflow.toString()}>{contact.Links.StackOverflow.toString()}</a></div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          {/* Contact Section */}
+          <div className="flex flex-row gap-2">
+            <div className="flex-1 border-0">
+              <div className="text-[140%] whitespace-nowrap font-bold">{contactName}</div>
+              <div className="text-[110%]"><a href={contact.Links.Resume.toString()}>{contact.Links.Resume.toString()}</a></div>
+            </div>
+            <div className="flex-none text-[80%] text-right pr-2 border-r border-current whitespace-nowrap">
+              <div>
+                {(() => {
+                  const [first, ...rest] = contact.Address.split(',')
+                  return (
+                    <>
+                      <div>{first.trim()}</div>
+                      {rest.length > 0 && <div>{rest.join(',').trim()}</div>}
+                    </>
+                  )
+                })()}
+              </div>
+              <div>{contact.Phone[0]}</div>
+            </div>
+            <div className="flex-none mt-0 text-[60%] border-0">
+              <div className="grid grid-cols-[auto_auto] gap-x-2">
+                <div className="text-right font-semibold">Email:</div>
+                <div className="text-left">
+                  <a href={`mailto:${contact.Email}`}>{contact.Email}</a>
+                </div>
+                <div className="text-right font-semibold">LinkedIn:</div>
+                <div className="text-left">
+                  <a href={contact.Links.LinkedIn.toString()}>
+                    {contact.Links.LinkedIn.toString()}
+                  </a>
+                </div>
+                <div className="text-right font-semibold">GitHub:</div>
+                <div className="text-left">
+                  <a href={contact.Links.GitHub.toString()}>
+                    {contact.Links.GitHub.toString()}
+                  </a>
+                </div>
+                <div className="text-right font-semibold">StackOverflow:</div>
+                <div className="text-left">
+                  <a href={contact.Links.StackOverflow.toString()}>
+                    {contact.Links.StackOverflow.toString()}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          {/* Summary */}
+          {/* Summary Section */}
           {summary && (
             <div className="mb-2 p-0">
               <span className="text-[86%] font-semibold">Summary:</span>
@@ -227,146 +237,108 @@ function App() {
 
       <div className="content mx-2 pb-2">
 
-        {/* Objective */}
+        {/* Objective Section */}
         <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
-          <hr className="m-0 p-0"/>
+          <hr className="m-0 p-0" />
           <div className="py-2">
             <h4>Objective</h4>
           </div>
         </div>
-        <div className="pb-2">
-          <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
-            <tbody>
-              <tr>
-                <td className="pr-2 text-right whitespace-nowrap text-[80%] font-semibold">
-                  Preferred Title:
-                </td>
-                <td className="whitespace-nowrap text-[80%]">
-                  {objective.Title}
-                </td>
-              </tr>
-              <tr>
-                <td className="pr-2 text-right whitespace-nowrap text-[80%] font-semibold">
-                  Preferred Emphasis:
-                </td>
-                <td className="whitespace-nowrap text-[80%]">
-                  {objective.Emphasis}
-                </td>
-              </tr>
-              <tr>
-                <td className="pr-2 text-right whitespace-nowrap text-[80%] font-semibold">
-                  Preferred Technologies:
-                </td>
-                <td className="whitespace-nowrap text-[80%]">
-                  {objective.Technologies}
-                </td>
-              </tr>
-              <tr>
-                <td className="pr-2 text-right whitespace-nowrap text-[80%] font-semibold">
-                  Preferred Locations:
-                </td>
-                <td className="whitespace-nowrap text-[80%]">
-                  {objective.Locations.join(", ")} areas
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div className="pb-2 grid grid-cols-[max-content_1fr] gap-x-2 gap-y-0 text-[80%]">
+          <div className="text-right font-semibold">Preferred Title:</div>
+          <div className="text-left">{objective.Title}</div>
+
+          <div className="text-right font-semibold">Preferred Emphasis:</div>
+          <div className="text-left">{objective.Emphasis}</div>
+
+          <div className="text-right font-semibold">Preferred Technologies:</div>
+          <div className="text-left">{objective.Technologies}</div>
+
+          <div className="text-right font-semibold">Preferred Locations:</div>
+          <div className="text-left">{objective.Locations.join(", ")} areas</div>
         </div>
 
-        {/* Employment */}
+        {/* Employment Section */}
         <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
-          <hr className="m-0 p-0"/>
+          <hr className="m-0 p-0" />
           <div ref={setEmploymentHeaderElement} className="py-2">
             <h4>Employment</h4>
           </div>
         </div>
-        <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
-          <tbody>
-            <tr>
-              <td colSpan={2}>
-                <div>
-                  {employment && Array.from(employment.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
-                    <div key={idxDateCompany}>
-                      {idxDateCompany > 0 && <hr className="ml-4 mr-8 my-2" />}
-                      <div className="text-[80%] mb-4 last:mb-0">
-                        <div className="pl-4">
-                          <div
-                            className="font-bold pb-1 sticky z-9 sticky-bg"
-                            style={{ top: employmentHeaderHeight }}
-                            >
-                            {keyDateCompany}
-                          </div>
-                          {jobs.map((job, idxJob) => (
-                            <div key={idxJob}>
-                              {idxJob > 0 && <hr className="ml-4 mr-8 my-2" />}
-                              <div className="mb-4 last:mb-0">
-                                {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
-                                  <div key={idxRole} className="ml-4">{roleDate}: <span className="font-semibold">{role}</span></div>
-                                ))}
-                                {job.Team && (
-                                  <div className="ml-4">
-                                    <span className="font-semibold">Team:</span> {job.Team}
-                                  </div>
-                                )}
-                                {!job.Team && job.Description && Description(job.Description)}
-                                {job.MajorContributions && (
-                                  <div className="ml-4">
-                                    <span className="font-semibold">Major Contributions:</span>
-                                    <ul className="list-disc list-inside">
-                                      {job.MajorContributions.map((detail, i) => (
-                                        <li key={i}>{detail}</li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-                                {job.Products && (
-                                  <div className="ml-4">
-                                    <span className="font-semibold">Products:</span>
-                                    <ul className="list-disc list-inside">
-                                      {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
-                                        <li key={idxProduct}>
-                                          <span className="whitespace-nowrap">{productName}</span>:&nbsp;
-                                          {typeof productValue === "string" ? (
-                                            RenderPossibleLink(productValue)
-                                          ) : (
-                                            <ul className="list-disc list-inside ml-4">
-                                              {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
-                                                <li key={idxValue}>
-                                                  {key}: <a href={value.toString()}>{value.toString()}</a>
-                                                </li>
-                                              ))}
-                                            </ul>
-                                          )}
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-                                {job.Team && job.Description && Description(job.Description)}
-                                {job.Info && (
-                                  <div className="ml-4">
-                                    <span className="font-semibold">Info:</span>
-                                    <ul className="list-disc list-inside">
-                                      {job.Info.map((infoLink, idxInfo) => (
-                                        <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                )}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+        {employment && Array.from(employment.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
+          <div key={idxDateCompany}>
+            {idxDateCompany > 0 && <hr className="ml-4 mr-8 my-2" />}
+            <div className="text-[80%] mb-4 last:mb-0">
+              <div className="pl-4">
+                <div className="font-bold pb-1 sticky z-9 sticky-bg" style={{ top: employmentHeaderHeight }}>
+                  {keyDateCompany}
                 </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+                {jobs.map((job, idxJob) => (
+                  <div key={idxJob}>
+                    {idxJob > 0 && <hr className="ml-4 mr-8 my-2" />}
+                    <div className="mb-4 last:mb-0">
+                      {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
+                        <div key={idxRole} className="ml-4">{roleDate}: <span className="font-semibold">{role}</span></div>
+                      ))}
+                      {job.Team && (
+                        <div className="ml-4">
+                          <span className="font-semibold">Team:</span> {job.Team}
+                        </div>
+                      )}
+                      {!job.Team && job.Description && Description(job.Description)}
+                      {job.MajorContributions && (
+                        <div className="ml-4">
+                          <span className="font-semibold">Major Contributions:</span>
+                          <ul className="list-disc list-inside">
+                            {job.MajorContributions.map((detail, i) => (
+                              <li key={i}>{detail}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {job.Products && (
+                        <div className="ml-4">
+                          <span className="font-semibold">Products:</span>
+                          <ul className="list-disc list-inside">
+                            {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
+                              <li key={idxProduct}>
+                                <span className="whitespace-nowrap">{productName}</span>:&nbsp;
+                                {typeof productValue === "string" ? (
+                                  RenderPossibleLink(productValue)
+                                ) : (
+                                  <ul className="list-disc list-inside ml-4">
+                                    {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
+                                      <li key={idxValue}>
+                                        {key}: <a href={value.toString()}>{value.toString()}</a>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {job.Team && job.Description && Description(job.Description)}
+                      {job.Info && (
+                        <div className="ml-4">
+                          <span className="font-semibold">Info:</span>
+                          <ul className="list-disc list-inside">
+                            {job.Info.map((infoLink, idxInfo) => (
+                              <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
 
-        <hr/>
+        <hr />
 
         {/* Projects Section * /}
         {projects && (
@@ -395,34 +367,29 @@ function App() {
           </section>
         )*/}
 
-        {/* Education */}
+
+        {/* Education Section */}
         {education && (
-        <table className="w-full border-collapse" cellPadding="0" cellSpacing="0">
-          <tbody>
-            <tr>
-              <td colSpan={2}>
-                <div><h4>Education</h4></div>
-                {education.map((job, idx) => (
-                  <div key={idx} className="text-[80%]">
-                    <div className="pl-4">
-                      <div className="font-bold pt-1">{job.Institution}</div>
-                      <div className="italic">{job.Study}</div>
-                    </div>
-                  </div>
-                ))}
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <section>
+            <h4>Education</h4>
+            <div className="space-y-1">
+              {education.map((job, idx) => (
+                <div key={idx} className="ml-4 text-[80%]">
+                  <div className="font-bold">{job.Institution}</div>
+                  <div className="italic">{job.Study}</div>
+                </div>
+              ))}
+            </div>
+          </section>
         )}
 
       </div>
 
-      <footer className="footer sticky-bg flex w-full justify-between items-center py-1 text-[70%]">
-        <span className='pl-2'>
+      <footer className="footer sticky-bg flex flex-row justify-between px-2 py-1 text-[70%]">
+        <span>
           <a href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
         </span>
-        <span className='pr-2'>
+        <span>
           <a href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
         </span>
       </footer>
