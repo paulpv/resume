@@ -94,6 +94,7 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
   const linkEmail = <a href={`mailto:${email}`}>{email}</a>
   const address = contact.Address
   const phone = contact.Phone[0]
+  const phone2 = contact.Phone[1]
   const resume = contact.Links.Resume.toString()
   const linkResume = <a href={resume}>{resume}</a>
   const linkedIn = contact.Links.LinkedIn.toString()
@@ -106,20 +107,21 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
   if (isMobile) {
     return (
       <>
-        <div className="text-[190%] font-bold">{contactName}</div>
-        <div className="flex flex-row gap-1 items-center">
-          <div className="flex-1 ext-[86%] text-left pb-1">{address}</div>
-          <div className="flex-none text-[86%] text-right pb-1">{linkEmail}</div>
+        <div className="flex-1 grid grid-cols-[min-content_1fr] gap-x-4 items-center">
+          <div className="text-[130%] font-bold whitespace-nowrap">{contactName}</div>
+          <div className="text-[90%] text-right">{linkEmail}</div>
+          <div className="text-[90%] whitespace-nowrap">{address}</div>
+          <div className="text-[90%] text-right" title={phone2}>{phone}</div>
         </div>
-        <div className="grid grid-cols-[min-content_1fr_min-content_1fr] gap-x-1">
-          <div className="text-[60%] text-right font-semibold">Resume:</div>
-          <div className="text-[60%] text-left">{linkResume}</div>
-          <div className="text-[60%] text-right font-semibold">LinkedIn:</div>
-          <div className="text-[60%] text-left">{linkLinkedIn}</div>
-          <div className="text-[60%] text-right font-semibold">GitHub:</div>
-          <div className="text-[60%] text-left">{linkGitHub}</div>
-          <div className="text-[60%] text-right font-semibold">StackOverflow:</div>
-          <div className="text-[60%] text-left">{linkStackOverflow}</div>
+        <div className="text-[60%] grid grid-cols-[min-content_1fr_min-content_1fr] gap-x-1">
+          <div className="text-right font-semibold">Resume:</div>
+          <div className="text-left">{linkResume}</div>
+          <div className="text-right font-semibold">LinkedIn:</div>
+          <div className="text-left">{linkLinkedIn}</div>
+          <div className="text-right font-semibold">GitHub:</div>
+          <div className="text-left">{linkGitHub}</div>
+          <div className="text-right font-semibold">StackOverflow:</div>
+          <div className="text-left">{linkStackOverflow}</div>
         </div>
         {summary && (
           <div className="mx-0 my-1 p-0">
@@ -132,22 +134,14 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
   } else {
     return (
       <>
-        <div className="flex flex-row gap-2">
-          <div className="flex-1 border-0 text-right mr-4">
+        <div className="flex flex-row gap-4">
+          <div className="flex-1 grid grid-cols-[min-content_1fr] gap-x-4 items-center">
             <div className="text-[140%] font-bold whitespace-nowrap">{contactName}</div>
-            <div className="text-[110%]">{linkEmail}</div>
-          </div>          
-          {(() => {
-            const [first, ...rest] = address.split(',')
-            return (
-              <div className="flex-none text-[80%] text-right pr-2 border-r border-current whitespace-nowrap">
-                <div>{first.trim()}</div>
-                {rest.length > 0 && <div>{rest.join(',').trim()}</div>}
-                <div>{phone}</div>
-              </div>
-            )
-          })()}
-          <div className="flex-none mt-0 text-[60%] border-0 grid grid-cols-[auto_auto] gap-x-2">
+            <div className="text-[95%] text-right">{linkEmail}</div>
+            <div className="text-[95%] whitespace-nowrap">{address}</div>
+            <div className="text-[95%] text-right" title={phone2}>{phone}</div>
+          </div>
+          <div className="flex-none text-[60%] mt-0 pl-4 border-l grid grid-cols-[auto_auto] gap-x-2">
             <div className="text-right font-semibold">Resume:</div>
             <div className="text-left">{linkResume}</div>
             <div className="text-right font-semibold">LinkedIn:</div>
