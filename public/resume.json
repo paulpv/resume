@@ -62,8 +62,8 @@
         },
         "Info":
         [
-          "https://www.prometheanworld.com",
-          "https://www.mynd.ai"
+          "https://prometheanworld.com",
+          "https://mynd.ai"
         ]
       }
     ],
@@ -82,12 +82,12 @@
         {
           "Pebblebee Finder":
           {
-            "Android": "http://swooby.com/pb-afinder",
-                "iOS": "http://swooby.com/pb-ifinder"
+            "Android": "https://swooby.com/pb-afinder",
+                "iOS": "https://swooby.com/pb-ifinder"
           },
           "Pebblebee Stone":
           {
-            "Android": "http://swooby.com/pb-astone"
+            "Android": "https://swooby.com/pb-astone"
           }
         }
       }
@@ -117,8 +117,8 @@
         {
           "WAVE Mobile Communicator":
           {
-            "Android": "http://swooby.com/msi-awave",
-                "iOS": "http://swooby.com/msi-iwave"
+            "Android": "https://swooby.com/msi-awave",
+                "iOS": "https://swooby.com/msi-iwave"
           },
           "MOTOTRBO Anywhere": "Deprecated and removed"
         }
@@ -135,7 +135,7 @@
         ],
         "Products":
         {
-          "WAVE Communicator": "http://swooby.com/tps-wave"
+          "WAVE Communicator": "https://swooby.com/tps-wave"
         }
       }
     ],
@@ -181,7 +181,7 @@
         "Team": "Microsoft RTC Distributed Meetings",
         "Products":
         {
-          "RoundTable": "http://swooby.com/ms-roundtable"
+          "RoundTable": "https://swooby.com/ms-roundtable"
         },
         "Description":
         [
@@ -196,7 +196,7 @@
         "Team": "Microsoft RTC",
         "Products":
         {
-          "Live Communications Server": "http://swooby.com/ms-olcs"
+          "Live Communications Server": "https://swooby.com/ms-olcs"
         },
         "Description":
         [
@@ -208,9 +208,9 @@
         "Team": "Microsoft Exchange/NetDocs/Office RTC",
         "Products":
         {
-          "Office Conferencing Server": "http://swooby.com/ms-ocs",
+          "Office Conferencing Server": "https://swooby.com/ms-ocs",
           "NetDocs": "Internal; Discontinued",
-          "Exchange Conferencing Server": "http://swooby.com/ms-ecs2k3"
+          "Exchange Conferencing Server": "https://swooby.com/ms-ecs2k3"
         },
         "Description":
         [
@@ -225,7 +225,7 @@
         "Team": "Microsoft Exchange RTC",
         "Products":
         {
-          "Exchange Internet Relay Chat (IRC)": "http://swooby.com/ms-ecs2k"
+          "Exchange Internet Relay Chat (IRC)": "https://swooby.com/ms-ecs2k"
         },
         "Description":
         [
@@ -241,9 +241,9 @@
         "Description":
         [
           "Original Creator of Vibe MP3 player:",
-          "http://www.swooby.com/night55/www/vibe2/",
+          "https://swooby.com/night55/www/vibe2/",
           "Co-Creator of Sonique MP3 player:",
-          "http://www.swooby.com/night55/www/sonique/",
+          "https://swooby.com/night55/www/sonique/",
           "Acquired by MediaScience in 1998; Acquired by Lycos in 1999 for $38.8M.",
           "https://en.wikipedia.org/wiki/Sonique_(media_player)"
         ]
@@ -266,7 +266,7 @@
     "NightVsKnight | Seattle, WA":
     {
       "2019 - Present": "Founder/Owner",
-      "Link": ["http://nvk.gg", "http://NightVsKnight.stream"],
+      "Link": ["https://nvk.gg", "https://NightVsKnight.stream"],
       "Description":
       [
         "Personal challenge to picture-in-picture stream two 21:9 gaming PCs.",
@@ -275,10 +275,10 @@
       ],
       "Info":
       [
-        "https://www.youtube.com/@NightVsKnight",
+        "https://youtube.com/@NightVsKnight",
         {
-          "The Setup": "http://youtu.be/8rDLZBV5SII",
-          "Example Stream": "http://youtu.be/JFPww7KCanU"
+          "The Setup": "https://youtu.be/8rDLZBV5SII",
+          "Example Stream": "https://youtu.be/JFPww7KCanU"
         }
       ],
       "AgentSmith":
@@ -305,19 +305,19 @@
       },
       "TradeCitizen":
       {
-        "Link": "http://TradeCitizen.org",
+        "Link": "https://TradeCitizen.org",
         "Description":
         [
           "2017-2020: Vue+Vuetify crowd sourced commodities trading web app for Star Citizen."
         ],
         "Info":
         [
-          "http://github.com/trade-citizen/trade-citizen"
+          "https://github.com/trade-citizen/trade-citizen"
         ]
       },
       "FleetVieweR":
       {
-        "Link": "http://github.com/swooby/fleet-viewer",
+        "Link": "https://github.com/swooby/fleet-viewer",
         "Description":
         [
           "2017-2018: Unity Daydream VR app to view & manipulate multiple Star Citizen ships"
@@ -399,8 +399,8 @@
         ],
         "Info":
         [
-          "http://sourceforge.net/projects/ev1dash/",
-          "http://www.ohler.com/palm/EV1Dash.html"
+          "https://sourceforge.net/projects/ev1dash/",
+          "https://ohler.com/palm/EV1Dash.html"
         ]
       },
       "CFMapPoint":
@@ -411,7 +411,7 @@
         ],
         "Info":
         [
-          "http://www.swooby.com/CFMapPoint/",
+          "https://swooby.com/CFMapPoint/",
           "https://youtu.be/98XcaJZ7RaQ"
         ]
       },
@@ -423,10 +423,10 @@
         ],
         "Info":
         [
-          "http://www.swooby.com/z/navpc/",
-          "http://swooby.com/pub/carpc",
-          "https://www.oreilly.com/library/view/car-pc-hacks/0596008716/",
-          "https://www.amazon.com/_/dp/0596008716"
+          "https://swooby.com/z/navpc/",
+          "https://swooby.com/pub/carpc",
+          "https://oreilly.com/library/view/car-pc-hacks/0596008716/",
+          "https://amazon.com/_/dp/0596008716"
         ]
       },
       "Electronics":
@@ -438,10 +438,10 @@
         ],
         "Info":
         [
-          "http://swooby.com/PCB/TP",
-          "http://youtu.be/h2mYaycwUxg",
-          "http://youtu.be/9nb01vvdYeU",
-          "http://youtu.be/oxMuTyb_urs"
+          "https://swooby.com/PCB/TP",
+          "https://youtu.be/h2mYaycwUxg",
+          "https://youtu.be/9nb01vvdYeU",
+          "https://youtu.be/oxMuTyb_urs"
         ]
       }
     },
@@ -532,27 +532,26 @@
     "WO2013116741":
     {
       "TIP-RING-RING-SLEEVE PUSH-TO-TALK SYSTEM AND METHODS":
-      "http://swooby.com/WO2013116741"
+      "https://swooby.com/WO2013116741"
     },
     "WO2013154722":
     {
       "PULSED INPUT PUSH-TO-TALK SYSTEMS, METHODS AND APPARATUS":
-      "http://swooby.com/WO2013154722"
+      "https://swooby.com/WO2013154722"
     }
   },
   "Publications":
   {
     "Using AJAX to Enable Client RPC Requests":
-    [
-      "Google Code: Google App Engine, May 2008",
-      "http://swooby.com/pub/ajax"
-    ],
+    {
+      "Google Code: Google App Engine, May 2008":
+      "https://swooby.com/pub/ajax"
+    },
     "CarPC Hacks: Hack #65 'View Real-Time Traffic Data on the Road'":
-    [
-      "O'Reilly & Associates, July 2005",
-      "ISBN: 0-596-00871-6",
-      "http://swooby.com/pub/carpc"
-    ]
+    {
+      "O'Reilly & Associates, July 2005 - ISBN: 0-596-00871-6":
+      "https://swooby.com/pub/carpc"
+    }
   },
   "Education":
   {
@@ -571,12 +570,12 @@
     "",
     "I am an advocate for Automotive Personal Computing and have a web site that",
     "details my 2003 Nissan 350Z CarPC project:",
-    "http://www.swooby.com/z/navpc/",
+    "https://swooby.com/z/navpc/",
     "",
     "I worked on the Montana State University Solar Vehicle Project 1994-1996.",
     "We competed in SunRayce95 and placed 24th out of 60 teams (2nd out of 20",
     "\"rookie\" teams):",
-    "http://www.swooby.com/sunrayce/"
+    "https://swooby.com/sunrayce/"
   ],
   "Hobbies":
   [
@@ -585,13 +584,10 @@
   ],
   "References":
   {
-    "Promethean, Inc":
-    [
-      "Available upon request"
-    ],
+    "Promethean, Inc": "Available upon request",
     "Motorola Solutions":
     [
-      "1-800-367-5690 - www.theworknumber.com - company code 10300",
+      "1-800-367-5690 - https://theworknumber.com - company code 10300",
       "(Motorola company policy prohibits referrals from current employees)"
     ],
     "Other": "For privacy reasons, other references are available upon request"

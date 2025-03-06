@@ -75,7 +75,8 @@ function renderPossibleLink(value: string): React.ReactNode {
   return <>{segments}</>;
 }
 
-function renderDescription(lines: readonly string[]): React.ReactNode {
+function renderLineOrLines(lineOrLines: string | readonly string[]): React.ReactNode {
+  const lines = typeof lineOrLines === 'string' ? [lineOrLines] : lineOrLines;
   return (
     <>
       {lines.map((line, index) => (
@@ -88,7 +89,7 @@ function renderDescription(lines: readonly string[]): React.ReactNode {
   );
 }
 
-function Description(description: string | ReadonlyArray<string>, showHeader?: boolean) {
+function renderDescription(description: string | readonly string[], showHeader?: boolean) {
   if (showHeader === undefined) {
     showHeader = true;
   }
@@ -96,52 +97,50 @@ function Description(description: string | ReadonlyArray<string>, showHeader?: b
   return (
     <>
       {showHeader && <div className="font-semibold">Description:</div>}
-      <div className="ml-6 italic">{renderDescription(lines)}</div>
+      <div className="ml-6 italic">{renderLineOrLines(lines)}</div>
     </>
   );
 }
 
-function ProjectInfo(infoItems: ReadonlyArray<any>): React.ReactNode {
+function ProjectInfo(infoItems: ReadonlyArray<any>) {
   return (
-    <>
-      <ul className="ml-4 list-disc list-inside">
-        {infoItems.map((infoItem, idx) => {
-          if (typeof infoItem === 'string') {
-            return (
-              <li key={idx}>{renderPossibleLink(infoItem)}</li>
-            )
-          } else if (Array.isArray(infoItem)) {
-            return (
-              <li key={idx}>
-                {infoItem.map((item, index) => (
-                  <React.Fragment key={index}>
-                    {renderPossibleLink(item)}
-                    {index < infoItem.length - 1 && ", "}
-                  </React.Fragment>
-                ))}
-              </li>
-            )
-          } else if (typeof infoItem === 'object' && infoItem !== null) {
-            return (
-              <ul key={idx} className="ml-2 list-disc list-inside">
-                {Object.entries(infoItem as Record<string, string>).map(([key, value]) => (
-                  <li key={key}>
-                    {key}: {renderPossibleLink(value)}
-                  </li>
-                ))}
-              </ul>
-            )
-          }
-        })}
-      </ul>
-    </>
+    <ul className="ml-4 list-disc list-inside">
+      {infoItems.map((infoItem, idx) => {
+        if (typeof infoItem === 'string') {
+          return (
+            <li key={idx}>{renderPossibleLink(infoItem)}</li>
+          )
+        } else if (Array.isArray(infoItem)) {
+          return (
+            <li key={idx}>
+              {infoItem.map((item, index) => (
+                <React.Fragment key={index}>
+                  {renderPossibleLink(item)}
+                  {index < infoItem.length - 1 && ", "}
+                </React.Fragment>
+              ))}
+            </li>
+          )
+        } else if (typeof infoItem === 'object' && infoItem !== null) {
+          return (
+            <ul key={idx} className="ml-2 list-disc list-inside">
+              {Object.entries(infoItem as Record<string, string>).map(([key, value]) => (
+                <li key={key}>
+                  {key}: {renderPossibleLink(value)}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      })}
+    </ul>
   )
 }
 
 function ProjectDetails(projectDetails: ProjectDetail) {
   return (
     <div className="ml-0">
-      {projectDetails.Description && Description(projectDetails.Description, false)}
+      {projectDetails.Description && renderDescription(projectDetails.Description, false)}
       {projectDetails.Info && ProjectInfo(projectDetails.Info)}
       {projectDetails.Links && projectDetails.Links.length > 1 && (
         <ul className="ml-4 list-disc list-inside">
@@ -351,7 +350,12 @@ function App() {
     employment,
     projects,
     skills,
+    patents,
+    publications,
     education,
+    miscellaneous,
+    hobbies,
+    references,
   } = resumeData
 
   return (
@@ -457,7 +461,7 @@ function App() {
                     <span className="font-semibold">Team:</span> {job.Team}
                   </div>
                 )}
-                {!job.Team && job.Description && Description(job.Description)}
+                {!job.Team && job.Description && renderDescription(job.Description)}
                 {job.MajorContributions && (
                   <div>
                     <span className="font-semibold">Major Contributions:</span>
@@ -491,7 +495,7 @@ function App() {
                     </ul>
                   </div>
                 )}
-                {job.Team && job.Description && Description(job.Description)}
+                {job.Team && job.Description && renderDescription(job.Description)}
                 {job.Info && (
                   <div>
                     <span className="font-semibold">Info:</span>
@@ -531,7 +535,7 @@ function App() {
                   {roleDate}: <span className="font-semibold">{role}</span>
                 </div>
               ))}
-              {project.Description && Description(project.Description, false)}
+              {project.Description && renderDescription(project.Description, false)}
               {project.Links && project.Links.length > 1 && (
                 <ul className="ml-4 list-disc list-inside">
                   {project.Links.slice(1).map((url, idx) => (
@@ -593,6 +597,36 @@ function App() {
         })()}
         <div className="pb-2" />
 
+        {/* Patents Section */}
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+          <hr className="m-0 p-0" />
+          <div className="py-2">
+            <h4>Patents</h4>
+          </div>
+        </div>
+        {Array.from(patents.entries()).map(([patentNumber, patent], idx) => (
+          <div key={idx} className="ml-4 text-[80%]">
+            {patentNumber} - {patent.Title}
+            <div className="ml-4 italic">{renderPossibleLink(patent.Link)}</div>
+          </div>
+        ))}
+        <div className="pb-2" />
+
+        {/* Publications Section */}
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+          <hr className="m-0 p-0" />
+          <div className="py-2">
+            <h4>Publications</h4>
+          </div>
+        </div>
+        {Array.from(publications.entries()).map(([title, publication], idx) => (
+          <div key={idx} className="ml-4 text-[80%]">
+            <span className="italic">{title}</span>
+            <div className="ml-4">{publication.Publisher}<br/>{renderPossibleLink(publication.Link)}</div>
+          </div>
+        ))}
+        <div className="pb-2" />
+
         {/* Education Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
@@ -603,7 +637,48 @@ function App() {
         {Array.from(education.entries()).map(([where, what], idx) => (
           <div key={idx} className="ml-4 text-[80%]">
             <div className="font-bold">{where}</div>
-            <div className="italic">{what}</div>
+            <div className="italic">{what.toString()}</div>
+          </div>
+        ))}
+        <div className="pb-2" />
+
+        {/* Miscellaneous Section */}
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+          <hr className="m-0 p-0" />
+          <div className="py-2">
+            <h4>Miscellaneous</h4>
+          </div>
+        </div>
+        <div className="ml-4 text-[80%]">
+          {renderLineOrLines(miscellaneous)}
+        </div>
+        <div className="pb-2" />
+
+        {/* Hobbies Section */}
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+          <hr className="m-0 p-0" />
+          <div className="py-2">
+            <h4>Hobbies</h4>
+          </div>
+        </div>
+        <div className="ml-4 text-[80%]">
+          {hobbies.join(", ")}
+        </div>
+        <div className="pb-2" />
+
+        {/* References Section */}
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+          <hr className="m-0 p-0" />
+          <div className="py-2">
+            <h4>References</h4>
+          </div>
+        </div>
+        {Array.from(references.entries()).map(([referenceName, reference], idx) => (
+          <div key={idx} className="ml-4 text-[80%]">
+            <div className="font-bold">{referenceName}</div>
+            <div className="ml-4 italic">
+              {renderLineOrLines(reference)}
+            </div>
           </div>
         ))}
         <div className="pb-2" />

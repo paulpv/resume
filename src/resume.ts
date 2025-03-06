@@ -168,6 +168,44 @@ export interface Skill {
   readonly Last: string;
 }
 
+export class PatentInfo {
+  readonly Title: string;
+  readonly Link: string;
+
+  constructor(json: Record<string, any>) {
+    const [title, link] = Object.entries(json)[0];
+    this.Title = title;
+    this.Link = link;
+  }
+}
+
+export class PublicationInfo {
+  readonly Publisher: string;
+  readonly Link: string;
+
+  constructor(json: Record<string, any>) {
+    const [publisher, link] = Object.entries(json)[0];
+    this.Publisher = publisher;
+    this.Link = link;
+  }
+}
+
+type ResumeRawData = {
+  contactName: string,
+  contact: Contact,
+  summary: ReadonlyArray<string>,
+  preferences: Preferences,
+  employment: ReadonlyMap<string, ReadonlyArray<Job>>,
+  projects: ReadonlyMap<string, Project>,
+  skills: ReadonlyArray<ReadonlyArray<any>>,
+  patents: ReadonlyMap<string, PatentInfo>,
+  publications: ReadonlyMap<string, PublicationInfo>,
+  education: ReadonlyMap<string, string>,
+  miscellaneous: ReadonlyArray<string>,
+  hobbies: ReadonlyArray<string>,
+  references: ReadonlyMap<string, any>,
+};
+
 export class ResumeData {
   public contactName: string;
   public contact: Contact;
@@ -176,18 +214,25 @@ export class ResumeData {
   public employment: ReadonlyMap<string, ReadonlyArray<Job>>;
   public projects: ReadonlyMap<string, Project>;
   public skills: ReadonlyArray<Skill>;
+  public patents: ReadonlyMap<string, PatentInfo>;
+  public publications: ReadonlyMap<string, any>;
   public education: ReadonlyMap<string, string>;
+  public miscellaneous: ReadonlyArray<string>;
+  public hobbies: ReadonlyArray<string>;
+  public references: ReadonlyMap<string, any>;
 
-  constructor(
-    contactName: string,
-    contact: Contact,
-    summary: ReadonlyArray<string>,
-    preferences: Preferences,
-    employment: ReadonlyMap<string, ReadonlyArray<Job>>,
-    projects: ReadonlyMap<string, Project>,
-    skills: ReadonlyArray<ReadonlyArray<any>>,
-    education: ReadonlyMap<string, string>,
-  ) {
+  constructor(resumeRawData: ResumeRawData) {
+    const {
+      contactName,
+      contact,
+      summary,
+      preferences,
+      employment,
+      projects,
+      skills,
+      education,
+    } = resumeRawData;
+
     this.contactName = contactName;
     this.contact = contact;
     this.summary = summary;
@@ -216,11 +261,34 @@ export class ResumeData {
     });
     this.skills = _skills;
 
+    const _patents = new Map();
+    for (const [key, value] of Object.entries(resumeRawData.patents)) {
+      const patent = new PatentInfo(value);
+      _patents.set(key, patent);
+    }
+    this.patents = _patents;
+
+    const _publications = new Map();
+    for (const [key, value] of Object.entries(resumeRawData.publications)) {
+      const publication = new PublicationInfo(value);
+      _publications.set(key, publication);
+    }
+    this.publications = _publications;
+
     const _education = new Map();
     for (const [key, value] of Object.entries(education)) {
       _education.set(key, value);
     }
     this.education = _education;
+
+    this.miscellaneous = resumeRawData.miscellaneous;
+    this.hobbies = resumeRawData.hobbies;
+
+    const _references = new Map();
+    for (const [key, value] of Object.entries(resumeRawData.references)) {
+      _references.set(key, value);
+    }
+    this.references = _references;
   }
 
   static fromJSON(json: any): ResumeData {
@@ -234,7 +302,12 @@ export class ResumeData {
       Employment: employment,
       Projects: projects,
       Skills: skills,
+      Patents: patents,
+      Publications: publications,
       Education: education,
+      Miscellaneous: miscellaneous,
+      Hobbies: hobbies,
+      References: references,
       ...remainder
     } = json;
 
@@ -250,8 +323,23 @@ export class ResumeData {
     if (!skills || !Array.isArray(skills)) {
       throw new Error('Invalid or missing Skills');
     }
+    if (!patents || typeof patents !== 'object') {
+      throw new Error('Invalid or missing Patents');
+    }
+    if (!publications || typeof publications !== 'object') {
+      throw new Error('Invalid or missing Publications');
+    }
     if (!education || typeof education !== 'object') {
       throw new Error('Invalid or missing Education');
+    }
+    if (!miscellaneous || !Array.isArray(miscellaneous)) {
+      throw new Error('Invalid or missing Miscellaneous');
+    }
+    if (!hobbies || !Array.isArray(hobbies)) {
+      throw new Error('Invalid or missing Hobbies');
+    }
+    if (!references || typeof references !== 'object') {
+      throw new Error('Invalid or missing References');
     }
 
     const remainderKeys = Object.keys(remainder);
@@ -264,7 +352,7 @@ export class ResumeData {
       throw new Error('Invalid contact information');
     }
 
-    return new ResumeData(
+    return new ResumeData({
       contactName,
       contact,
       summary,
@@ -272,7 +360,12 @@ export class ResumeData {
       employment,
       projects,
       skills,
+      patents,
+      publications,
       education,
-    );
+      miscellaneous,
+      hobbies,
+      references,
+    });
   }
 };
