@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { ResumeData, Contact } from './resume'
+import { ResumeData, Contact, ProjectDetail } from './resume'
 
 declare const APP_MODIFIED_TIMESTAMP: string
 declare const RESUME_MODIFIED_TIMESTAMP: string
@@ -8,22 +8,13 @@ const MOBILE_BREAKPOINT = 821 // iPad Air is 820x1180
 
 function useMediaQuery(query: string): boolean {
   const [matches, setMatches] = useState(false)
-
   useEffect(() => {
     const mediaQueryList = window.matchMedia(query)
     const listener = (e: MediaQueryListEvent) => setMatches(e.matches)
     setMatches(mediaQueryList.matches)
-    try {
-      mediaQueryList.addEventListener('change', listener)
-    } catch {
-      mediaQueryList.addListener(listener)
-    }
+    mediaQueryList.addEventListener('change', listener)
     return () => {
-      try {
-        mediaQueryList.removeEventListener('change', listener)
-      } catch {
-        mediaQueryList.removeListener(listener)
-      }
+      mediaQueryList.removeEventListener('change', listener)
     }
   }, [query])
   return matches
@@ -41,43 +32,143 @@ function timeToYYYYMMDDHHMM(time: Date): string {
 const appModifiedTimestampString = timeToYYYYMMDDHHMM(new Date(APP_MODIFIED_TIMESTAMP))
 const resumeModifiedTimestampString = timeToYYYYMMDDHHMM(new Date(RESUME_MODIFIED_TIMESTAMP))
 
-function isUrl(value: string): boolean {
-  return /^https?:\/\//.test(value);
-}
+function renderPossibleLink(value: string): React.ReactNode {
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  const segments: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
 
-function RenderPossibleLink(value: string) {
-  if (isUrl(value)) {
-    return <a href={value} target="_blank" rel="noopener noreferrer">{value}</a>;
-  } else {
-    return <span>{value}</span>;
+  while ((match = urlRegex.exec(value)) !== null) {
+      const urlWithExtra = match[0];
+      const start = match.index;
+
+      // Add any text before the URL
+      if (start > lastIndex) {
+          segments.push(<span key={lastIndex}>{value.slice(lastIndex, start)}</span>);
+      }
+
+      // Remove trailing punctuation if present
+      let trimmedUrl = urlWithExtra;
+      let trailingPunctuation = "";
+      while (/[.,;:!?]$/.test(trimmedUrl)) {
+          trailingPunctuation = trimmedUrl.slice(-1) + trailingPunctuation;
+          trimmedUrl = trimmedUrl.slice(0, -1);
+      }
+
+      segments.push(
+          <React.Fragment key={start}>
+              <a href={trimmedUrl} target="_blank" rel="noopener noreferrer">
+                  {trimmedUrl}
+              </a>
+              {trailingPunctuation}
+          </React.Fragment>
+      );
+
+      lastIndex = start + urlWithExtra.length;
   }
+
+  // Append any remaining text after the last URL
+  if (lastIndex < value.length) {
+      segments.push(<span key={lastIndex}>{value.slice(lastIndex)}</span>);
+  }
+
+  return <>{segments}</>;
 }
 
-function RenderDescription(lines: readonly string[]): React.ReactNode {
+function renderDescription(lines: readonly string[]): React.ReactNode {
   return (
     <>
-      {lines.flatMap((line, index) => {
-        const element = isUrl(line) ? (
-          <a key={`link-${index}`} href={line} target="_blank" rel="noopener noreferrer">
-            {line}
-          </a>
-        ) : (
-          <span key={`text-${index}`}>{line}</span>
-        );
-        const br = index < lines.length - 1 ? [<br key={`br-${index}`} />] : [];
-        return [element, ...br];
-      })}
+      {lines.map((line, index) => (
+        <React.Fragment key={`desc-${index}`}>
+          {renderPossibleLink(line)}
+          {index < lines.length - 1 && <br />}
+        </React.Fragment>
+      ))}
     </>
   );
 }
 
-function Description(description: ReadonlyArray<string>) {
+function Description(description: string | ReadonlyArray<string>, showHeader?: boolean) {
+  if (showHeader === undefined) {
+    showHeader = true;
+  }
+  const lines = typeof description === 'string' ? [description] : description;
   return (
-    <div className="ml-4">
-      <div className="font-semibold">Description:</div>
-      <div className="ml-4 italic">{RenderDescription(description)}</div>
-    </div>
+    <>
+      {showHeader && <div className="font-semibold">Description:</div>}
+      <div className="ml-6 italic">{renderDescription(lines)}</div>
+    </>
   );
+}
+
+function ProjectInfo(infoItems: ReadonlyArray<any>): React.ReactNode {
+  return (
+    <>
+      <ul className="ml-4 list-disc list-inside">
+        {infoItems.map((infoItem, idx) => {
+          if (typeof infoItem === 'string') {
+            return (
+              <li key={idx}>{renderPossibleLink(infoItem)}</li>
+            )
+          } else if (Array.isArray(infoItem)) {
+            return (
+              <li key={idx}>
+                {infoItem.map((item, index) => (
+                  <React.Fragment key={index}>
+                    {renderPossibleLink(item)}
+                    {index < infoItem.length - 1 && ", "}
+                  </React.Fragment>
+                ))}
+              </li>
+            )
+          } else if (typeof infoItem === 'object' && infoItem !== null) {
+            return (
+              <ul key={idx} className="ml-2 list-disc list-inside">
+                {Object.entries(infoItem as Record<string, string>).map(([key, value]) => (
+                  <li key={key}>
+                    {key}: {renderPossibleLink(value)}
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        })}
+      </ul>
+    </>
+  )
+}
+
+function ProjectDetails(projectDetails: ProjectDetail) {
+  return (
+    <div className="ml-0">
+      {projectDetails.Description && Description(projectDetails.Description, false)}
+      {projectDetails.Info && ProjectInfo(projectDetails.Info)}
+      {projectDetails.Links && projectDetails.Links.length > 1 && (
+        <ul className="ml-4 list-disc list-inside">
+          {projectDetails.Links.slice(1).map((url, idx) => (
+            <li key={idx}>{renderPossibleLink(url)}</li>
+          ))}
+        </ul>
+      )}
+      {projectDetails.SubProjects && (
+        <ul className="ml-4 list-disc list-inside space-y-1">
+          {Array.from(projectDetails.SubProjects.entries()).map(([subProjectName, subProjectDetails], idx) => (
+            <li key={idx}>
+              <span className="font-bold italic">{renderPossibleLink(subProjectName)}:</span>
+              {subProjectDetails.Links && (
+                <span>
+                  &nbsp;{renderPossibleLink(subProjectDetails.Links[0])}
+                </span>
+              )}
+              <div className="ml-0">
+                {ProjectDetails(subProjectDetails)}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  )
 }
 
 type RenderContactProps = {
@@ -209,30 +300,30 @@ function App() {
   const isMobile = isMobileWidth()
   const [employmentHeaderElement, setEmploymentHeaderElement] = useState<HTMLDivElement | null>(null)
   const [employmentHeaderHeight, setEmploymentHeaderHeight] = useState(0)
-  const [skillsHeaderElement, setSkillsHeaderElement] = useState<HTMLDivElement | null>(null)
-  const [skillsHeaderHeight, setSkillsHeaderHeight] = useState(0)
+  const [projectsHeaderElement, setProjectsHeaderElement] = useState<HTMLDivElement | null>(null)
+  const [projectsHeaderHeight, setProjectsHeaderHeight] = useState(0)
   useLayoutEffect(() => {
-    const updateEmploymentHeight = () => {
+    const updateEmploymentHeaderHeight = () => {
       if (employmentHeaderElement) {
         const { height } = employmentHeaderElement.getBoundingClientRect()
         setEmploymentHeaderHeight(height)
       }
     }
-    const updateSkillsHeight = () => {
-      if (skillsHeaderElement) {
-        const { height } = skillsHeaderElement.getBoundingClientRect()
-        setSkillsHeaderHeight(height)
+    const updateProjectsHeaderHeight = () => {
+      if (projectsHeaderElement) {
+        const { height } = projectsHeaderElement.getBoundingClientRect()
+        setProjectsHeaderHeight(height)
       }
     }
-    updateEmploymentHeight()
-    updateSkillsHeight()
-    window.addEventListener('resize', updateEmploymentHeight)
-    window.addEventListener('resize', updateSkillsHeight)
+    updateEmploymentHeaderHeight()
+    updateProjectsHeaderHeight()
+    window.addEventListener('resize', updateEmploymentHeaderHeight)
+    window.addEventListener('resize', updateProjectsHeaderHeight)
     return () => {
-      window.removeEventListener('resize', updateEmploymentHeight)
-      window.removeEventListener('resize', updateSkillsHeight)
+      window.removeEventListener('resize', updateEmploymentHeaderHeight)
+      window.removeEventListener('resize', updateProjectsHeaderHeight)
     }
-  }, [employmentHeaderElement, skillsHeaderElement])
+  }, [employmentHeaderElement, projectsHeaderElement])
 
   const [resumeData, setResumeData] = useState<ResumeData | null>(null)
 
@@ -258,7 +349,7 @@ function App() {
     summary,
     objective,
     employment,
-    //projects,
+    projects,
     skills,
     education,
   } = resumeData
@@ -319,7 +410,7 @@ function App() {
       <div className="content mx-2">
 
         {/* Objective Section */}
-        <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
           <div className="py-2">
             <h4>Objective</h4>
@@ -341,131 +432,159 @@ function App() {
         <div className="pb-2" />
 
         {/* Employment Section */}
-        <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
           <div ref={setEmploymentHeaderElement} className="py-2">
             <h4>Employment</h4>
           </div>
         </div>
         {Array.from(employment.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
-          <div key={idxDateCompany}>
-            {idxDateCompany > 0 && <hr className="ml-4 mr-8 my-2" />}
-            <div className="text-[80%] mb-4 last:mb-0">
-              <div className="pl-4">
-                <div className="font-bold pb-1 sticky z-9 sticky-bg" style={{ top: employmentHeaderHeight + (isMobile ? 2 : 0) }}>
-                  {keyDateCompany}
-                </div>
-                {jobs.map((job, idxJob) => (
-                  <div key={idxJob}>
-                    {idxJob > 0 && <hr className="ml-4 mr-8 my-2" />}
-                    <div className="mb-4 last:mb-0">
-                      {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
-                        <div key={idxRole} className="ml-4">{roleDate}: <span className="font-semibold">{role}</span></div>
-                      ))}
-                      {job.Team && (
-                        <div className="ml-4">
-                          <span className="font-semibold">Team:</span> {job.Team}
-                        </div>
-                      )}
-                      {!job.Team && job.Description && Description(job.Description)}
-                      {job.MajorContributions && (
-                        <div className="ml-4">
-                          <span className="font-semibold">Major Contributions:</span>
-                          <ul className="list-disc list-inside">
-                            {job.MajorContributions.map((detail, i) => (
-                              <li key={i}>{detail}</li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {job.Products && (
-                        <div className="ml-4">
-                          <span className="font-semibold">Products:</span>
-                          <ul className="list-disc list-inside">
-                            {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
-                              <li key={idxProduct}>
-                                <span className="whitespace-nowrap">{productName}</span>:&nbsp;
-                                {typeof productValue === "string" ? (
-                                  RenderPossibleLink(productValue)
-                                ) : (
-                                  <ul className="list-disc list-inside ml-4">
-                                    {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
-                                      <li key={idxValue}>
-                                        {key}: <a href={value.toString()}>{value.toString()}</a>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                )}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      {job.Team && job.Description && Description(job.Description)}
-                      {job.Info && (
-                        <div className="ml-4">
-                          <span className="font-semibold">Info:</span>
-                          <ul className="list-disc list-inside">
-                            {job.Info.map((infoLink, idxInfo) => (
-                              <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
+          <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 last:mb-0">
+            {idxDateCompany > 0 && <hr className="my-2" />}
+            <div className="font-bold pb-1 sticky-bg sticky z-9" style={{ top: employmentHeaderHeight + (isMobile ? 2 : 0) }}>
+              {keyDateCompany}
+            </div>
+            {jobs.map((job, idxJob) => (
+              <div key={idxJob} className="ml-4">
+                {idxJob > 0 && <hr className="my-2" />}
+                {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
+                  <div key={idxRole}>
+                    {roleDate}: <span className="font-semibold">{role}</span>
                   </div>
                 ))}
+                {job.Team && (
+                  <div>
+                    <span className="font-semibold">Team:</span> {job.Team}
+                  </div>
+                )}
+                {!job.Team && job.Description && Description(job.Description)}
+                {job.MajorContributions && (
+                  <div>
+                    <span className="font-semibold">Major Contributions:</span>
+                    <ul className="ml-0 list-disc list-inside">
+                      {job.MajorContributions.map((detail, i) => (
+                        <li key={i}>{detail}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {job.Products && (
+                  <div>
+                    <span className="font-semibold">Products:</span>
+                    <ul className="ml-0 list-disc list-inside">
+                      {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
+                        <li key={idxProduct}>
+                          <span className="whitespace-nowrap">{productName}</span>:&nbsp;
+                          {typeof productValue === "string" ? (
+                            renderPossibleLink(productValue)
+                          ) : (
+                            <ul className="ml-0 list-disc list-inside">
+                              {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
+                                <li key={idxValue}>
+                                  {key}: <a href={value.toString()}>{value.toString()}</a>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {job.Team && job.Description && Description(job.Description)}
+                {job.Info && (
+                  <div>
+                    <span className="font-semibold">Info:</span>
+                    <ul className="ml-0 list-disc list-inside">
+                      {job.Info.map((infoLink, idxInfo) => (
+                        <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
+            ))}
+          </div>
+        ))}
+
+        {/* Projects Section */}
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+          <hr className="m-0 p-0" />
+          <div ref={setProjectsHeaderElement} className="py-2">
+            <h4>Projects</h4>
+          </div>
+        </div>
+        {Array.from(projects.entries()).map(([keyDateProject, project], idxProject) => (
+          <div key={idxProject} className="text-[80%] ml-4 mb-2 last:mb-0">
+            {idxProject > 0 && <hr className="my-2" />}
+            <div className="font-bold pb-1 sticky-bg sticky z-9" style={{ top: projectsHeaderHeight + (isMobile ? 2 : 0) }}>
+              <span>{keyDateProject}</span>
+              {project.Links && (
+                <span>
+                  &nbsp;-&nbsp;{renderPossibleLink(project.Links[0])}
+                </span>
+              )}
+            </div>
+            <div>
+              {project.Roles && Array.from(project.Roles.entries()).map(([roleDate, role], idxRole) => (
+                <div key={idxRole}>
+                  {roleDate}: <span className="font-semibold">{role}</span>
+                </div>
+              ))}
+              {project.Description && Description(project.Description, false)}
+              {project.Links && project.Links.length > 1 && (
+                <ul className="ml-4 list-disc list-inside">
+                  {project.Links.slice(1).map((url, idx) => (
+                    <li key={idx}>{renderPossibleLink(url)}</li>
+                  ))}
+                </ul>
+              )}
+              {project.Info && ProjectInfo(project.Info)}
+              {project.Projects && (
+                <>
+                  <div className="my-1 font-bold">Projects:</div>
+                  <ul className="ml-4 list-disc list-inside space-y-1">
+                  {Array.from(project.Projects.entries()).map(([projectName, projectDetails], idxProject) => (
+                    <li key={idxProject}>
+                      <span className="font-semibold italic">{projectName}</span>
+                      {projectDetails.Links && (
+                        <span>
+                          &nbsp;-&nbsp;{renderPossibleLink(projectDetails.Links[0])}
+                        </span>
+                      )}
+                      <div className="ml-0">
+                        {ProjectDetails(projectDetails)}
+                      </div>
+                    </li>
+                  ))}
+                  </ul>
+                </>
+              )}
             </div>
           </div>
         ))}
-        <div className="pb-2" />
-
-        {/* Projects Section * /}
-        {projects && (
-          <section className="mb-6">
-            <h2 className="text-2xl font-semibold border-b border-gray-300 pb-1 mb-4">Projects</h2>
-            {projects.map((job, idx) => (
-              <div className="mb-4" key={idx}>
-                <h3 className="text-xl font-medium">{job.position} – {job.company}</h3>
-                <p className="text-gray-600">{job.duration}</p>
-                <ul className="list-disc list-inside ml-5 text-gray-700">
-                  {job.details.map((detail, i) => (
-                    <li key={i}>{detail}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </section>
-        )}
-        */}
 
         {/* Skills Section */}
-        <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
-          <hr className="m-0 p-0" />
-          <div ref={setSkillsHeaderElement} className="py-2">
-            <h4>Skills</h4>
-          </div>
-        </div>
         {(() => {
           const [header, ...rest] = skills
           return (
             <>
-              <div className="sticky-bg sticky z-9" style={{ top: skillsHeaderHeight + (isMobile ? 2 : 0) }}>
-                <div className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 mr-4 font-bold">
-                  <div className="ml-4">{header.Skill}</div>
-                  <div className="text-right">{header.Level}</div>
+              <div className="sticky-bg sticky top-0 z-10">
+                <hr className="m-0 p-0" />
+                <div className="mr-2 grid grid-cols-[1fr_1fr_auto_auto] gap-x-4 font-bold items-center">
+                  <div className="my-2">{header.Skill}s</div>
+                  <div className="mx-2 text-right">{header.Level}</div>
                   <div className="text-right">{header.From}</div>
                   <div className="text-right">{header.Last}</div>
                 </div>
               </div>
-              <div className="grid grid-cols-[1fr_auto_auto_auto] gap-x-4 mr-4">
+              <div className="mr-2 grid grid-cols-[1fr_auto_auto_auto] gap-x-4 text-[80%]">
                 {rest.map((skill, idx) => (
                   <React.Fragment key={idx}>
                     <div className="ml-4">• {skill.Skill}</div>
-                    <div className="italic text-right">{skill.Level}</div>
-                    <div className="italic text-right">{skill.From}</div>
-                    <div className="italic text-right">{skill.Last}</div>
+                    <div className="mx-1 italic text-right">{skill.Level}</div>
+                    <div className="mx-1 italic text-right">{skill.From}</div>
+                    <div className="mx-1 italic text-right">{skill.Last}</div>
                   </React.Fragment>
                 ))}
               </div>
@@ -475,7 +594,7 @@ function App() {
         <div className="pb-2" />
 
         {/* Education Section */}
-        <div className="m-0 p-0 sticky top-0 z-10 sticky-bg">
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
           <div className="py-2">
             <h4>Education</h4>

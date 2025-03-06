@@ -39,10 +39,12 @@ export class Job {
 
     const _roles = new Map();
     for (const [key, value] of Object.entries(roles)) {
-      if (typeof value === 'string') {
+      if (typeof value === 'string' && 
+        /* "YYYY/DD..." */
+        /^\d{4}\/\d{2}/.test(key)) {
         _roles.set(key, value);
       } else {
-        throw new Error(`Invalid or missing Role value for key: ${key}`);
+        console.warn(`Unexpected Job key: "${key}"`);
       }
     }
     this.Roles = _roles;
@@ -63,11 +65,100 @@ export class Job {
   }
 }
 
-export interface Project {
-  readonly Company: string;
-  readonly Position: string;
-  readonly Duration: string;
-  readonly Details: ReadonlyArray<string>;
+export class ProjectDetail {
+  readonly Description?: ReadonlyArray<string>;
+  readonly Info?: ReadonlyArray<any>;
+  readonly Links?: ReadonlyArray<string>;
+  readonly SubProjects?: ReadonlyMap<string, ProjectDetail>;
+
+  constructor(json: any) {
+    if (Array.isArray(json)) {
+      this.Description = json;
+    } else if (typeof json === 'object') {
+      const {
+        Description,
+        Info,
+        Link,
+        Links,
+        ...subProjects
+      } = json;
+      if (Description) {
+        this.Description = Description;
+      }
+      if (Info) {
+        this.Info = Info;
+      }
+
+      const links = [];
+      if (Link) {
+        links.push(Link);
+      }
+      if (Links) {
+        links.push(...Links);
+      }
+      if (links.length > 0) {
+        this.Links = links;
+      }
+
+      if (Object.keys(subProjects).length > 0) {
+        const _subProjects = new Map();
+        for (const [key, value] of Object.entries(subProjects)) {
+          const projectDetail = new ProjectDetail(value);
+          _subProjects.set(key, projectDetail);
+        }
+        this.SubProjects = _subProjects;
+      }
+    }
+  }
+}
+
+export class Project {
+  readonly Roles: ReadonlyMap<string, string>;
+  readonly Links?: ReadonlyArray<string>;
+  readonly Description: ReadonlyArray<string>;
+  readonly Info: ReadonlyArray<any>;
+  readonly Projects?: ReadonlyMap<string, ProjectDetail>;
+
+  constructor(json: Record<string, any>) {
+    const {
+      Link,
+      Links,
+      Description,
+      Info,
+      ...rolesOrProjects
+    } = json;
+
+    const _roles = new Map();
+    const _projects = new Map();
+    for (const [key, value] of Object.entries(rolesOrProjects)) {
+      if (typeof value === 'string' &&
+        /* "YYYY..." */
+        /^\d{4}/.test(key)) {
+        _roles.set(key, value);
+      } else {
+        const projectDetail = new ProjectDetail(value);
+        _projects.set(key, projectDetail);
+      }
+    }
+    this.Roles = _roles;
+    if (_projects.size > 0) {
+      this.Projects = _projects;
+    }
+
+    const links = [];
+    if (Link) {
+      links.push(Link);
+    }
+    if (Links) {
+      links.push(...Links);
+    }
+    if (links.length > 0) {
+      this.Links = links;
+    }
+
+    this.Description = Description;
+    this.Info = (typeof Info === 'string') ? [Info] : Info;
+  }
 }
 
 export interface Skill {
@@ -83,7 +174,7 @@ export class ResumeData {
   public summary: ReadonlyArray<string>;
   public objective: Objective;
   public employment: ReadonlyMap<string, ReadonlyArray<Job>>;
-  //public projects: ReadonlyArray<Project>;
+  public projects: ReadonlyMap<string, Project>;
   public skills: ReadonlyArray<Skill>;
   public education: ReadonlyMap<string, string>;
 
@@ -93,7 +184,7 @@ export class ResumeData {
     summary: ReadonlyArray<string>,
     objective: Objective,
     employment: ReadonlyMap<string, ReadonlyArray<Job>>,
-    //projects: ReadonlyArray<Project>,
+    projects: ReadonlyMap<string, Project>,
     skills: ReadonlyArray<ReadonlyArray<any>>,
     education: ReadonlyMap<string, string>,
   ) {
@@ -109,7 +200,12 @@ export class ResumeData {
     }
     this.employment = _employment;
 
-    //this.projects = projects;
+    const _projects = new Map();
+    for (const [key, value] of Object.entries(projects)) {
+      const project = new Project(value);
+      _projects.set(key, project);
+    }
+    this.projects = _projects;
 
     const _skills = skills.map((skill: ReadonlyArray<any>) => {
       if (skill.length !== 4) {
@@ -136,7 +232,7 @@ export class ResumeData {
       Summary: summary,
       Objective: objective,
       Employment: employment,
-      //Projects: projects,
+      Projects: projects,
       Skills: skills,
       Education: education,
       ...remainder
@@ -148,9 +244,9 @@ export class ResumeData {
     if (!employment || typeof employment !== 'object') {
       throw new Error('Invalid or missing Employment');
     }
-    // if (!projects || !Array.isArray(projects)) {
-    //   throw new Error('Invalid or missing Projects');
-    // }
+    if (!projects || typeof projects !== 'object') {
+      throw new Error('Invalid or missing Projects');
+    }
     if (!skills || !Array.isArray(skills)) {
       throw new Error('Invalid or missing Skills');
     }
@@ -174,7 +270,7 @@ export class ResumeData {
       summary,
       objective,
       employment,
-      //projects,
+      projects,
       skills,
       education,
     );
