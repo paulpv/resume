@@ -255,17 +255,18 @@
     "DistroAV (OBS-NDI) | Seattle, WA":
     {
       "2023/02 - Present": "Administrator/Maintainer, Lead Developer",
-      "Links": ["https://distroav.org", "https://github.com/DistroAV/DistroAV"],
+      "Link": "https://distroav.org",
       "Description":
       [
         "Open Broadcaster Software (OBS) Studio NDI Plugin, est 2016/10/22.",
         ">5M Downloads, >9K Daily Launches, >3.5K Stars, >370 Forks"
-      ]
+      ],
+      "Info": [ "https://github.com/DistroAV/DistroAV" ]
     },
     "NightVsKnight | Seattle, WA":
     {
       "2019 - Present": "Founder/Owner",
-      "Links": ["http://nvk.gg", "http://NightVsKnight.stream"],
+      "Link": ["http://nvk.gg", "http://NightVsKnight.stream"],
       "Description":
       [
         "Personal challenge to picture-in-picture stream two 21:9 gaming PCs.",
@@ -396,7 +397,7 @@
         [
           "2006-2016: Palm m500 OBDII for 1997-1998 Saturn/GM EV1 and Chevy S10EV"
         ],
-        "Links":
+        "Info":
         [
           "http://sourceforge.net/projects/ev1dash/",
           "http://www.ohler.com/palm/EV1Dash.html"
@@ -408,7 +409,7 @@
         [
           "2004-2008: MapPoint plugin for Centrafuse"
         ],
-        "Links":
+        "Info":
         [
           "http://www.swooby.com/CFMapPoint/",
           "https://youtu.be/98XcaJZ7RaQ"
@@ -420,7 +421,7 @@
         [
           "2005 View Real-Time Traffic Data on the Road"
         ],
-        "Links":
+        "Info":
         [
           "http://www.swooby.com/z/navpc/",
           "http://swooby.com/pub/carpc",
@@ -435,7 +436,7 @@
           "ESP32 based MicroController Unit (MCU) projects and Printed Circuit Board",
           "(PCB) design for Capacitive Touch Screen RGB LED Controller & other gizmos."
         ],
-        "Links":
+        "Info":
         [
           "http://swooby.com/PCB/TP",
           "http://youtu.be/h2mYaycwUxg",
@@ -456,12 +457,13 @@
     "sio2ware.com":
     {
       "2014/02 - 2017": "Founder/Owner",
-      "Links": [ "https://sio2ware.com", "https://github.com/sio2ware" ],
+      "Link": "https://sio2ware.com",
       "Description":
       [
         "Pronounced \"GlassWare\": SiO2 == \"Silicon Dioxide\" == Glass.",
         "WIP: Development and Consulting for Google Glass[-like] Software (GlassWare)."
-      ]
+      ],
+      "Info": [ "https://github.com/sio2ware" ]
     },
     "TeamYogaBlade":
     {

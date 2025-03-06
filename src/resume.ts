@@ -1,4 +1,4 @@
-export interface Links {
+export interface ContactLinks {
   readonly Resume: URL;
   readonly LinkedIn: URL;
   readonly GitHub: URL;
@@ -9,7 +9,7 @@ export interface Contact {
   readonly Email: string;
   readonly Phone: string | ReadonlyArray<string>;
   readonly Address: string;
-  readonly Links: Links;
+  readonly Links: ContactLinks;
 }
 
 export interface Preferences {
@@ -39,7 +39,7 @@ export class Job {
 
     const _roles = new Map();
     for (const [key, value] of Object.entries(roles)) {
-      if (typeof value === 'string' && 
+      if (typeof value === 'string' &&
         /* "YYYY/DD..." */
         /^\d{4}\/\d{2}/.test(key)) {
         _roles.set(key, value);
@@ -66,9 +66,9 @@ export class Job {
 }
 
 export class ProjectDetail {
+  readonly Links?: ReadonlyArray<string>;
   readonly Description?: ReadonlyArray<string>;
   readonly Info?: ReadonlyArray<any>;
-  readonly Links?: ReadonlyArray<string>;
   readonly SubProjects?: ReadonlyMap<string, ProjectDetail>;
 
   constructor(json: any) {
@@ -79,7 +79,6 @@ export class ProjectDetail {
         Description,
         Info,
         Link,
-        Links,
         ...subProjects
       } = json;
       if (Description) {
@@ -89,14 +88,15 @@ export class ProjectDetail {
         this.Info = Info;
       }
 
-      const links = [];
       if (Link) {
-        links.push(Link);
-      }
-      if (Links) {
-        links.push(...Links);
-      }
-      if (links.length > 0) {
+        const links = [];
+        if (typeof Link === 'string') {
+          links.push(Link);
+        } else if (Array.isArray(Link)) {
+          links.push(...Link);
+        } else {
+          throw new Error('Link must be a string or array of strings');
+        }
         this.Links = links;
       }
 
@@ -122,7 +122,6 @@ export class Project {
   constructor(json: Record<string, any>) {
     const {
       Link,
-      Links,
       Description,
       Info,
       ...rolesOrProjects
@@ -145,14 +144,15 @@ export class Project {
       this.Projects = _projects;
     }
 
-    const links = [];
     if (Link) {
-      links.push(Link);
-    }
-    if (Links) {
-      links.push(...Links);
-    }
-    if (links.length > 0) {
+      const links = [];
+      if (typeof Link === 'string') {
+        links.push(Link);
+      } else if (Array.isArray(Link)) {
+        links.push(...Link);
+      } else {
+        throw new Error('Link must be a string or array of strings');
+      }
       this.Links = links;
     }
 
