@@ -12,7 +12,7 @@ export interface Contact {
   readonly Links: Links;
 }
 
-export interface Objective {
+export interface Preferences {
   readonly Title: string;
   readonly Emphasis: string;
   readonly Technologies: string;
@@ -172,7 +172,7 @@ export class ResumeData {
   public contactName: string;
   public contact: Contact;
   public summary: ReadonlyArray<string>;
-  public objective: Objective;
+  public preferences: Preferences;
   public employment: ReadonlyMap<string, ReadonlyArray<Job>>;
   public projects: ReadonlyMap<string, Project>;
   public skills: ReadonlyArray<Skill>;
@@ -182,7 +182,7 @@ export class ResumeData {
     contactName: string,
     contact: Contact,
     summary: ReadonlyArray<string>,
-    objective: Objective,
+    preferences: Preferences,
     employment: ReadonlyMap<string, ReadonlyArray<Job>>,
     projects: ReadonlyMap<string, Project>,
     skills: ReadonlyArray<ReadonlyArray<any>>,
@@ -191,7 +191,7 @@ export class ResumeData {
     this.contactName = contactName;
     this.contact = contact;
     this.summary = summary;
-    this.objective = objective;
+    this.preferences = preferences;
 
     const _employment = new Map();
     for (const [key, value] of Object.entries(employment)) {
@@ -230,7 +230,7 @@ export class ResumeData {
 
     const {
       Summary: summary,
-      Objective: objective,
+      Preferences: preferences,
       Employment: employment,
       Projects: projects,
       Skills: skills,
@@ -238,8 +238,8 @@ export class ResumeData {
       ...remainder
     } = json;
 
-    if (!objective || typeof objective !== 'object') {
-      throw new Error('Invalid or missing Objective');
+    if (!preferences || typeof preferences !== 'object') {
+      throw new Error('Invalid or missing Preferences');
     }
     if (!employment || typeof employment !== 'object') {
       throw new Error('Invalid or missing Employment');
@@ -268,7 +268,7 @@ export class ResumeData {
       contactName,
       contact,
       summary,
-      objective,
+      preferences,
       employment,
       projects,
       skills,

@@ -347,7 +347,7 @@ function App() {
     contactName,
     contact,
     summary,
-    objective,
+    preferences,
     employment,
     projects,
     skills,
@@ -409,25 +409,25 @@ function App() {
 
       <div className="content mx-2">
 
-        {/* Objective Section */}
+        {/* Preferences Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
           <div className="py-2">
-            <h4>Objective</h4>
+            <h4>Preferences</h4>
           </div>
         </div>
         <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-0 text-[80%]">
-          <div className="text-right font-semibold">Preferred Title:</div>
-          <div className="text-left">{objective.Title}</div>
+          <div className="text-right font-semibold">Title:</div>
+          <div className="text-left">{preferences.Title}</div>
 
-          <div className="text-right font-semibold">Preferred Emphasis:</div>
-          <div className="text-left">{objective.Emphasis}</div>
+          <div className="text-right font-semibold">Emphasis:</div>
+          <div className="text-left">{preferences.Emphasis}</div>
 
-          <div className="text-right font-semibold">Preferred Technologies:</div>
-          <div className="text-left">{objective.Technologies}</div>
+          <div className="text-right font-semibold">Technologies:</div>
+          <div className="text-left">{preferences.Technologies}</div>
 
-          <div className="text-right font-semibold">Preferred Locations:</div>
-          <div className="text-left">{objective.Locations.join(", ")} areas</div>
+          <div className="text-right font-semibold">Locations:</div>
+          <div className="text-left">{preferences.Locations.join(", ")} areas</div>
         </div>
         <div className="pb-2" />
 
