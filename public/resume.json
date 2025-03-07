@@ -294,13 +294,49 @@
           "* 2019: Software Automated Hardware (HDMI Matrix Switch, USB Switch, RS232IP)"
         ]
       },
+      "QtNdiMonitorCapture":
+      {
+        "Link": "https://github.com/NightVsKnight/QtNdiMonitorCapture",
+        "Description":
+        [
+          "2023: Qt NDI Monitor Capture: Qt6 based app that",
+          "simulates NDI Tools' Studio Monitor and Screen Capture"
+        ]
+      },
+      "ObsChangeOfSceneryBot":
+      {
+        "Link": "https://github.com/NightVsKnight/ObsChangeOfSceneryBot",
+        "Description":
+        [
+          "2022: Automatically set an OBS Scene relevant",
+          "to the active talker in a Discord voice channel."
+        ]
+      },
+      "NvMaxineSdkDotNet":
+      {
+        "Link": "https://github.com/NightVsKnight/NvMaxineSdkDotNet",
+        "Description":
+        [
+          "2022: A C#/.NET wrapper around Nvidia's",
+          "Audio Effects (NV-AFX, NvAudioEffects) C++ SDK"
+        ]
+      },
+      "VoiceMod":
+      {
+        "Link": "https://github.com/NightVsKnight/VoiceMod",
+        "Description":
+        [
+          "2022: C# Voice Modulator that uses CSCore and",
+          "NVIDIA Maxine AFX-SDK Denoiser/Noise-Suppression"
+        ]
+      },
       "HangarXPLOR":
       {
         "Link": "https://github.com/paulpv/HangarXPLOR",
         "Description":
         [
-          "Fork of https://github.com/dolkensp/HangarXPLOR, a Chrome Extension",
-          "to improve Star Citizen's pretty bad Hangar UX."  
+          "2021: Fork of https://github.com/dolkensp/HangarXPLOR,",
+          "a Chrome Extension to improve Star Citizen's pretty bad Hangar UX."  
         ]
       },
       "TradeCitizen":
@@ -382,6 +418,14 @@
             "Used to improve AlfredAI's Kotlin implementation."
           ]
         }
+      },
+      "resume":
+      {
+        "Link": "https://github.com/paulpv/resume",
+        "Description":
+        [
+          "2025: Vite React Tailwind Resume Web App for Paul Alexander Peavyhouse."
+        ]
       },
       "FreeWatch":
       {
