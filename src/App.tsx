@@ -89,22 +89,19 @@ function renderLineOrLines(lineOrLines: string | readonly string[]): React.React
   );
 }
 
-function renderDescription(description: string | readonly string[], showHeader?: boolean) {
-  if (showHeader === undefined) {
-    showHeader = true;
-  }
+function renderDescription(description: string | readonly string[], showHeader: boolean, indent: boolean) {
   const lines = typeof description === 'string' ? [description] : description;
   return (
     <>
       {showHeader && <div className="font-bold">Description:</div>}
-      <div className="ml-6 italic">{renderLineOrLines(lines)}</div>
+      <div className={`${indent ? "ml-6" : ""} italic`}>{renderLineOrLines(lines)}</div>
     </>
   );
 }
 
 function ProjectInfo(infoItems: ReadonlyArray<any>) {
   return (
-    <ul className="ml-4 list-disc list-inside">
+    <ul className={`ml-0`}>
       {infoItems.map((infoItem, idx) => {
         if (typeof infoItem === 'string') {
           return (
@@ -123,7 +120,7 @@ function ProjectInfo(infoItems: ReadonlyArray<any>) {
           )
         } else if (typeof infoItem === 'object' && infoItem !== null) {
           return (
-            <ul key={idx} className="ml-2 list-disc list-inside">
+            <ul key={idx} className={`ml-0`}>
               {Object.entries(infoItem as Record<string, string>).map(([key, value]) => (
                 <li key={key}>
                   {key}: {renderPossibleLink(value)}
@@ -139,18 +136,18 @@ function ProjectInfo(infoItems: ReadonlyArray<any>) {
 
 function ProjectDetails(projectDetails: ProjectDetail) {
   return (
-    <div className="ml-0">
-      {projectDetails.Description && renderDescription(projectDetails.Description, false)}
+    <div>
+      {projectDetails.Description && renderDescription(projectDetails.Description, false, false)}
       {projectDetails.Info && ProjectInfo(projectDetails.Info)}
       {projectDetails.Links && projectDetails.Links.length > 1 && (
-        <ul className="ml-4 list-disc list-inside">
+        <ul className={`ml-0`}>
           {projectDetails.Links.slice(1).map((url, idx) => (
             <li key={idx}>{renderPossibleLink(url)}</li>
           ))}
         </ul>
       )}
       {projectDetails.SubProjects && (
-        <ul className="ml-4 list-disc list-inside space-y-1">
+        <ul className={`ml-0 space-y-1`}>
           {Array.from(projectDetails.SubProjects.entries()).map(([subProjectName, subProjectDetails], idx) => (
             <li key={idx}>
               <span className="font-bold italic">{renderPossibleLink(subProjectName)}:</span>
@@ -159,7 +156,7 @@ function ProjectDetails(projectDetails: ProjectDetail) {
                   &nbsp;{renderPossibleLink(subProjectDetails.Links[0])}
                 </span>
               )}
-              <div className="ml-0">
+              <div>
                 {ProjectDetails(subProjectDetails)}
               </div>
             </li>
@@ -461,11 +458,11 @@ function App() {
                     <span className="font-bold">Team:</span> {job.Team}
                   </div>
                 )}
-                {!job.Team && job.Description && renderDescription(job.Description)}
+                {!job.Team && job.Description && renderDescription(job.Description, true, true)}
                 {job.MajorContributions && (
                   <div>
                     <span className="font-bold">Major Contributions:</span>
-                    <ul className="ml-0 list-disc list-inside">
+                    <ul>
                       {job.MajorContributions.map((detail, i) => (
                         <li key={i}>{detail}</li>
                       ))}
@@ -475,18 +472,16 @@ function App() {
                 {job.Products && (
                   <div>
                     <span className="font-bold">Products:</span>
-                    <ul className="ml-0 list-disc list-inside">
+                    <ul>
                       {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
                         <li key={idxProduct}>
                           <span className="whitespace-nowrap">{productName}</span>:&nbsp;
                           {typeof productValue === "string" ? (
                             renderPossibleLink(productValue)
                           ) : (
-                            <ul className="ml-0 list-disc list-inside">
+                            <ul>
                               {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
-                                <li key={idxValue}>
-                                  {key}: <a href={value.toString()}>{value.toString()}</a>
-                                </li>
+                                <li key={idxValue}>{key}: {renderPossibleLink(value)}</li>
                               ))}
                             </ul>
                           )}
@@ -495,11 +490,11 @@ function App() {
                     </ul>
                   </div>
                 )}
-                {job.Team && job.Description && renderDescription(job.Description)}
+                {job.Team && job.Description && renderDescription(job.Description, true, true)}
                 {job.Info && (
                   <div>
                     <span className="font-bold">Info:</span>
-                    <ul className="ml-0 list-disc list-inside">
+                    <ul>
                       {job.Info.map((infoLink, idxInfo) => (
                         <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
                       ))}
@@ -535,9 +530,9 @@ function App() {
                   {roleDate}: <span className="font-bold">{role}</span>
                 </div>
               ))}
-              {project.Description && renderDescription(project.Description, false)}
+              {project.Description && renderDescription(project.Description, false, true)}
               {project.Links && project.Links.length > 1 && (
-                <ul className="ml-4 list-disc list-inside">
+                <ul>
                   {project.Links.slice(1).map((url, idx) => (
                     <li key={idx}>{renderPossibleLink(url)}</li>
                   ))}
@@ -547,7 +542,7 @@ function App() {
               {project.Projects && (
                 <>
                   <div className="my-1 font-bold">Projects:</div>
-                  <ul className="ml-4 list-disc list-inside space-y-1">
+                  <ul className="ml-0 space-y-1">
                   {Array.from(project.Projects.entries()).map(([projectName, projectDetails], idxProject) => (
                     <li key={idxProject}>
                       <span className="font-bold italic">{projectName}</span>
@@ -556,7 +551,7 @@ function App() {
                           &nbsp;-&nbsp;{renderPossibleLink(projectDetails.Links[0])}
                         </span>
                       )}
-                      <div className="ml-0">
+                      <div>
                         {ProjectDetails(projectDetails)}
                       </div>
                     </li>
