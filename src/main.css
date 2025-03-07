@@ -14,7 +14,7 @@ https://tailwindcss.com/docs/preflight
   --background: #f9fafb; /* off-white paper */
   --foreground: #060504; /* off-black ink */
 
-  font-synthesis: none;
+  /*font-synthesis: none;*/
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -57,7 +57,7 @@ body {
 
   display: block;
   font-size: clamp(12px, 2vw, 36px);
-  font-family: courier new;
+  font-family: "Courier New", Courier, monospace;
 }
 
 #root {

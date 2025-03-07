@@ -96,7 +96,7 @@ function renderDescription(description: string | readonly string[], showHeader?:
   const lines = typeof description === 'string' ? [description] : description;
   return (
     <>
-      {showHeader && <div className="font-semibold">Description:</div>}
+      {showHeader && <div className="font-bold">Description:</div>}
       <div className="ml-6 italic">{renderLineOrLines(lines)}</div>
     </>
   );
@@ -204,18 +204,18 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
           <div className="text-[90%] text-right" title={phone2}>{phone}</div>
         </div>
         <div className="text-[60%] grid grid-cols-[min-content_1fr_min-content_1fr] gap-x-1">
-          <div className="text-right font-semibold">Resume:</div>
+          <div className="text-right font-bold">Resume:</div>
           <div className="text-left">{linkResume}</div>
-          <div className="text-right font-semibold">LinkedIn:</div>
+          <div className="text-right font-bold">LinkedIn:</div>
           <div className="text-left">{linkLinkedIn}</div>
-          <div className="text-right font-semibold">GitHub:</div>
+          <div className="text-right font-bold">GitHub:</div>
           <div className="text-left">{linkGitHub}</div>
-          <div className="text-right font-semibold">StackOverflow:</div>
+          <div className="text-right font-bold">StackOverflow:</div>
           <div className="text-left">{linkStackOverflow}</div>
         </div>
         {summary && (
           <div className="mx-0 my-1 p-0">
-            <div className="text-[94%] font-semibold">Summary:</div>
+            <div className="text-[94%] font-bold">Summary:</div>
             {summary.map((line, idx) => (
               <div key={idx} className="text-[86%] pl-2">{line}</div>
             ))}
@@ -234,19 +234,19 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
             <div className="text-[95%] text-right" title={phone2}>{phone}</div>
           </div>
           <div className="flex-none text-[60%] mt-0 pl-4 border-l grid grid-cols-[auto_auto] gap-x-2">
-            <div className="text-right font-semibold">Resume:</div>
+            <div className="text-right font-bold">Resume:</div>
             <div className="text-left">{linkResume}</div>
-            <div className="text-right font-semibold">LinkedIn:</div>
+            <div className="text-right font-bold">LinkedIn:</div>
             <div className="text-left">{linkLinkedIn}</div>
-            <div className="text-right font-semibold">GitHub:</div>
+            <div className="text-right font-bold">GitHub:</div>
             <div className="text-left">{linkGitHub}</div>
-            <div className="text-right font-semibold">StackOverflow:</div>
+            <div className="text-right font-bold">StackOverflow:</div>
             <div className="text-left">{linkStackOverflow}</div>
           </div>
         </div>
         {summary && (
           <div className="mb-2 p-0">
-            <span className="text-[86%] font-semibold">Summary:</span>
+            <span className="text-[86%] font-bold">Summary:</span>
             <span className="text-[68%] pl-2">{summary.join(' ')}</span>
           </div>
         )}
@@ -421,16 +421,16 @@ function App() {
           </div>
         </div>
         <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-0 text-[80%]">
-          <div className="text-right font-semibold">Title:</div>
+          <div className="text-right font-bold">Title:</div>
           <div className="text-left">{preferences.Title}</div>
 
-          <div className="text-right font-semibold">Emphasis:</div>
+          <div className="text-right font-bold">Emphasis:</div>
           <div className="text-left">{preferences.Emphasis}</div>
 
-          <div className="text-right font-semibold">Technologies:</div>
+          <div className="text-right font-bold">Technologies:</div>
           <div className="text-left">{preferences.Technologies}</div>
 
-          <div className="text-right font-semibold">Locations:</div>
+          <div className="text-right font-bold">Locations:</div>
           <div className="text-left">{preferences.Locations.join(", ")} areas</div>
         </div>
         <div className="pb-2" />
@@ -453,18 +453,18 @@ function App() {
                 {idxJob > 0 && <hr className="my-2" />}
                 {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
                   <div key={idxRole}>
-                    {roleDate}: <span className="font-semibold">{role}</span>
+                    {roleDate}: <span className="font-bold">{role}</span>
                   </div>
                 ))}
                 {job.Team && (
                   <div>
-                    <span className="font-semibold">Team:</span> {job.Team}
+                    <span className="font-bold">Team:</span> {job.Team}
                   </div>
                 )}
                 {!job.Team && job.Description && renderDescription(job.Description)}
                 {job.MajorContributions && (
                   <div>
-                    <span className="font-semibold">Major Contributions:</span>
+                    <span className="font-bold">Major Contributions:</span>
                     <ul className="ml-0 list-disc list-inside">
                       {job.MajorContributions.map((detail, i) => (
                         <li key={i}>{detail}</li>
@@ -474,7 +474,7 @@ function App() {
                 )}
                 {job.Products && (
                   <div>
-                    <span className="font-semibold">Products:</span>
+                    <span className="font-bold">Products:</span>
                     <ul className="ml-0 list-disc list-inside">
                       {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
                         <li key={idxProduct}>
@@ -498,7 +498,7 @@ function App() {
                 {job.Team && job.Description && renderDescription(job.Description)}
                 {job.Info && (
                   <div>
-                    <span className="font-semibold">Info:</span>
+                    <span className="font-bold">Info:</span>
                     <ul className="ml-0 list-disc list-inside">
                       {job.Info.map((infoLink, idxInfo) => (
                         <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
@@ -532,7 +532,7 @@ function App() {
             <div>
               {project.Roles && Array.from(project.Roles.entries()).map(([roleDate, role], idxRole) => (
                 <div key={idxRole}>
-                  {roleDate}: <span className="font-semibold">{role}</span>
+                  {roleDate}: <span className="font-bold">{role}</span>
                 </div>
               ))}
               {project.Description && renderDescription(project.Description, false)}
@@ -550,7 +550,7 @@ function App() {
                   <ul className="ml-4 list-disc list-inside space-y-1">
                   {Array.from(project.Projects.entries()).map(([projectName, projectDetails], idxProject) => (
                     <li key={idxProject}>
-                      <span className="font-semibold italic">{projectName}</span>
+                      <span className="font-bold italic">{projectName}</span>
                       {projectDetails.Links && (
                         <span>
                           &nbsp;-&nbsp;{renderPossibleLink(projectDetails.Links[0])}
