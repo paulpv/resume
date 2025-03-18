@@ -195,7 +195,7 @@ type ResumeRawData = {
   contact: Contact,
   summary: ReadonlyArray<string>,
   preferences: Preferences,
-  employment: ReadonlyMap<string, ReadonlyArray<Job>>,
+  professionalExperience: ReadonlyMap<string, ReadonlyArray<Job>>,
   projects: ReadonlyMap<string, Project>,
   skills: ReadonlyArray<ReadonlyArray<any>>,
   patents: ReadonlyMap<string, PatentInfo>,
@@ -211,7 +211,7 @@ export class ResumeData {
   public contact: Contact;
   public summary: ReadonlyArray<string>;
   public preferences: Preferences;
-  public employment: ReadonlyMap<string, ReadonlyArray<Job>>;
+  public professionalExperience: ReadonlyMap<string, ReadonlyArray<Job>>;
   public projects: ReadonlyMap<string, Project>;
   public skills: ReadonlyArray<Skill>;
   public patents: ReadonlyMap<string, PatentInfo>;
@@ -227,7 +227,7 @@ export class ResumeData {
       contact,
       summary,
       preferences,
-      employment,
+      professionalExperience,
       projects,
       skills,
       education,
@@ -238,12 +238,12 @@ export class ResumeData {
     this.summary = summary;
     this.preferences = preferences;
 
-    const _employment = new Map();
-    for (const [key, value] of Object.entries(employment)) {
+    const _professionalExperience = new Map();
+    for (const [key, value] of Object.entries(professionalExperience)) {
       const jobArray = value.map((job: Record<string, any>) => new Job(job));
-      _employment.set(key, jobArray);
+      _professionalExperience.set(key, jobArray);
     }
-    this.employment = _employment;
+    this.professionalExperience = _professionalExperience;
 
     const _projects = new Map();
     for (const [key, value] of Object.entries(projects)) {
@@ -299,7 +299,7 @@ export class ResumeData {
     const {
       Summary: summary,
       Preferences: preferences,
-      Employment: employment,
+      "Professional Experience": professionalExperience,
       Projects: projects,
       Skills: skills,
       Patents: patents,
@@ -314,8 +314,8 @@ export class ResumeData {
     if (!preferences || typeof preferences !== 'object') {
       throw new Error('Invalid or missing Preferences');
     }
-    if (!employment || typeof employment !== 'object') {
-      throw new Error('Invalid or missing Employment');
+    if (!professionalExperience || typeof professionalExperience !== 'object') {
+      throw new Error('Invalid or missing "Professional Experience"');
     }
     if (!projects || typeof projects !== 'object') {
       throw new Error('Invalid or missing Projects');
@@ -357,7 +357,7 @@ export class ResumeData {
       contact,
       summary,
       preferences,
-      employment,
+      professionalExperience,
       projects,
       skills,
       patents,

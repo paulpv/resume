@@ -294,15 +294,15 @@ function App() {
   }
 
   const isMobile = isMobileWidth()
-  const [employmentHeaderElement, setEmploymentHeaderElement] = useState<HTMLDivElement | null>(null)
-  const [employmentHeaderHeight, setEmploymentHeaderHeight] = useState(0)
+  const [professionalExperienceHeaderElement, setProfessionalExperienceHeaderElement] = useState<HTMLDivElement | null>(null)
+  const [professionalExperienceHeaderHeight, setProfessionalExperienceHeaderHeight] = useState(0)
   const [projectsHeaderElement, setProjectsHeaderElement] = useState<HTMLDivElement | null>(null)
   const [projectsHeaderHeight, setProjectsHeaderHeight] = useState(0)
   useLayoutEffect(() => {
-    const updateEmploymentHeaderHeight = () => {
-      if (employmentHeaderElement) {
-        const { height } = employmentHeaderElement.getBoundingClientRect()
-        setEmploymentHeaderHeight(height)
+    const updateProfessionalExperienceHeaderHeight = () => {
+      if (professionalExperienceHeaderElement) {
+        const { height } = professionalExperienceHeaderElement.getBoundingClientRect()
+        setProfessionalExperienceHeaderHeight(height)
       }
     }
     const updateProjectsHeaderHeight = () => {
@@ -311,15 +311,15 @@ function App() {
         setProjectsHeaderHeight(height)
       }
     }
-    updateEmploymentHeaderHeight()
+    updateProfessionalExperienceHeaderHeight()
     updateProjectsHeaderHeight()
-    window.addEventListener('resize', updateEmploymentHeaderHeight)
+    window.addEventListener('resize', updateProfessionalExperienceHeaderHeight)
     window.addEventListener('resize', updateProjectsHeaderHeight)
     return () => {
-      window.removeEventListener('resize', updateEmploymentHeaderHeight)
+      window.removeEventListener('resize', updateProfessionalExperienceHeaderHeight)
       window.removeEventListener('resize', updateProjectsHeaderHeight)
     }
-  }, [employmentHeaderElement, projectsHeaderElement])
+  }, [professionalExperienceHeaderElement, projectsHeaderElement])
 
   const [resumeData, setResumeData] = useState<ResumeData | null>(null)
 
@@ -344,7 +344,7 @@ function App() {
     contact,
     summary,
     preferences,
-    employment,
+    professionalExperience,
     projects,
     skills,
     patents,
@@ -362,10 +362,10 @@ function App() {
 
         <div className="sticky-bg flex flex-row justify-between py-1 text-[55%] items-center">
           <div className="flex-1">
-            <a href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
           </div>
           <div className="mr-4">
-            <a href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
+            <a target="_blank" rel="noopener noreferrer" href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
           </div>
           <button
             onClick={toggleTheme}
@@ -432,17 +432,17 @@ function App() {
         </div>
         <div className="pb-2" />
 
-        {/* Employment Section */}
+        {/* Professional Experience Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
-          <div ref={setEmploymentHeaderElement} className="py-2">
-            <h4>Employment</h4>
+          <div ref={setProfessionalExperienceHeaderElement} className="py-2">
+            <h4>Professional Experience</h4>
           </div>
         </div>
-        {Array.from(employment.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
+        {Array.from(professionalExperience.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
           <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 last:mb-0">
             {idxDateCompany > 0 && <hr className="my-2" />}
-            <div className="font-bold pb-1 sticky-bg sticky z-9" style={{ top: employmentHeaderHeight + (isMobile ? 2 : 0) }}>
+            <div className="font-bold pb-1 sticky-bg sticky z-9" style={{ top: professionalExperienceHeaderHeight + (isMobile ? 2 : 0) }}>
               {keyDateCompany}
             </div>
             {jobs.map((job, idxJob) => (
