@@ -6,10 +6,10 @@
     "Address": "8904 NE 144th Pl, Kirkland, WA 98034",
       "Links":
       {
-               "Resume": "https://swooby.com/pv/resume/",
-             "LinkedIn": "https://linkedin.com/in/paulpv",
-               "GitHub": "https://github.com/paulpv",
-        "StackOverflow": "https://stackoverflow.name/swooby"
+               "Resume": "http://swoo.by/pv/cv",
+             "LinkedIn": "http://swoo.by/pv/li",
+               "GitHub": "http://swoo.by/pv/gh",
+        "StackOverflow": "http://swoo.by/pv/so"
       }
   },
   "Summary":
@@ -57,8 +57,8 @@
         ],
         "Products":
         {
-          "ActivPanel 9": "https://swooby.com/prom-ap9",
-          "ActivPanel 9 Pro": "https://swooby.com/prom-ap9pro"
+          "ActivPanel 9": "http://swoo.by/prom-ap9",
+          "ActivPanel 9 Pro": "http://swoo.by/prom-ap9pro"
         },
         "Info":
         [
@@ -82,12 +82,12 @@
         {
           "Pebblebee Finder":
           {
-            "Android": "https://swooby.com/pb-afinder",
-                "iOS": "https://swooby.com/pb-ifinder"
+            "Android": "http://swoo.by/pb-afinder",
+                "iOS": "http://swoo.by/pb-ifinder"
           },
           "Pebblebee Stone":
           {
-            "Android": "https://swooby.com/pb-astone"
+            "Android": "http://swoo.by/pb-astone"
           }
         }
       }
@@ -117,8 +117,8 @@
         {
           "WAVE Mobile Communicator":
           {
-            "Android": "https://swooby.com/msi-awave",
-                "iOS": "https://swooby.com/msi-iwave"
+            "Android": "http://swoo.by/msi-awave",
+                "iOS": "http://swoo.by/msi-iwave"
           },
           "MOTOTRBO Anywhere": "Deprecated and removed"
         }
@@ -135,7 +135,7 @@
         ],
         "Products":
         {
-          "WAVE Communicator": "https://swooby.com/tps-wave"
+          "WAVE Communicator": "http://swoo.by/tps-wave"
         }
       }
     ],
@@ -181,7 +181,7 @@
         "Team": "Microsoft RTC Distributed Meetings",
         "Products":
         {
-          "RoundTable": "https://swooby.com/ms-roundtable"
+          "RoundTable": "http://swoo.by/ms-roundtable"
         },
         "Description":
         [
@@ -196,7 +196,7 @@
         "Team": "Microsoft RTC",
         "Products":
         {
-          "Live Communications Server": "https://swooby.com/ms-olcs"
+          "Live Communications Server": "http://swoo.by/ms-olcs"
         },
         "Description":
         [
@@ -208,9 +208,9 @@
         "Team": "Microsoft Exchange/NetDocs/Office RTC",
         "Products":
         {
-          "Office Conferencing Server": "https://swooby.com/ms-ocs",
+          "Office Conferencing Server": "http://swoo.by/ms-ocs",
           "NetDocs": "Internal; Discontinued",
-          "Exchange Conferencing Server": "https://swooby.com/ms-ecs2k3"
+          "Exchange Conferencing Server": "http://swoo.by/ms-ecs2k3"
         },
         "Description":
         [
@@ -225,7 +225,7 @@
         "Team": "Microsoft Exchange RTC",
         "Products":
         {
-          "Exchange Internet Relay Chat (IRC)": "https://swooby.com/ms-ecs2k"
+          "Exchange Internet Relay Chat (IRC)": "http://swoo.by/ms-ecs2k"
         },
         "Description":
         [
@@ -360,7 +360,7 @@
         ],
         "Info":
         [
-          "https://swooby.com/fleetviewr/youtube"  
+          "http://swoo.by/fleetviewr/youtube"  
         ]
       }
     },
@@ -467,8 +467,7 @@
         ],
         "Info":
         [
-          "https://swooby.com/z/navpc/",
-          "https://swooby.com/pub/carpc",
+          "http://swoo.by/pub/carpc",
           "https://oreilly.com/library/view/car-pc-hacks/0596008716/",
           "https://amazon.com/_/dp/0596008716"
         ]
@@ -482,7 +481,7 @@
         ],
         "Info":
         [
-          "https://swooby.com/PCB/TP",
+          "http://swoo.by/PCB/TP",
           "https://youtu.be/h2mYaycwUxg",
           "https://youtu.be/9nb01vvdYeU",
           "https://youtu.be/oxMuTyb_urs"
@@ -576,12 +575,12 @@
     "WO2013116741":
     {
       "TIP-RING-RING-SLEEVE PUSH-TO-TALK SYSTEM AND METHODS":
-      "https://swooby.com/WO2013116741"
+      "http://swoo.by/WO2013116741"
     },
     "WO2013154722":
     {
       "PULSED INPUT PUSH-TO-TALK SYSTEMS, METHODS AND APPARATUS":
-      "https://swooby.com/WO2013154722"
+      "http://swoo.by/WO2013154722"
     }
   },
   "Publications":
@@ -589,12 +588,12 @@
     "Using AJAX to Enable Client RPC Requests":
     {
       "Google Code: Google App Engine, May 2008":
-      "https://swooby.com/pub/ajax"
+      "http://swoo.by/pub/ajax"
     },
     "CarPC Hacks: Hack #65 'View Real-Time Traffic Data on the Road'":
     {
       "O'Reilly & Associates, July 2005 - ISBN: 0-596-00871-6":
-      "https://swooby.com/pub/carpc"
+      "http://swoo.by/pub/carpc"
     }
   },
   "Education":
