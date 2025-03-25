@@ -1,7 +1,9 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ResumeData, Contact, ProjectDetail } from './resume'
 
+declare const APP_URL: string
 declare const APP_MODIFIED_TIMESTAMP: string
+declare const APP_DATA: string
 declare const RESUME_MODIFIED_TIMESTAMP: string
 
 const MOBILE_BREAKPOINT = 821 // iPad Air is 820x1180
@@ -296,6 +298,7 @@ function App() {
   const isMobile = isMobileWidth()
   const [professionalExperienceHeaderElement, setProfessionalExperienceHeaderElement] = useState<HTMLDivElement | null>(null)
   const [professionalExperienceHeaderHeight, setProfessionalExperienceHeaderHeight] = useState(0)
+  const [isProfessionalExperienceSticky, setIsProfessionalExperienceSticky] = useState(false)
   const [projectsHeaderElement, setProjectsHeaderElement] = useState<HTMLDivElement | null>(null)
   const [projectsHeaderHeight, setProjectsHeaderHeight] = useState(0)
   useLayoutEffect(() => {
@@ -311,15 +314,25 @@ function App() {
         setProjectsHeaderHeight(height)
       }
     }
-    updateProfessionalExperienceHeaderHeight()
-    updateProjectsHeaderHeight()
-    window.addEventListener('resize', updateProfessionalExperienceHeaderHeight)
-    window.addEventListener('resize', updateProjectsHeaderHeight)
+    const handleResize = () => {
+      updateProfessionalExperienceHeaderHeight()
+      updateProjectsHeaderHeight()
+    }
+    handleResize()
+    window.addEventListener('resize', handleResize)
     return () => {
-      window.removeEventListener('resize', updateProfessionalExperienceHeaderHeight)
-      window.removeEventListener('resize', updateProjectsHeaderHeight)
+      window.removeEventListener('resize', handleResize)
     }
   }, [professionalExperienceHeaderElement, projectsHeaderElement])
+  useEffect(() => {
+    const contentElement = document.querySelector('.content')
+    const handleScroll = () => {
+    }
+    contentElement?.addEventListener("scroll", handleScroll)
+    return () => {
+      contentElement?.removeEventListener("scroll", handleScroll)
+    }
+  }, [professionalExperienceHeaderElement])
 
   const [resumeData, setResumeData] = useState<ResumeData | null>(null)
 
@@ -358,14 +371,15 @@ function App() {
   return (
     <div className="layout">
 
-      <header className="header sticky-bg mx-2 mb-0 p-0">
+      <header className="header sticky-bg mb-0 p-0">
 
-        <div className="sticky-bg flex flex-row justify-between py-1 text-[55%] items-center">
-          <div className="flex-1">
-            <a target="_blank" rel="noopener noreferrer" href="https://github.com/paulpv/resume/blob/main/src/App.tsx">App</a> v{appModifiedTimestampString}
+        {/* Controls */}
+        <div className="p-1 border-1 border-grey rounded sticky-bg flex flex-row gap-x-2 justify-between text-[55%] items-center">
+          <div className="flex-1 border-0 border-grey">
+            <a target="_blank" rel="noopener noreferrer" href={APP_URL}>{APP_URL}</a> v{appModifiedTimestampString}
           </div>
-          <div className="mr-4">
-            <a target="_blank" rel="noopener noreferrer" href="./resume.json">resume.json</a> v{resumeModifiedTimestampString}
+          <div>
+            <a target="_blank" rel="noopener noreferrer" href="./resume.json">{APP_DATA}</a> v{resumeModifiedTimestampString}
           </div>
           <button
             onClick={toggleTheme}
@@ -400,9 +414,29 @@ function App() {
               </svg>
             )}
           </button>
+          <button
+            onClick={() => {
+              window.print()
+            }}
+            title="Print"
+            className={`flex items-center justify-center h-6 p-1 border border-gray-300 rounded no-print ${theme === "light" ? "bg-gray-800 text-white" : "bg-gray-200 text-black"}`}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg"
+              className="lucide lucide-printer"
+              width="12" height="12" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor"
+              strokeWidth="2" strokeLinecap="round"
+              strokeLinejoin="round">
+              <path d="M6 9V2h12v7"></path>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <path d="M6 14h12v8H6z"></path>
+              <path d="M6 14h12v8H6z"></path>
+              <path d="M6 14h12v8H6z"></path>
+            </svg>
+          </button>
         </div>
 
-        <div className="flex flex-col m-0 p-0">
+        <div className="flex flex-col mx-2 p-0">
           <RenderContact contactName={contactName} contact={contact} summary={summary} />
         </div>
 
