@@ -298,9 +298,16 @@ function App() {
   const isMobile = isMobileWidth()
   const [professionalExperienceHeaderElement, setProfessionalExperienceHeaderElement] = useState<HTMLDivElement | null>(null)
   const [professionalExperienceHeaderHeight, setProfessionalExperienceHeaderHeight] = useState(0)
+  const [professionalExperienceItemsElement, setProfessionalExperienceItemsElement] = useState<HTMLDivElement | null>(null)
   const [isProfessionalExperienceSticky, setIsProfessionalExperienceSticky] = useState(false)
   const [projectsHeaderElement, setProjectsHeaderElement] = useState<HTMLDivElement | null>(null)
   const [projectsHeaderHeight, setProjectsHeaderHeight] = useState(0)
+  const [projectsItemsElement, setProjectsItemsElement] = useState<HTMLDivElement | null>(null)
+  const [isProjectsSticky, setIsProjectsSticky] = useState(false)
+  const [skillsHeaderElement, setSkillsHeaderElement] = useState<HTMLDivElement | null>(null)
+  const [skillsHeaderHeight, setSkillsHeaderHeight] = useState(0)
+  const [skillsItemsElement, setSkillsItemsElement] = useState<HTMLDivElement | null>(null)
+  const [isSkillsSticky, setIsSkillsSticky] = useState(false)
   useLayoutEffect(() => {
     const updateProfessionalExperienceHeaderHeight = () => {
       if (professionalExperienceHeaderElement) {
@@ -314,25 +321,67 @@ function App() {
         setProjectsHeaderHeight(height)
       }
     }
+    const updateSkillsHeaderHeight = () => {
+      if (skillsHeaderElement) {
+        const { height } = skillsHeaderElement.getBoundingClientRect()
+        setSkillsHeaderHeight(height)
+      }
+    }
     const handleResize = () => {
       updateProfessionalExperienceHeaderHeight()
       updateProjectsHeaderHeight()
+      updateSkillsHeaderHeight()
     }
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize)
     }
-  }, [professionalExperienceHeaderElement, projectsHeaderElement])
+  }, [professionalExperienceHeaderElement, projectsHeaderElement, skillsHeaderElement])
   useEffect(() => {
-    const contentElement = document.querySelector('.content')
-    const handleScroll = () => {
+    const updateIsProfessionalSticky = () => {
+      if (professionalExperienceHeaderElement && professionalExperienceItemsElement) {
+        const { top: headerTop } = professionalExperienceHeaderElement.getBoundingClientRect()
+        const { top: itemsTop } = professionalExperienceItemsElement.getBoundingClientRect()
+        const isProfessionalExperienceSticky = itemsTop < headerTop + professionalExperienceHeaderHeight
+        //console.log("isProfessionalExperienceSticky", isProfessionalExperienceSticky)
+        setIsProfessionalExperienceSticky(isProfessionalExperienceSticky)
+      }
     }
+    const updateIsProjectsSticky = () => {
+      if (projectsHeaderElement && projectsItemsElement) {
+        const { top: headerTop } = projectsHeaderElement.getBoundingClientRect()
+        const { top: itemsTop } = projectsItemsElement.getBoundingClientRect()
+        const isProjectsSticky = itemsTop < headerTop + projectsHeaderHeight
+        //console.log("isProjectsSticky", isProjectsSticky)
+        setIsProjectsSticky(isProjectsSticky)
+      }
+    }
+    const updateIsSkillsSticky = () => {
+      if (skillsHeaderElement && skillsItemsElement) {
+        const { top: headerTop } = skillsHeaderElement.getBoundingClientRect()
+        const { top: itemsTop } = skillsItemsElement.getBoundingClientRect()
+        const isSkillsSticky = itemsTop < headerTop + skillsHeaderHeight
+        //console.log("isSkillsSticky", isSkillsSticky)
+        setIsSkillsSticky(isSkillsSticky)
+      }
+    }
+    const handleScroll = () => {
+      updateIsProfessionalSticky()
+      updateIsProjectsSticky()
+      updateIsSkillsSticky()
+    }
+    handleScroll()
+    const contentElement = document.querySelector('.content')
     contentElement?.addEventListener("scroll", handleScroll)
     return () => {
       contentElement?.removeEventListener("scroll", handleScroll)
     }
-  }, [professionalExperienceHeaderElement])
+  }, [
+    professionalExperienceHeaderElement, professionalExperienceHeaderHeight, 
+    projectsHeaderElement, projectsHeaderHeight,
+    skillsHeaderElement, skillsHeaderHeight,
+  ])
 
   const [resumeData, setResumeData] = useState<ResumeData | null>(null)
 
@@ -473,72 +522,81 @@ function App() {
             <h4>Professional Experience</h4>
           </div>
         </div>
-        {Array.from(professionalExperience.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
-          <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 last:mb-0">
-            {idxDateCompany > 0 && <hr className="my-2" />}
-            <div className="font-bold pb-1 sticky-bg sticky z-9" style={{ top: professionalExperienceHeaderHeight + (isMobile ? 2 : 0) }}>
-              {keyDateCompany}
-            </div>
-            {jobs.map((job, idxJob) => (
-              <div key={idxJob} className="ml-4">
-                {idxJob > 0 && <hr className="my-2" />}
-                {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
-                  <div key={idxRole}>
-                    {roleDate}: <span className="font-bold">{role}</span>
-                  </div>
-                ))}
-                {job.Team && (
-                  <div>
-                    <span className="font-bold">Team:</span> {job.Team}
-                  </div>
-                )}
-                {!job.Team && job.Description && renderDescription(job.Description, true, true)}
-                {job.MajorContributions && (
-                  <div>
-                    <span className="font-bold">Major Contributions:</span>
-                    <ul>
-                      {job.MajorContributions.map((detail, i) => (
-                        <li key={i}>{detail}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                {job.Products && (
-                  <div>
-                    <span className="font-bold">Products:</span>
-                    <ul>
-                      {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
-                        <li key={idxProduct}>
-                          <span className="whitespace-nowrap">{productName}</span>:&nbsp;
-                          {typeof productValue === "string" ? (
-                            renderPossibleLink(productValue)
-                          ) : (
-                            <ul>
-                              {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
-                                <li key={idxValue}>{key}: {renderPossibleLink(value)}</li>
-                              ))}
-                            </ul>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                {job.Team && job.Description && renderDescription(job.Description, true, true)}
-                {job.Info && (
-                  <div>
-                    <span className="font-bold">Info:</span>
-                    <ul>
-                      {job.Info.map((infoLink, idxInfo) => (
-                        <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+        <div ref={setProfessionalExperienceItemsElement}>
+          {Array.from(professionalExperience.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
+            <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 last:mb-0">
+              {idxDateCompany > 0 && <hr className="my-2" />}
+              <div
+                className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 ${isProfessionalExperienceSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
+                style={{
+                  // fine tuning to:
+                  // 1) prevent clipping top of next line of text
+                  // 2) prevent text scrolling under from showing through gap
+                  top: professionalExperienceHeaderHeight + (isMobile ? 1 : 0),
+                }}>
+                {keyDateCompany}
               </div>
-            ))}
-          </div>
-        ))}
+              {jobs.map((job, idxJob) => (
+                <div key={idxJob} className="ml-4">
+                  {idxJob > 0 && <hr className="my-2" />}
+                  {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
+                    <div key={idxRole}>
+                      {roleDate}: <span className="font-bold">{role}</span>
+                    </div>
+                  ))}
+                  {job.Team && (
+                    <div>
+                      <span className="font-bold">Team:</span> {job.Team}
+                    </div>
+                  )}
+                  {!job.Team && job.Description && renderDescription(job.Description, true, true)}
+                  {job.MajorContributions && (
+                    <div>
+                      <span className="font-bold">Major Contributions:</span>
+                      <ul>
+                        {job.MajorContributions.map((detail, i) => (
+                          <li key={i}>{detail}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {job.Products && (
+                    <div>
+                      <span className="font-bold">Products:</span>
+                      <ul>
+                        {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
+                          <li key={idxProduct}>
+                            <span className="whitespace-nowrap">{productName}</span>:&nbsp;
+                            {typeof productValue === "string" ? (
+                              renderPossibleLink(productValue)
+                            ) : (
+                              <ul>
+                                {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
+                                  <li key={idxValue}>{key}: {renderPossibleLink(value)}</li>
+                                ))}
+                              </ul>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {job.Team && job.Description && renderDescription(job.Description, true, true)}
+                  {job.Info && (
+                    <div>
+                      <span className="font-bold">Info:</span>
+                      <ul>
+                        {job.Info.map((infoLink, idxInfo) => (
+                          <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
 
         {/* Projects Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
@@ -547,71 +605,86 @@ function App() {
             <h4>Projects</h4>
           </div>
         </div>
-        {Array.from(projects.entries()).map(([keyDateProject, project], idxProject) => (
-          <div key={idxProject} className="text-[80%] ml-4 mb-2 last:mb-0">
-            {idxProject > 0 && <hr className="my-2" />}
-            <div className="font-bold pb-1 sticky-bg sticky z-9" style={{ top: projectsHeaderHeight + (isMobile ? 2 : 0) }}>
-              <span>{keyDateProject}</span>
-              {project.Links && (
-                <span>
-                  &nbsp;-&nbsp;{renderPossibleLink(project.Links[0])}
-                </span>
-              )}
-            </div>
-            <div>
-              {project.Roles && Array.from(project.Roles.entries()).map(([roleDate, role], idxRole) => (
-                <div key={idxRole}>
-                  {roleDate}: <span className="font-bold">{role}</span>
-                </div>
-              ))}
-              {project.Description && renderDescription(project.Description, false, true)}
-              {project.Links && project.Links.length > 1 && (
-                <ul>
-                  {project.Links.slice(1).map((url, idx) => (
-                    <li key={idx}>{renderPossibleLink(url)}</li>
-                  ))}
-                </ul>
-              )}
-              {project.Info && ProjectInfo(project.Info)}
-              {project.Projects && (
-                <>
-                  <div className="my-1 font-bold">Projects:</div>
-                  <ul className="ml-0 space-y-1">
-                  {Array.from(project.Projects.entries()).map(([projectName, projectDetails], idxProject) => (
-                    <li key={idxProject}>
-                      <span className="font-bold italic">{projectName}</span>
-                      {projectDetails.Links && (
-                        <span>
-                          &nbsp;-&nbsp;{renderPossibleLink(projectDetails.Links[0])}
-                        </span>
-                      )}
-                      <div>
-                        {ProjectDetails(projectDetails)}
-                      </div>
-                    </li>
-                  ))}
+        <div ref={setProjectsItemsElement}>
+          {Array.from(projects.entries()).map(([keyDateProject, project], idxProject) => (
+            <div key={idxProject} className="text-[80%] ml-4 mb-2 last:mb-0">
+              {idxProject > 0 && <hr className="my-2" />}
+              <div 
+                className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 ${isProjectsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
+                style={{
+                  // fine tuning to:
+                  // 1) prevent clipping top of next line of text
+                  // 2) prevent text scrolling under from showing through gap
+                  top: projectsHeaderHeight + (isMobile ? 1 : 0),
+                }}>
+                <span>{keyDateProject}</span>
+                {project.Links && (
+                  <span>
+                    &nbsp;-&nbsp;{renderPossibleLink(project.Links[0])}
+                  </span>
+                )}
+              </div>
+              <div>
+                {project.Roles && Array.from(project.Roles.entries()).map(([roleDate, role], idxRole) => (
+                  <div key={idxRole}>
+                    {roleDate}: <span className="font-bold">{role}</span>
+                  </div>
+                ))}
+                {project.Description && renderDescription(project.Description, false, true)}
+                {project.Links && project.Links.length > 1 && (
+                  <ul>
+                    {project.Links.slice(1).map((url, idx) => (
+                      <li key={idx}>{renderPossibleLink(url)}</li>
+                    ))}
                   </ul>
-                </>
-              )}
+                )}
+                {project.Info && ProjectInfo(project.Info)}
+                {project.Projects && (
+                  <>
+                    <div className="my-1 font-bold">Projects:</div>
+                    <ul className="ml-0 space-y-1">
+                    {Array.from(project.Projects.entries()).map(([projectName, projectDetails], idxProject) => (
+                      <li key={idxProject}>
+                        <span className="font-bold italic">{projectName}</span>
+                        {projectDetails.Links && (
+                          <span>
+                            &nbsp;-&nbsp;{renderPossibleLink(projectDetails.Links[0])}
+                          </span>
+                        )}
+                        <div>
+                          {ProjectDetails(projectDetails)}
+                        </div>
+                      </li>
+                    ))}
+                    </ul>
+                  </>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         {/* Skills Section */}
         {(() => {
           const [header, ...rest] = skills
           return (
             <>
-              <div className="sticky-bg sticky top-0 z-10">
+              <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
                 <hr className="m-0 p-0" />
-                <div className="mr-2 grid grid-cols-[1fr_1fr_auto_auto] gap-x-4 font-bold items-center">
-                  <div className="my-2">{header.Skill}s</div>
-                  <div className="mx-2 text-right">{header.Level}</div>
-                  <div className="text-right">{header.From}</div>
-                  <div className="text-right">{header.Last}</div>
+                <div ref={setSkillsHeaderElement} className="py-2">
+                  <div 
+                    className={`mr-2 grid grid-cols-[1fr_1fr_auto_auto] gap-x-4 font-bold items-center border-b-4 ${isSkillsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
+                    >
+                    <div className="my-2">{header.Skill}s</div>
+                    <div className="mx-2 text-right">{header.Level}</div>
+                    <div className="text-right">{header.From}</div>
+                    <div className="text-right">{header.Last}</div>
+                  </div>
                 </div>
               </div>
-              <div className="mr-2 grid grid-cols-[1fr_auto_auto_auto] gap-x-4 text-[80%]">
+              <div ref={setSkillsItemsElement}
+                className="mr-2 grid grid-cols-[1fr_auto_auto_auto] gap-x-4 text-[80%]"
+                >
                 {rest.map((skill, idx) => (
                   <React.Fragment key={idx}>
                     <div className="ml-4">• {skill.Skill}</div>
