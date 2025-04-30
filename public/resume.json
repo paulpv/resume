@@ -371,6 +371,27 @@
       "Description": "Custom/Hobby/Personal Software Development",
       "AI Studies":
       {
+        "AlfredAI-Flutter":
+        {
+          "Link": "https://github.com/swooby/alfredai_flutter",
+          "Description":
+          [
+            "2025: Experimental Dart/Flutter Implementation of https://github.com/swooby/AlfredAI"
+          ]
+        },
+        "langchain_dart openai_realtime_dart WebRTC":
+        {
+          "Link": "https://github.com/swooby/langchain_dart/tree/main/packages/openai_realtime_dart",
+          "Description":
+          [
+            "2025: Fork of",
+            "https://github.com/davidmigloz/langchain_dart/tree/main/packages/openai_realtime_dart",
+            "that adds WebRTC; based on my",
+            "https://github.com/openai/openai-realtime-api-beta/pull/99/files that adds WebRTC to",
+            "OpenAI's WebSocket only Realtime JavaScript API.",
+            "Used by AlfredAI-Flutter."
+          ]
+        },
         "AlfredAI":
         {
           "Link": "https://github.com/swooby/AlfredAI",
@@ -627,6 +648,7 @@
   ],
   "References":
   {
+    "LinkedIn": "https://www.linkedin.com/in/paulpv/details/recommendations/",
     "Promethean, Inc": "Available upon request",
     "Motorola Solutions":
     [
