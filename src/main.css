@@ -11,8 +11,8 @@ https://tailwindcss.com/docs/preflight
 /* Base theme: Light mode (default) */
 :root {
   /* Background and text */
-  --background: #f9fafb; /* off-white paper */
-  --foreground: #060504; /* off-black ink */
+  --background: #f0f0f0; /* off-white paper */
+  --foreground: #202020; /* off-black ink */
 
   /*font-synthesis: none;*/
   text-rendering: optimizeLegibility;
@@ -26,9 +26,8 @@ https://tailwindcss.com/docs/preflight
  for example, the `document.documentElement` (<html>) element
  */
 .dark {
-  /* Background and text */
-  --background: #181818;
-  --foreground: #d1d1d1;
+  --background: #202020; /* off-black background */
+  --foreground: #d1d1d1; /* off-white foreground */
 }
 
 html,

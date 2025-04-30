@@ -12,8 +12,9 @@ function getModifiedTime(path: string): Date {
   }
 }
 
-const resumeJsonModifiedTime = getModifiedTime('./public/resume.json')
+import packageJson from './package.json'
 const appModifiedTime = getModifiedTime('./src/App.tsx')
+const resumeJsonModifiedTime = getModifiedTime('./public/resume.json')
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -22,7 +23,9 @@ export default defineConfig({
     react(),
   ],
   define: {
+    APP_URL: JSON.stringify(packageJson.homepage),
     APP_MODIFIED_TIMESTAMP: JSON.stringify(appModifiedTime),
+    APP_DATA: JSON.stringify(packageJson.data),
     RESUME_MODIFIED_TIMESTAMP: JSON.stringify(resumeJsonModifiedTime),
   },  
 })

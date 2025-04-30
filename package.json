@@ -1,8 +1,21 @@
 {
   "name": "resume",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Paul Peavyhouse",
+    "email": "pv@swooby.com"
+  },
+  "repository": "github:paulpv/resume",
+  "homepage": "http://swoo.by/cv/code",
+  "data": "http://swoo.by/cv/data",
+  "readme": "http://swoo.by/cv/readme",
+  "bugs": {
+    "url": "http://swoo.by/pv/cv/issues",
+    "email": "pv@swooby.com"
+  },  
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
