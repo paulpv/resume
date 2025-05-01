@@ -386,9 +386,11 @@
           [
             "2025: Fork of",
             "https://github.com/davidmigloz/langchain_dart/tree/main/packages/openai_realtime_dart",
-            "that adds WebRTC; based on my",
+            "that adds WebRTC; Dart equivalent of my",
             "https://github.com/openai/openai-realtime-api-beta/pull/99/files that adds WebRTC to",
             "OpenAI's WebSocket only Realtime JavaScript API.",
+            "Diff:",
+            "https://github.com/swooby/langchain_dart/compare/davidmigloz...swooby:langchain_dart:webrtc?expand=1",
             "Used by AlfredAI-Flutter."
           ]
         },
