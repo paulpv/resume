@@ -1,5 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { ResumeData, Contact, ProjectDetail } from './resume'
+import yaml from 'js-yaml'
 
 declare const APP_URL: string
 declare const APP_MODIFIED_TIMESTAMP: string
@@ -155,7 +156,8 @@ function ProjectDetails(projectDetails: ProjectDetail) {
               <span className="font-bold italic">{renderPossibleLink(subProjectName)}:</span>
               {subProjectDetails.Links && (
                 <span>
-                  &nbsp;{renderPossibleLink(subProjectDetails.Links[0])}
+                  {subProjectName.length > 32 ? <br/> : <>&nbsp;</>}
+                  {renderPossibleLink(subProjectDetails.Links[0])}
                 </span>
               )}
               <div>
@@ -387,10 +389,25 @@ function App() {
 
   // Fetch resume JSON on component mount
   useEffect(() => {
-    fetch('./resume.json')
-      .then(response => response.json())
-      .then(data => {
+    fetch('./resume.yaml')
+      .then(response => response.text())
+      .then(text => {
+        const data = yaml.load(text)
+        //console.log("resume.yaml", data)
+
         const resumeData = ResumeData.fromJSON(data)
+        //console.log("resumeDataYaml", resumeData)
+
+        /*
+        fetch('./resume.json')
+          .then(response => response.json())
+          .then(json => {
+            console.log("resume.json", json)
+            const resumeData2 = ResumeData.fromJSON(json)
+            console.log("resumeDataJson", resumeData2)
+          })
+        */
+
         setResumeData(resumeData)
       })
       .catch(error => console.error('Error loading resume data:', error))
@@ -428,7 +445,7 @@ function App() {
             <a target="_blank" rel="noopener noreferrer" href={APP_URL}>{APP_URL}</a> v{appModifiedTimestampString}
           </div>
           <div>
-            <a target="_blank" rel="noopener noreferrer" href="./resume.json">{APP_DATA}</a> v{resumeModifiedTimestampString}
+            <a target="_blank" rel="noopener noreferrer" href="./resume.yaml">{APP_DATA}</a> v{resumeModifiedTimestampString}
           </div>
           <button
             onClick={toggleTheme}
@@ -505,10 +522,10 @@ function App() {
           <div className="text-left">{preferences.Title}</div>
 
           <div className="text-right font-bold">Emphasis:</div>
-          <div className="text-left">{preferences.Emphasis}</div>
+          <div className="text-left">{preferences.Emphasis.join("/")}</div>
 
           <div className="text-right font-bold">Technologies:</div>
-          <div className="text-left">{preferences.Technologies}</div>
+          <div className="text-left">{preferences.Technologies.join(", ")}</div>
 
           <div className="text-right font-bold">Locations:</div>
           <div className="text-left">{preferences.Locations.join(", ")} areas</div>

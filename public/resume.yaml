@@ -1,0 +1,441 @@
+Paul Alexander Peavyhouse:
+  Email: pv@swooby.com
+  Phone: [ 619-SWO-OBY9, 619-796-6299 ]
+  Address: 8904 NE 144th Pl, Kirkland, WA 98034
+  Links:
+    Resume: http://swoo.by/pv/cv
+    LinkedIn: http://swoo.by/pv/li
+    GitHub: http://swoo.by/pv/gh
+    StackOverflow: http://swoo.by/pv/so
+
+Summary:
+  - Experienced developer with a passion for building
+  - user-friendly applications and learning new technologies.
+
+Preferences:
+  Title: Architect/Principle/Staff/Senior Software Developer/Engineer
+  Emphasis: [ Mobile, Java, Kotlin, Python, C++, C#, Qt ]
+  Technologies: [ AI, Android, Audio/Video, Embedded, IoT, Mobile, RTC/WebRTC, Streaming ]
+  Locations: [ Seattle, Denver, Nashville ]
+
+Professional Experience:
+  2020-2024 Mynd.ai / Promethean | Seattle, WA:
+    - 2022/04 - 2024/12: Staff Software Developer | ActivPanel 9 (AP9) Tech Lead
+      2020/12 - 2022/04: Senior Android Developer
+      Description:
+        - AP9 Android Open Source Project (AOSP) OEM 20-Point Touch 65"/75"/86"
+        - Interactive Flat Panel Display (IFPD), Telemetry (MixPanel), Audio (AEC/AGC/NS),
+        - Video (HDMI/DP/EDID/CEC/ARC/HDCP/DRM/…), Codecs (AAC/FLAC/G711/H.264/MP3/MP4/PCM/…),
+        - AWS (S3, EC2, Route53, Lambda, CloudFront, Cognito, AppSync, DynamoDB, …),
+        - Firebase (Crashlytics), Atlassian (Confluence/Jira/BitBucket/Bamboo), GitLab, GitHub,
+        - Android Studio, AI/LLM/RAG/GPT [Cloud/Local]
+      Major Contributions:
+        - "Shipped all AP9 versions: POC/EVT/DVT/PVT/MP to 1.0 [2022/05] to 2.3 [2024/11]."
+        - On-Site Customer Support of CA school district with 1000s of AP9s.
+        - Migrated 100+ repositories from Atlassian BitBucket to GitLab.
+        - Migrated 100+ build jobs from Atlassian Bamboo to GitLab.
+        - Designed Firebase Wrapper for consistent Crashlytics of 30+ apps.
+        - Designed Data Regionalization System Architecture that spanned multiple products.
+        - Used Local AI/LLM to organize ~4000 Confluence wiki pages.
+        - Automated auditing millions of lines of AOSP/custom code migrated from Android 9(API28/P) to 11(API30/R).
+        - Designed and ran "PromLab" of 20+ test automated panels with checkout system.
+        - "Starter Project 2: AudioTest App for testing AEC/AGC/NS; still used."
+        - "Starter Project 1: MixPanel Telemetry Library; still used."
+      Products:
+        ActivPanel 9: http://swoo.by/prom-ap9
+        ActivPanel 9 Pro: http://swoo.by/prom-ap9pro
+      Info:
+        - https://prometheanworld.com
+        - https://mynd.ai
+
+  2015-2020 Pebblebee | Issaquah, WA:
+    - 2015/02 - 2020/12: Senior Mobile/Android Developer | Tech Lead
+      Description:
+        - Android, Internet-Of-Things (IoT), Bluetooth Low Energy (BLE, Bluetooth Smart),
+        - Bluetooth Tracking, Crowd GPS Lost-And-Found, Camera[2], ACRA/Acralyzer,
+        - BT GATT Services/Characteristics/Descriptors, ReactNative, NativeScript,
+        - Amazon Web Services (AWS) DynamoDB/NoSQL, Realm, Firebase, Crashlytics
+      Products:
+        Pebblebee Finder:
+          Android: http://swoo.by/pb-afinder
+          iOS: http://swoo.by/pb-ifinder
+        Pebblebee Stone:
+          Android: http://swoo.by/pb-astone
+
+  2009-2014 Twisted Pair Solutions (TPS), A Motorola Solutions company | Seattle, WA:
+    - 2014/01 - 2014/09: Staff Principal Software Engineer [Mobile]
+      2012/02 - 2014/01: Lead Mobile Senior Software Development Engineer
+      2011/09 - 2012/02: Lead Mobile Software Development Engineer
+      2010/09 - 2011/09: Mobile Software Development Engineer
+      Description:
+        - Android/Glass/Wear, BlackBerry, iOS, and Windows CE/Mobile/Phone versions of Twisted Pair
+        - Solutions' Push-To-Talk (PTT) Radio-Over-IP (RoIP) Mobile Communicator (WAVE/MOTOTRBO);
+        - Android SDK/NDK, Android Studio, Eclipse, Java/J2ME, Python, QT, Visual Studio/.NET/C#,
+        - Xamarin, xCode; Git, SVN Hooks; Ant, CocoaPods, Gradle, Jenkins, Maven; Sonar, Jacoco,
+        - Emma; AppCompat, Google Play/Maps/Location, ActionBarSherlock; JUnit, Mockito, OCMock,
+        - Robolectric, Robotium; Networking (Cellular/WiFi), Reachability, Audio Codec
+        - (AMR/G711/GSM/MP3/Opus/PCM/Speex/…), Cryptography (Key Exchange, Diffie-Hellman,
+        - Elliptic Curve, Block Cipher (ECB/CTR), HMAC, SHA, X.509 Certificates, SSL/HTTPS),
+        - Bluetooth RFCOMM/A2DP/LE; TPS Reports
+      Products:
+        WAVE Mobile Communicator:
+          Android: http://swoo.by/msi-awave
+          iOS: http://swoo.by/msi-iwave
+        MOTOTRBO Anywhere: Deprecated and removed
+    - 2010/06 - 2010/09: Senior Software Development Engineer in Test
+      2009/05 - 2010/06: Software [Development] Engineer in Test
+      Description:
+        - Design/Develop Python & C# Automation Framework; Establish Test Case Management,
+        - Test Impact, Code Coverage & Code Review processes; Custom WireShark Dissector;
+        - Improve Build System to drop symbols & source; Maintain TestTrack TCM;
+        - Manual Testing; TPS Reports
+      Products:
+        WAVE Communicator: http://swoo.by/tps-wave
+
+  2005-2009 Google | Seattle, WA:
+    - 2008/05 - 2009/01: Software Development Engineer in Test (SDET)
+      Team: GOOG411 & Google Voice Java/C++ VoIP Backend
+      Products:
+        Google 411: https://en.wikipedia.org/wiki/GOOG-411
+        Google Voice: https://en.wikipedia.org/wiki/Google_Voice
+      Description:
+        - Design/Develop SIPp & pjproject/pjsip automation frameworks,
+        - Design/Develop Adobe, AIR test harness for Adobe Flash client for
+        - Google App Engine + Wowza Media Server; Empirix Hammer G5
+        - performance/scalability/stress testing, Continuous Build, JUnit
+    - 2005/07 - 2008/05: Software Development Engineer in Test (SDET)
+      Team: Google Pack/Update and Google Chrome Auto-Update
+      Products:
+        Google Pack: https://en.wikipedia.org/wiki/Google_Pack
+        Google Omaha: https://github.com/google/omaha
+      Description:
+        - Design/Develop Python XMLRPC remote automation test harness to solve
+        - company wide automation need. Design/Develop C# Windows Logon Service
+        - to solve Vista UAC automation need; Eggplant UI automation; JMeter;
+        - International/Local/Global-ization; Service watchdog monitoring
+
+  1998-2005 Microsoft | Redmond, WA:
+    - 2003/09 - 2005/07: Software Development Engineer in Test (SDET)
+      Team: Microsoft RTC Distributed Meetings
+      Products:
+        RoundTable: http://swoo.by/ms-roundtable
+      Description:
+        - Windows CE PSTN/VoIP/SIP Audio-Gain Video-Panorama USB device; Test
+        - client/device software, drivers, and sound quality (TIA/ITU-T
+        - standards TIA-810, G.168, P.34x, etc); Audio, BSP, DSP, Firmware,
+        - PSTN, UI, USB, Video
+    - 2003/02 - 2003/09: Software Development Engineer in Test (SDET)
+      Team: Microsoft RTC
+      Products:
+        Live Communications Server: http://swoo.by/ms-olcs
+      Description:
+        - Server API testing; SDK sample applications and tools
+    - 1999/06 - 2003/02: Software Development Engineer in Test (SDET)
+      Team: Microsoft Exchange/NetDocs/Office RTC
+      Products:
+        Office Conferencing Server: http://swoo.by/ms-ocs
+        NetDocs: Internal; Discontinued
+        Exchange Conferencing Server: http://swoo.by/ms-ecs2k3
+      Description:
+        - Web Based Schedulable Audio/Video/Data conference service comparable
+        - to WebEx/LiveMeeting/SameTime; Setup, Web Client, Web Scheduling,
+        - MCU, Firewall/DMZ, Performance, Deployment, Monitoring, BVTs,
+        - Automation, Tools, Localization
+    - 1998/05 - 1999/06: Software Test Engineer (STE)
+      Team: Microsoft Exchange RTC
+      Products:
+        Exchange Internet Relay Chat (IRC): http://swoo.by/ms-ecs2k
+      Description:
+        - IRC Chat Service used by TalkCity and MSN; Extensibility,
+        - Scalability, Performance, Deployment, Monitoring
+
+  1997-1999 Night55 | Bozeman, MT:
+    - 1997/01 - 1999/09: Co-Founder/Co-Owner, Software Developer, Software Tester
+      Description:
+        - "Original Creator of Vibe MP3 player:"
+        - http://www.swooby.com/night55/www/vibe2/
+        - "Co-Creator of Sonique MP3 player:"
+        - http://www.swooby.com/night55/www/sonique/
+        - "Acquired by MediaScience in 1998; Acquired by Lycos in 1999 for $38.8M:"
+        - https://en.wikipedia.org/wiki/Sonique_(media_player)
+
+Projects:
+  DistroAV (OBS-NDI) | Seattle, WA:
+    2023/02 - Present: Administrator/Maintainer, Lead Developer
+    Description:
+      - Open Broadcaster Software (OBS) Studio NDI Plugin, est 2016/10/22.
+      - ">5M Downloads, +9K Daily Launches, +3.5K Stars, +370 Forks"
+    Info:
+      - https://distroav.org
+      - https://github.com/DistroAV/DistroAV
+
+  swooby.com | Seattle, WA:
+    1998/01 - Present: Founder/Owner
+    Link: https://swooby.com
+    Description: Custom/Hobby/Personal Software Development
+    AI Studies:
+      AlfredAI-Flutter:
+        Link: https://github.com/swooby/alfredai_flutter
+        Description:
+          - "2025: Experimental Dart/Flutter Implementation of https://github.com/swooby/AlfredAI"
+      langchain_dart openai_realtime_dart WebRTC:
+        Link: https://github.com/swooby/langchain_dart/tree/main/packages/openai_realtime_dart
+        Description:
+          - "2025: Fork of"
+          - https://github.com/davidmigloz/langchain_dart/tree/main/packages/openai_realtime_dart
+          - that adds WebRTC; Dart equivalent of my
+          - https://github.com/openai/openai-realtime-api-beta/pull/99/files
+          - that adds WebRTC to OpenAI's WebSocket only Realtime JavaScript API.
+          - "Diff:"
+          - https://github.com/swooby/langchain_dart/compare/davidmigloz...swooby:langchain_dart:webrtc
+          - Used by AlfredAI-Flutter.
+      AlfredAI:
+        Link: https://github.com/swooby/AlfredAI
+        Description:
+          - "2025: Kotlin OpenAI Realtime WebRTC API Android Push-To-Talk AI Assistant App"
+          - Phone[/Mobile] + Watch[/Wear] + [Bluetooth]AudioRouting
+      PhoneWearRemote:
+        Link: https://github.com/swooby/PhoneWearRemote
+        Description:
+          - "2025: Android Phone[/Mobile] + Watch[/Wear] App; Used to improve AlfredAI."
+      openai-openapi-kotlin:
+        Link: https://github.com/swooby/openai-openapi-kotlin
+        Description:
+          - "2025: Kotlin generation [+ tweaks] of OpenAI's entire OpenAPI Specification."
+          - Used by AlfredAI.
+      openai-realtime-api-beta:
+        Link: https://github.com/swooby/openai-realtime-api-beta
+        Description:
+          - "2025: Fork of https://github.com/openai/openai-realtime-api-beta;"
+          - Adds WebRTC to OpenAI's still [as of 2025/02/10] WebSocket only Realtime API.
+          - Used to A/B test behavior differences between OpenAI Realtime WebRTC vs WebSocket.
+          - Used to improve AlfredAI's Kotlin implementation.
+      openai-realtime-push-to-talk:
+        Link: https://github.com/swooby/openai-realtime-push-to-talk
+        Description:
+          - "2025: Fork of https://github.com/openai/openai-realtime-console;"
+          - Adds PushToTalk, Interrupt, … and cleans up and fixes their code a bit.
+          - Used to improve AlfredAI's Kotlin implementation.
+    resume:
+      Link: https://github.com/paulpv/resume
+      Description:
+        - "2025: Vite React Tailwind Resume Web App for Paul Alexander Peavyhouse."
+    swoo.by:
+      Link: https://github.com/swooby/swoo.by
+      Description:
+        - "2025: Tiny url provider for swooby.com"
+    FreeWatch:
+      Link: https://github.com/swooby/FreeWatch
+      Description:
+        - "2025: Chrome Extension highlights Free movies as Green and Expiring movies as Red."
+    EV1Dash:
+      Description: 2006-2016 Palm m500 OBDII for 1997-1998 Saturn/GM EV1 and Chevy S10EV
+      Info:
+        - http://sourceforge.net/projects/ev1dash/
+        - http://ohler.com/palm/EV1Dash.html
+    CFMapPoint:
+      Description: 2004-2008 MapPoint plugin for Centrafuse
+      Info:
+        - http://swooby.com/CFMapPoint/
+        - https://youtu.be/98XcaJZ7RaQ
+    CarPC Hack 65 | (July 2005 ISBN-10 0-596-00871-6):
+      Description: 2005 View Real-Time Traffic Data on the Road
+      Info:
+        - http://swoo.by/pub/carpc
+        - https://oreilly.com/library/view/car-pc-hacks/0596008716/
+        - https://amazon.com/_/dp/0596008716
+    Electronics:
+      Description:
+        - ESP32 based MicroController Unit (MCU) projects and Printed Circuit Board
+        - (PCB) design for Capacitive Touch Screen RGB LED Controller & other gizmos.
+      Info:
+        - http://swoo.by/PCB/TP
+        - http://youtu.be/h2mYaycwUxg
+        - http://youtu.be/9nb01vvdYeU
+        - http://youtu.be/oxMuTyb_urs
+
+  NightVsKnight | Seattle, WA:
+    2019 - Present: Founder/Owner
+    Link: [ http://nvk.gg, http://NightVsKnight.stream ]
+    Description:
+      - Personal challenge to picture-in-picture stream two 21:9 gaming PCs.
+      - Custom [.NET] code integrates Windows Audio, USB switches and devices,
+      - HDMI Matrix Switch, Open Broadcaster Software [OBS] Studio, and Vocoder.
+    Info:
+      - https://youtube.com/@NightVsKnight
+      - The Setup: http://youtu.be/8rDLZBV5SII
+        Example Stream: http://youtu.be/JFPww7KCanU
+    AgentSmith:
+      Link: https://github.com/NightVsKnight/AgentSmith
+      Description:
+        - "2018-2024: Software based Matrix KvM to create new disruptive industry genres."
+        - Think "JetJVM/NanoKVM/PiKVM/TinyPilot/…", but on LSD+Steroids.
+        - "Various attempts have involved:"
+        - "* 2023: Pure Software; Moonlight [NVIDIA GameStream] Client Fork"
+        - "* 2021: Pure Software; NDI + USBIP-Server Base"
+        - "* 2019: Software Automated Hardware (HDMI Matrix Switch, USB Switch, RS232IP)"
+    QtNdiMonitorCapture:
+      Link: https://github.com/NightVsKnight/QtNdiMonitorCapture
+      Description:
+        - "2023: Qt NDI Monitor Capture: Qt6 based app that"
+        - simulates NDI Tools' Studio Monitor and Screen Capture
+    ObsChangeOfSceneryBot:
+      Link: https://github.com/NightVsKnight/ObsChangeOfSceneryBot
+      Description:
+        - "2022: Automatically set an OBS Scene relevant"
+        - to the active talker in a Discord voice channel.
+    NvMaxineSdkDotNet:
+      Link: https://github.com/NightVsKnight/NvMaxineSdkDotNet
+      Description:
+        - "2022: A C#/.NET wrapper around Nvidia's"
+        - Audio Effects (NV-AFX, NvAudioEffects) C++ SDK
+    VoiceMod:
+      Link: https://github.com/NightVsKnight/VoiceMod
+      Description:
+        - "2022: C# Voice Modulator that uses CSCore and"
+        - NVIDIA Maxine AFX-SDK Denoiser/Noise-Suppression
+    HangarXPLOR:
+      Link: https://github.com/paulpv/HangarXPLOR
+      Description:
+        - "2021: Fork of https://github.com/dolkensp/HangarXPLOR,"
+        - a Chrome Extension to improve Star Citizen's [pretty bad] Hangar UX.
+    TradeCitizen:
+      Link: http://TradeCitizen.org
+      Description:
+        - "2017-2020: Vue+Vuetify crowd sourced commodities trading web app for Star Citizen."
+      Info: [ http://github.com/trade-citizen/trade-citizen ]
+    FleetVieweR:
+      Link: http://github.com/swooby/fleet-viewer
+      Description:
+        - "2017-2018: Unity Daydream VR app to view & manipulate multiple Star Citizen ships."
+      Info: [ https://swooby.com/fleetviewr/youtube ]
+
+  smartfoo.com:
+    2014/03 - Present: Founder/Owner
+    Link: https://github.com/SmartFoo/smartfoo
+    Description:
+      - 'WIP: SDK framework that transcends all "SmartPhone" platforms'
+
+  sio2ware.com:
+    2014/02 - 2017: Founder/Owner
+    Link: https://sio2ware.com
+    Description:
+      - Pronounced "GlassWare"; SiO2 == "Silicon Dioxide" == Glass.
+      - "WIP: Development and Consulting for Google Glass[-like] Software (GlassWare)"
+    Info: [ "https://github.com/sio2ware" ]
+
+  TeamYogaBlade:
+    2013/12 - 2017: Founder/Owner
+    Link: https://github.com/TeamYogaBlade
+    Description:
+      - 'Defunct: CyanogenMod for Lenovo Yoga Android "blade" tablets'
+
+Skills:
+  - [ Skill,                                                                                     Level,        From, Last ]
+  - [ "AI/LLM/RAG/GPT [Cloud/Local]",                                                            Intermediate, 2021, 2025 ]
+  - [ "Amazon Web Services",                                                                     Intermediate, 2015, 2024 ]
+  - [ "Android/Glass/Wear, SDK, NDK, AppCompat",                                                 Advanced,     2008, 2025 ]
+  - [ "AOSP, OEM, IFPD, Telemetry, Audio, AWS",                                                  Advanced,     2020, 2024 ]
+  - [ "Audio/Video Processing/Testing",                                                          Intermediate, 1997, 2025 ]
+  - [ "Automotive Personal Computing",                                                           Advanced,     2003, 2008 ]
+  - [ "BlackBerry 7, 10, QT",                                                                    Advanced,     2008, 2014 ]
+  - [ "Bluetooth: LE, A2DP, SCO, RFCOMM, Serial",                                                Advanced,     2010, 2020 ]
+  - [ "Build/CI: Ant, Gradle, Maven, Jenkins",                                                   Advanced,     2010, 2025 ]
+  - [ "C/C++",                                                                                   Advanced,     1991, 2025 ]
+  - [ "C#, .NET, Silverlight, Linq, Mono",                                                       Advanced,     2000, 2025 ]
+  - [ "Code Coverage: Sonar, Jacoco, Emma",                                                      Advanced,     1998, 2024 ]
+  - [ "Computer Music/Sequencing",                                                               Intermediate, 1991, 2006 ]
+  - [ "Cryptography: Cipher, Hash, Key Exchange",                                                Advanced,     2002, 2015 ]
+  - [ "Digital Signal Processing (DSP)",                                                         Novice,       2003, 2005 ]
+  - [ "DirectX, OpenGL, Unity, 3D",                                                              Intermediate, 1995, 2019 ]
+  - [ "Eclipse",                                                                                 Advanced,     2008, 2016 ]
+  - [ "Edge: RPi/Jetson/ESP32/Arduino",                                                          Intermediate, 2015, 2025 ]
+  - [ "EE - Digital Logic (EEPROM/IC/PIC/MCU)",                                                  Intermediate, 2003, 2024 ]
+  - [ "EE - Power (AC/DC)",                                                                      Intermediate, 1994, 2024 ]
+  - [ "Email/Chat: Exchange, SMTP/POP, IM/XMPP",                                                 Advanced,     1996, 2005 ]
+  - [ "Firebase",                                                                                Intermediate, 2013, 2025 ]
+  - [ "HTML, JavaScript, Node.js",                                                               Advanced,     1994, 2025 ]
+  - [ "IIS, ISAPI, ASP[.NET]",                                                                   Advanced,     1995, 2017 ]
+  - [ "iOS: XCode, CocoaPods, Swift",                                                            Intermediate, 2010, 2024 ]
+  - [ "Java/J2ME, Kotlin",                                                                       Advanced,     1995, 2025 ]
+  - [ "MacOS",                                                                                   Advanced,     1998, 2025 ]
+  - [ "NativeScript",                                                                            Intermediate, 2017, 2019 ]
+  - [ "Network: Cell/WiFi, TCP/UDP, Wireshark [Dissector]",                                      Advanced,     1994, 2025 ]
+  - [ "Python",                                                                                  Advanced,     2005, 2025 ]
+  - [ "Qt 5/6",                                                                                  Intermediate, 2016, 2025 ]
+  - [ "Radio Control",                                                                           Intermediate, 2000, 2006 ]
+  - [ "React, ReactNative",                                                                      Intermediate, 2017, 2019 ]
+  - [ "Realm",                                                                                   Intermediate, 2015, 2024 ]
+  - [ "Scripting: Shell/Batch/JScript/VBScript",                                                 Advanced,     1998, 2025 ]
+  - [ "SCM: Git, SVN, G4, P4, SD, Hooks",                                                        Advanced,     1998, 2025 ]
+  - [ "SQL, MySQL, Access",                                                                      Intermediate, 2009, 2025 ]
+  - [ "Test (Auto): xUnit, xMockito, UI, Mobile",                                                Advanced,     1998, 2025 ]
+  - [ "Test (Manual): Modeling, Planning, PICT",                                                 Advanced,     1998, 2014 ]
+  - [ "Unix/Linux",                                                                              Advanced,     1991, 2025 ]
+  - [ "USB/HID",                                                                                 Intermediate, 2002, 2024 ]
+  - [ "Vue, Vuetify",                                                                            Intermediate, 2017, 2019 ]
+  - [ "Visual Basic",                                                                            Advanced,     1998, 2009 ]
+  - [ "VoIP, SIP, PSTN",                                                                         Advanced,     2002, 2014 ]
+  - [ "Windows [3.x to 11, DOS]",                                                                Advanced,     1989, 2025 ]
+  - [ "Windows Mobile [CE/5/6, XPe, Phone]",                                                     Advanced,     1999, 2014 ]
+  - [ "Windows PowerShell/Scripting",                                                            Intermediate, 2006, 2025 ]
+  - [ "Xamarin",                                                                                 Intermediate, 2010, 2018 ]
+
+Patents:
+  WO2013116741:
+    TIP-RING-RING-SLEEVE PUSH-TO-TALK SYSTEM AND METHODS: http://swooby.com/WO2013116741
+  WO2013154722:
+    PULSED INPUT PUSH-TO-TALK SYSTEMS, METHODS AND APPARATUS: http://swooby.com/WO2013154722
+
+Publications:
+  Using AJAX to Enable Client RPC Requests:
+    "Google Code: Google App Engine, May 2008":
+      http://swooby.com/pub/ajax
+  CarPC Hacks Hack 65 "View Real-Time Traffic Data on the Road":
+    "O'Reilly & Associates, July 2005 - ISBN: 0-596-00871-6":
+      http://swooby.com/pub/carpc
+
+Education:
+  Montana State University | Bozeman, MT:
+    Computer Science
+  Virginia Polytechnic Institute | Blacksburg, VA:
+    General Studies
+  Dobyns-Bennett High School | Kingsport, TN:
+    Diploma with AP Calculus and AP Computer Science
+
+Miscellaneous:
+  - From 2006-2010 I owned a factory built 1998 Chevrolet S10 Electric Vehicle/Pickup
+  - that I frequently tinkered with and wrote software (ALDL, OBD/OBD2, PIC) to maintain it.
+  - ''
+  - I am an advocate for Automotive Personal Computing and have a web site that details my
+  - '2003 Nissan 350Z CarPC project:'
+  - http://www.swooby.com/z/navpc/
+  - ''
+  - I worked on the Montana State University Solar Vehicle Project 1994-1996.
+  - 'We competed in SunRayce95 and placed 24th out of 60 teams (2nd out of 20 "rookie" teams):'
+  - http://www.swooby.com/sunrayce/
+
+Hobbies:
+  - music
+  - electronics
+  - radio control
+  - robotics
+  - bicycling
+  - motorcycling
+  - camping
+  - hiking
+  - paintball
+  - SCUBA
+
+References:
+  LinkedIn:
+    https://www.linkedin.com/in/paulpv/details/recommendations/
+  Promethean Inc:
+    Available upon request
+  Motorola Solutions:
+    - 1-800-367-5690 - www.theworknumber.com - company code 10300
+    - (Motorola company policy prohibits referrals from current employees)
+  Other: For privacy reasons, other references are available upon request
+
+_updated: 2025/05/14 22:57:00 PST
+_ruler123: 2345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123

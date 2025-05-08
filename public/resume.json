@@ -20,8 +20,8 @@
   "Preferences":
   {
            "Title": "Architect/Principle/Staff/Senior Software Developer/Engineer",
-        "Emphasis": "Mobile/Java/Kotlin/Python/C++/C#/Qt",
-    "Technologies": "AI, Android, Audio/Video, Embedded, IoT, Mobile, RTC/WebRTC, Streaming",
+        "Emphasis": [ "Mobile", "Java", "Kotlin", "Python", "C++", "C#", "Qt" ],
+    "Technologies": [ "AI", "Android", "Audio/Video", "Embedded", "IoT", "Mobile", "RTC/WebRTC", "Streaming" ],
        "Locations": ["Seattle", "Denver", "Nashville"]
   },
   "Professional Experience":
@@ -188,7 +188,7 @@
           "Windows CE PSTN/VoIP/SIP Audio-Gain Video-Panorama USB device; Test",
           "client/device software, drivers, and sound quality (TIA/ITU-T",
           "standards TIA-810, G.168, P.34x, etc); Audio, BSP, DSP, Firmware,",
-          "PSTN, UI, USB, Video:"
+          "PSTN, UI, USB, Video"
         ]
       },
       {
@@ -263,107 +263,6 @@
       ],
       "Info": [ "https://github.com/DistroAV/DistroAV" ]
     },
-    "NightVsKnight | Seattle, WA":
-    {
-      "2019 - Present": "Founder/Owner",
-      "Link": ["https://nvk.gg", "https://NightVsKnight.stream"],
-      "Description":
-      [
-        "Personal challenge to picture-in-picture stream two 21:9 gaming PCs.",
-        "Custom [.NET] code integrates Windows Audio, USB switches and devices,",
-        "HDMI Matrix Switch, Open Broadcaster Software [OBS] Studio, and Vocoder."
-      ],
-      "Info":
-      [
-        "https://youtube.com/@NightVsKnight",
-        {
-          "The Setup": "https://youtu.be/8rDLZBV5SII",
-          "Example Stream": "https://youtu.be/JFPww7KCanU"
-        }
-      ],
-      "AgentSmith":
-      {
-        "Link": "https://github.com/NightVsKnight/AgentSmith",
-        "Description":
-        [
-          "2018-2024: Software based Matrix KvM to create new disruptive industry genres.",
-          "Think 'JetJVM/NanoKVM/PiKVM/TinyPilot/…', but on LSD+Steroids.",
-          "Various attempts have involved:",
-          "* 2023: Pure Software: Moonlight [NVIDIA GameStream] Client Fork",
-          "* 2021: Pure Software: NDI + USBIP-Server Base",
-          "* 2019: Software Automated Hardware (HDMI Matrix Switch, USB Switch, RS232IP)"
-        ]
-      },
-      "QtNdiMonitorCapture":
-      {
-        "Link": "https://github.com/NightVsKnight/QtNdiMonitorCapture",
-        "Description":
-        [
-          "2023: Qt NDI Monitor Capture: Qt6 based app that",
-          "simulates NDI Tools' Studio Monitor and Screen Capture"
-        ]
-      },
-      "ObsChangeOfSceneryBot":
-      {
-        "Link": "https://github.com/NightVsKnight/ObsChangeOfSceneryBot",
-        "Description":
-        [
-          "2022: Automatically set an OBS Scene relevant",
-          "to the active talker in a Discord voice channel."
-        ]
-      },
-      "NvMaxineSdkDotNet":
-      {
-        "Link": "https://github.com/NightVsKnight/NvMaxineSdkDotNet",
-        "Description":
-        [
-          "2022: A C#/.NET wrapper around Nvidia's",
-          "Audio Effects (NV-AFX, NvAudioEffects) C++ SDK"
-        ]
-      },
-      "VoiceMod":
-      {
-        "Link": "https://github.com/NightVsKnight/VoiceMod",
-        "Description":
-        [
-          "2022: C# Voice Modulator that uses CSCore and",
-          "NVIDIA Maxine AFX-SDK Denoiser/Noise-Suppression"
-        ]
-      },
-      "HangarXPLOR":
-      {
-        "Link": "https://github.com/paulpv/HangarXPLOR",
-        "Description":
-        [
-          "2021: Fork of https://github.com/dolkensp/HangarXPLOR,",
-          "a Chrome Extension to improve Star Citizen's pretty bad Hangar UX."  
-        ]
-      },
-      "TradeCitizen":
-      {
-        "Link": "https://TradeCitizen.org",
-        "Description":
-        [
-          "2017-2020: Vue+Vuetify crowd sourced commodities trading web app for Star Citizen."
-        ],
-        "Info":
-        [
-          "https://github.com/trade-citizen/trade-citizen"
-        ]
-      },
-      "FleetVieweR":
-      {
-        "Link": "https://github.com/swooby/fleet-viewer",
-        "Description":
-        [
-          "2017-2018: Unity Daydream VR app to view & manipulate multiple Star Citizen ships"
-        ],
-        "Info":
-        [
-          "http://swoo.by/fleetviewr/youtube"  
-        ]
-      }
-    },
     "swooby.com | Seattle, WA":
     {
       "1998/01 - Present": "Founder/Owner",
@@ -390,7 +289,7 @@
             "https://github.com/openai/openai-realtime-api-beta/pull/99/files that adds WebRTC to",
             "OpenAI's WebSocket only Realtime JavaScript API.",
             "Diff:",
-            "https://github.com/swooby/langchain_dart/compare/davidmigloz...swooby:langchain_dart:webrtc?expand=1",
+            "https://github.com/swooby/langchain_dart/compare/davidmigloz...swooby:langchain_dart:webrtc",
             "Used by AlfredAI-Flutter."
           ]
         },
@@ -517,6 +416,107 @@
           "https://youtu.be/9nb01vvdYeU",
           "https://youtu.be/oxMuTyb_urs"
         ]
+      },
+      "NightVsKnight | Seattle, WA":
+      {
+        "2019 - Present": "Founder/Owner",
+        "Link": ["https://nvk.gg", "https://NightVsKnight.stream"],
+        "Description":
+        [
+          "Personal challenge to picture-in-picture stream two 21:9 gaming PCs.",
+          "Custom [.NET] code integrates Windows Audio, USB switches and devices,",
+          "HDMI Matrix Switch, Open Broadcaster Software [OBS] Studio, and Vocoder."
+        ],
+        "Info":
+        [
+          "https://youtube.com/@NightVsKnight",
+          {
+            "The Setup": "https://youtu.be/8rDLZBV5SII",
+            "Example Stream": "https://youtu.be/JFPww7KCanU"
+          }
+        ],
+        "AgentSmith":
+        {
+          "Link": "https://github.com/NightVsKnight/AgentSmith",
+          "Description":
+          [
+            "2018-2024: Software based Matrix KvM to create new disruptive industry genres.",
+            "Think 'JetJVM/NanoKVM/PiKVM/TinyPilot/…', but on LSD+Steroids.",
+            "Various attempts have involved:",
+            "* 2023: Pure Software: Moonlight [NVIDIA GameStream] Client Fork",
+            "* 2021: Pure Software: NDI + USBIP-Server Base",
+            "* 2019: Software Automated Hardware (HDMI Matrix Switch, USB Switch, RS232IP)"
+          ]
+        },
+        "QtNdiMonitorCapture":
+        {
+          "Link": "https://github.com/NightVsKnight/QtNdiMonitorCapture",
+          "Description":
+          [
+            "2023: Qt NDI Monitor Capture: Qt6 based app that",
+            "simulates NDI Tools' Studio Monitor and Screen Capture"
+          ]
+        },
+        "ObsChangeOfSceneryBot":
+        {
+          "Link": "https://github.com/NightVsKnight/ObsChangeOfSceneryBot",
+          "Description":
+          [
+            "2022: Automatically set an OBS Scene relevant",
+            "to the active talker in a Discord voice channel."
+          ]
+        },
+        "NvMaxineSdkDotNet":
+        {
+          "Link": "https://github.com/NightVsKnight/NvMaxineSdkDotNet",
+          "Description":
+          [
+            "2022: A C#/.NET wrapper around Nvidia's",
+            "Audio Effects (NV-AFX, NvAudioEffects) C++ SDK"
+          ]
+        },
+        "VoiceMod":
+        {
+          "Link": "https://github.com/NightVsKnight/VoiceMod",
+          "Description":
+          [
+            "2022: C# Voice Modulator that uses CSCore and",
+            "NVIDIA Maxine AFX-SDK Denoiser/Noise-Suppression"
+          ]
+        },
+        "HangarXPLOR":
+        {
+          "Link": "https://github.com/paulpv/HangarXPLOR",
+          "Description":
+          [
+            "2021: Fork of https://github.com/dolkensp/HangarXPLOR,",
+            "a Chrome Extension to improve Star Citizen's pretty bad Hangar UX."  
+          ]
+        },
+        "TradeCitizen":
+        {
+          "Link": "https://TradeCitizen.org",
+          "Description":
+          [
+            "2017-2020: Vue+Vuetify crowd sourced commodities trading web app for Star Citizen."
+          ],
+          "Info":
+          [
+            "https://github.com/trade-citizen/trade-citizen"
+          ]
+        },
+        "FleetVieweR":
+        {
+          "Link": "https://github.com/swooby/fleet-viewer",
+          "Description":
+          [
+            "2017-2018: Unity Daydream VR app to view & manipulate multiple Star Citizen ships"
+          ],
+          "Info":
+          [
+            "http://swoo.by/fleetviewr/youtube"  
+          ]
+        }
       }
     },
     "smartfoo.com":
