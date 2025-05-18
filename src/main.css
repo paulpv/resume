@@ -59,6 +59,14 @@ body {
   font-family: "Courier New", Courier, monospace;
 }
 
+select,
+input,
+textarea,
+button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
 #root {
   margin: 0;
   padding: 0;
