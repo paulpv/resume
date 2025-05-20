@@ -257,6 +257,16 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
 }
 
 function App() {
+  const [expandedExperience, setExpandedExperience] = useState<Record<number,boolean>>({});
+  const toggleExperience = (idx: number) =>
+    setExpandedExperience(e => ({ ...e, [idx]: !e[idx] }));
+  const [mode, setMode] = useState<string>("modeRecruiter")
+  useEffect(() => {
+    if (mode === "modeRecruiter") {
+      setExpandedExperience({})
+    }
+  }, [mode])
+  const isNotRecruiter = mode !== "modeRecruiter"
 
   // Initialize theme from localStorage if present, otherwise use system preference
   const darkMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
@@ -444,6 +454,15 @@ function App() {
           <div className="flex-1 border-0 border-grey">
             <a target="_blank" rel="noopener noreferrer" href={APP_URL}>{APP_URL}</a> v{appModifiedTimestampString}
           </div>
+          <div className="flex-1 flex justify-center items-center">
+            Mode:&nbsp;<select
+              className="px-1 border rounded"
+              onChange={e => setMode(e.currentTarget.value)}
+            >
+              <option value="modeRecruiter">Recruiter</option>
+              <option value="modeEverything">Everything</option>
+            </select>
+          </div>
           <div>
             <a target="_blank" rel="noopener noreferrer" href="./resume.yaml">{APP_DATA}</a> v{resumeModifiedTimestampString}
           </div>
@@ -540,181 +559,210 @@ function App() {
           </div>
         </div>
         <div ref={setProfessionalExperienceItemsElement}>
-          {Array.from(professionalExperience.entries()).map(([keyDateCompany, jobs], idxDateCompany) => (
-            <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 last:mb-0">
-              {idxDateCompany > 0 && <hr className="my-2" />}
-              <div
-                className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 ${isProfessionalExperienceSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
-                style={{
-                  // fine tuning to:
-                  // 1) prevent clipping top of next line of text
-                  // 2) prevent text scrolling under from showing through gap
-                  top: professionalExperienceHeaderHeight + (isMobile ? 1 : 0),
-                }}>
-                {keyDateCompany}
-              </div>
-              {jobs.map((job, idxJob) => (
-                <div key={idxJob} className="ml-4">
-                  {idxJob > 0 && <hr className="my-2" />}
-                  {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
-                    <div key={idxRole}>
-                      {roleDate}: <span className="font-bold">{role}</span>
-                    </div>
-                  ))}
-                  {job.Team && (
-                    <div>
-                      <span className="font-bold">Team:</span> {job.Team}
-                    </div>
-                  )}
-                  {!job.Team && job.Description && renderDescription(job.Description, true, true)}
-                  {job.MajorContributions && (
-                    <div>
-                      <span className="font-bold">Major Contributions:</span>
-                      <ul>
-                        {job.MajorContributions.map((detail, i) => (
-                          <li key={i}>{detail}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {job.Products && (
-                    <div>
-                      <span className="font-bold">Products:</span>
-                      <ul>
-                        {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
-                          <li key={idxProduct}>
-                            <span className="whitespace-nowrap">{productName}</span>:&nbsp;
-                            {typeof productValue === "string" ? (
-                              renderPossibleLink(productValue)
-                            ) : (
-                              <ul>
-                                {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
-                                  <li key={idxValue}>{key}: {renderPossibleLink(value)}</li>
-                                ))}
-                              </ul>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  {job.Team && job.Description && renderDescription(job.Description, true, true)}
-                  {job.Info && (
-                    <div>
-                      <span className="font-bold">Info:</span>
-                      <ul>
-                        {job.Info.map((infoLink, idxInfo) => (
-                          <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+          {Array.from(professionalExperience.entries()).map(([keyDateCompany, jobs], idxDateCompany) => {
+            const isExpanded = expandedExperience[idxDateCompany] || isNotRecruiter;
+            return (
+              <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 last:mb-0">
+                {idxDateCompany > 0 && <hr className="my-2" />}
+                <div
+                  className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 print:border-b-0 ${isProfessionalExperienceSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
+                  style={{
+                    // fine tuning to:
+                    // 1) prevent clipping top of next line of text
+                    // 2) prevent text scrolling under from showing through gap
+                    top: professionalExperienceHeaderHeight + (isMobile ? 1 : 0),
+                  }}>
+                  {keyDateCompany}
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                    className={`lucide inline ml-2 no-print cursor-pointer`}
+                    style={{
+                      transform: isExpanded ? 'rotate(180deg)' : 'none',
+                    }}
+                    width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" strokeWidth="2"
+                    strokeLinecap="round" strokeLinejoin="round"
+                    onClick={() => {
+                      console.log("toggleExperience", idxDateCompany, isExpanded)
+                      toggleExperience(idxDateCompany)
+                    }}
+                    >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
                 </div>
-              ))}
-            </div>
-          ))}
+                {jobs.map((job, idxJob) => (
+                  <div key={idxJob} className="ml-4">
+                    {isExpanded && idxJob > 0 && <hr className="my-2" />}
+                    {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
+                      <div key={idxRole}>
+                        {roleDate}: <span className="font-bold">{role}</span>
+                      </div>
+                    ))}
+                    {isExpanded &&
+                    <>
+                      {job.Team && (
+                        <div>
+                          <span className="font-bold">Team:</span> {job.Team}
+                        </div>
+                      )}
+                      {!job.Team && job.Description && renderDescription(job.Description, true, true)}
+                      {job.MajorContributions && (
+                        <div>
+                          <span className="font-bold">Major Contributions:</span>
+                          <ul>
+                            {job.MajorContributions.map((detail, i) => (
+                              <li key={i}>{detail}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {job.Products && (
+                        <div>
+                          <span className="font-bold">Products:</span>
+                          <ul>
+                            {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
+                              <li key={idxProduct}>
+                                <span className="whitespace-nowrap">{productName}</span>:&nbsp;
+                                {typeof productValue === "string" ? (
+                                  renderPossibleLink(productValue)
+                                ) : (
+                                  <ul>
+                                    {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
+                                      <li key={idxValue}>{key}: {renderPossibleLink(value)}</li>
+                                    ))}
+                                  </ul>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {job.Team && job.Description && renderDescription(job.Description, true, true)}
+                      {job.Info && (
+                        <div>
+                          <span className="font-bold">Info:</span>
+                          <ul>
+                            {job.Info.map((infoLink, idxInfo) => (
+                              <li key={idxInfo}><a href={infoLink.toString()}>{infoLink.toString()}</a></li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                    </>}
+                  </div>
+                ))}
+              </div>
+            )
+          })}
         </div>
 
         {/* Projects Section */}
-        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
-          <hr className="m-0 p-0" />
-          <div ref={setProjectsHeaderElement} className="py-2">
-            <h4>Projects</h4>
-          </div>
-        </div>
-        <div ref={setProjectsItemsElement}>
-          {Array.from(projects.entries()).map(([keyDateProject, project], idxProject) => (
-            <div key={idxProject} className="text-[80%] ml-4 mb-2 last:mb-0">
-              {idxProject > 0 && <hr className="my-2" />}
-              <div 
-                className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 ${isProjectsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
-                style={{
-                  // fine tuning to:
-                  // 1) prevent clipping top of next line of text
-                  // 2) prevent text scrolling under from showing through gap
-                  top: projectsHeaderHeight + (isMobile ? 1 : 0),
-                }}>
-                <span>{keyDateProject}</span>
-                {project.Links && (
-                  <span>
-                    &nbsp;-&nbsp;{renderPossibleLink(project.Links[0])}
-                  </span>
-                )}
-              </div>
-              <div>
-                {project.Roles && Array.from(project.Roles.entries()).map(([roleDate, role], idxRole) => (
-                  <div key={idxRole}>
-                    {roleDate}: <span className="font-bold">{role}</span>
-                  </div>
-                ))}
-                {project.Description && renderDescription(project.Description, false, true)}
-                {project.Links && project.Links.length > 1 && (
-                  <ul>
-                    {project.Links.slice(1).map((url, idx) => (
-                      <li key={idx}>{renderPossibleLink(url)}</li>
-                    ))}
-                  </ul>
-                )}
-                {project.Info && ProjectInfo(project.Info)}
-                {project.Projects && (
-                  <>
-                    <div className="my-1 font-bold">Projects:</div>
-                    <ul className="ml-0 space-y-1">
-                    {Array.from(project.Projects.entries()).map(([projectName, projectDetails], idxProject) => (
-                      <li key={idxProject}>
-                        <span className="font-bold italic">{projectName}</span>
-                        {projectDetails.Links && (
-                          <span>
-                            &nbsp;-&nbsp;{renderPossibleLink(projectDetails.Links[0])}
-                          </span>
-                        )}
-                        <div>
-                          {ProjectDetails(projectDetails)}
-                        </div>
-                      </li>
-                    ))}
-                    </ul>
-                  </>
-                )}
+        {isNotRecruiter && (
+          <>
+            <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+              <hr className="m-0 p-0" />
+              <div ref={setProjectsHeaderElement} className="py-2">
+                <h4>Projects</h4>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Skills Section */}
-        {(() => {
-          const [header, ...rest] = skills
-          return (
-            <>
-              <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
-                <hr className="m-0 p-0" />
-                <div ref={setSkillsHeaderElement} className="py-2">
+            <div ref={setProjectsItemsElement}>
+              {Array.from(projects.entries()).map(([keyDateProject, project], idxProject) => (
+                <div key={idxProject} className="text-[80%] ml-4 mb-2 last:mb-0">
+                  {idxProject > 0 && <hr className="my-2" />}
                   <div 
-                    className={`mr-2 grid grid-cols-[1fr_1fr_auto_auto] gap-x-4 font-bold items-center border-b-4 ${isSkillsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
-                    >
-                    <div className="my-2">{header.Skill}s</div>
-                    <div className="mx-2 text-right">{header.Level}</div>
-                    <div className="text-right">{header.From}</div>
-                    <div className="text-right">{header.Last}</div>
+                    className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 print:border-b-0 ${isProjectsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
+                    style={{
+                      // fine tuning to:
+                      // 1) prevent clipping top of next line of text
+                      // 2) prevent text scrolling under from showing through gap
+                      top: projectsHeaderHeight + (isMobile ? 1 : 0),
+                    }}>
+                    <span>{keyDateProject}</span>
+                    {project.Links && (
+                      <span>
+                        &nbsp;-&nbsp;{renderPossibleLink(project.Links[0])}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    {project.Roles && Array.from(project.Roles.entries()).map(([roleDate, role], idxRole) => (
+                      <div key={idxRole}>
+                        {roleDate}: <span className="font-bold">{role}</span>
+                      </div>
+                    ))}
+                    {project.Description && renderDescription(project.Description, false, true)}
+                    {project.Links && project.Links.length > 1 && (
+                      <ul>
+                        {project.Links.slice(1).map((url, idx) => (
+                          <li key={idx}>{renderPossibleLink(url)}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {project.Info && ProjectInfo(project.Info)}
+                    {project.Projects && (
+                      <>
+                        <div className="my-1 font-bold">Projects:</div>
+                        <ul className="ml-0 space-y-1">
+                        {Array.from(project.Projects.entries()).map(([projectName, projectDetails], idxProject) => (
+                          <li key={idxProject}>
+                            <span className="font-bold italic">{projectName}</span>
+                            {projectDetails.Links && (
+                              <span>
+                                &nbsp;-&nbsp;{renderPossibleLink(projectDetails.Links[0])}
+                              </span>
+                            )}
+                            <div>
+                              {ProjectDetails(projectDetails)}
+                            </div>
+                          </li>
+                        ))}
+                        </ul>
+                      </>
+                    )}
                   </div>
                 </div>
-              </div>
-              <div ref={setSkillsItemsElement}
-                className="mr-2 grid grid-cols-[1fr_auto_auto_auto] gap-x-4 text-[80%]"
-                >
-                {rest.map((skill, idx) => (
-                  <React.Fragment key={idx}>
-                    <div className="ml-4">• {skill.Skill}</div>
-                    <div className="mx-1 italic text-right">{skill.Level}</div>
-                    <div className="mx-1 italic text-right">{skill.From}</div>
-                    <div className="mx-1 italic text-right">{skill.Last}</div>
-                  </React.Fragment>
-                ))}
-              </div>
-            </>
-          )
-        })()}
-        <div className="pb-2" />
+              ))}
+            </div>
+          </>
+        )}
+
+        {/* Skills Section */}
+        {isNotRecruiter && (
+          <>
+            {(() => {
+              const [header, ...rest] = skills
+              return (
+                <>
+                  <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+                    <hr className="m-0 p-0" />
+                    <div ref={setSkillsHeaderElement} className="py-2">
+                      <div 
+                        className={`mr-2 grid grid-cols-[1fr_1fr_auto_auto] gap-x-4 font-bold items-center border-b-4 print:border-b-0 ${isSkillsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
+                        >
+                        <div className="my-2">{header.Skill}s</div>
+                        <div className="mx-2 text-right">{header.Level}</div>
+                        <div className="text-right">{header.From}</div>
+                        <div className="text-right">{header.Last}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div ref={setSkillsItemsElement}
+                    className="mr-2 grid grid-cols-[1fr_auto_auto_auto] gap-x-4 text-[80%]"
+                    >
+                    {rest.map((skill, idx) => (
+                      <React.Fragment key={idx}>
+                        <div className="ml-4">• {skill.Skill}</div>
+                        <div className="mx-1 italic text-right">{skill.Level}</div>
+                        <div className="mx-1 italic text-right">{skill.From}</div>
+                        <div className="mx-1 italic text-right">{skill.Last}</div>
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </>
+              )
+            })()}
+            <div className="pb-2" />
+          </>
+        )}
 
         {/* Patents Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
@@ -762,28 +810,36 @@ function App() {
         <div className="pb-2" />
 
         {/* Miscellaneous Section */}
-        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
-          <hr className="m-0 p-0" />
-          <div className="py-2">
-            <h4>Miscellaneous</h4>
-          </div>
-        </div>
-        <div className="ml-4 text-[80%]">
-          {renderLineOrLines(miscellaneous)}
-        </div>
-        <div className="pb-2" />
+        {isNotRecruiter && (
+          <>
+            <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+              <hr className="m-0 p-0" />
+              <div className="py-2">
+                <h4>Miscellaneous</h4>
+              </div>
+            </div>
+            <div className="ml-4 text-[80%]">
+              {renderLineOrLines(miscellaneous)}
+            </div>
+            <div className="pb-2" />
+          </>
+        )}
 
         {/* Hobbies Section */}
-        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
-          <hr className="m-0 p-0" />
-          <div className="py-2">
-            <h4>Hobbies</h4>
+        {isNotRecruiter && (
+          <>
+          <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+            <hr className="m-0 p-0" />
+            <div className="py-2">
+              <h4>Hobbies</h4>
+            </div>
           </div>
-        </div>
-        <div className="ml-4 text-[80%]">
-          {hobbies.join(", ")}
-        </div>
-        <div className="pb-2" />
+          <div className="ml-4 text-[80%]">
+            {hobbies.join(", ")}
+          </div>
+          <div className="pb-2" />
+          </>
+        )}
 
         {/* References Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
