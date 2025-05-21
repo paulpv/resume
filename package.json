@@ -9,11 +9,11 @@
     "email": "pv@swooby.com"
   },
   "repository": "github:paulpv/resume",
-  "homepage": "http://swoo.by/cv/code",
-  "data": "http://swoo.by/cv/data",
-  "readme": "http://swoo.by/cv/readme",
+  "homepage": "http://swoo.by/pv/r/code",
+  "data": "http://swoo.by/pv/r/data",
+  "readme": "http://swoo.by/pv/r/readme",
   "bugs": {
-    "url": "http://swoo.by/pv/cv/issues",
+    "url": "http://swoo.by/pv/r/issues",
     "email": "pv@swooby.com"
   },
   "scripts": {

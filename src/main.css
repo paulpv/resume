@@ -91,6 +91,13 @@ button {
   .no-print {
     display: none !important;
   }
+  .print-mode {
+    display: inline !important;
+  }
+}
+
+@media screen {
+  .print-mode   { display: none !important; }
 }
 
 .layout {

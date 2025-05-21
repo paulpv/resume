@@ -450,18 +450,24 @@ function App() {
       <header className="header sticky-bg mb-0 p-0">
 
         {/* Controls */}
-        <div className="p-1 border-1 border-grey rounded sticky-bg flex flex-row gap-x-2 justify-between text-[55%] items-center">
+        <div className="p-1 border-1 print:border-0 border-grey rounded sticky-bg flex flex-row gap-x-2 justify-between text-[55%] items-center">
           <div className="flex-1 border-0 border-grey">
             <a target="_blank" rel="noopener noreferrer" href={APP_URL}>{APP_URL}</a> v{appModifiedTimestampString}
           </div>
           <div className="flex-1 flex justify-center items-center">
-            Mode:&nbsp;<select
-              className="px-1 border rounded"
-              onChange={e => setMode(e.currentTarget.value)}
-            >
-              <option value="modeRecruiter">Recruiter</option>
-              <option value="modeEverything">Everything</option>
-            </select>
+            Mode:&nbsp;
+            <span className="no-print">
+              <select
+                className="px-1 border rounded"
+                onChange={e => setMode(e.currentTarget.value)}
+              >
+                <option value="modeRecruiter">Recruiter</option>
+                <option value="modeEverything">Everything</option>
+              </select>
+            </span>
+            <span className="print-mode">
+              {mode === "modeRecruiter" ? "Recruiter" : "Everything"}
+            </span>
           </div>
           <div>
             <a target="_blank" rel="noopener noreferrer" href="./resume.yaml">{APP_DATA}</a> v{resumeModifiedTimestampString}
