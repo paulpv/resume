@@ -8,11 +8,15 @@
     <meta http-equiv="Content-Language" content="en_US">
     <title>Résumé of Paul Peavyhouse</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZH4NX29XX0"></script>
-    <script>
+    <script type="module">
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-ZH4NX29XX0');
+      const env = import.meta.env;
+      gtag('config', env.VITE_GA_ID, env.DEV ? {        
+        debug_mode: true
+      } : {
+      });
     </script>
     <script>
       const storedTheme = localStorage.getItem('theme')
