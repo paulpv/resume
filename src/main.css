@@ -79,6 +79,8 @@ button {
     height: auto !important;
     position: static !important;
     overflow: visible !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
   }
   .layout {
     width: auto !important;
@@ -93,6 +95,11 @@ button {
   }
   .print-mode {
     display: inline !important;
+  }
+  .sticky-bg,
+  footer {
+    background-color: #ffffff !important;
+    color: #000000 !important;
   }
 }
 
