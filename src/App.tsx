@@ -809,8 +809,7 @@ function App() {
         </div>
         {Array.from(education.entries()).map(([where, what], idx) => (
           <div key={idx} className="ml-4 text-[80%]">
-            <div className="font-bold">{where}</div>
-            <div className="italic">{what.toString()}</div>
+            <span className="font-bold">{where}</span> - <span className="italic">{what.toString()}</span>
           </div>
         ))}
         <div className="pb-2" />
