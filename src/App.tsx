@@ -78,14 +78,16 @@ function renderPossibleLink(value: string): React.ReactNode {
   return <>{segments}</>;
 }
 
-function renderLineOrLines(lineOrLines: string | readonly string[]): React.ReactNode {
+function renderLineOrLines(lineOrLines: string | readonly string[], lineCount?: number | null): React.ReactNode {
   const lines = typeof lineOrLines === 'string' ? [lineOrLines] : lineOrLines;
+  const maxCount = lineCount == null ? lines.length : lineCount;
+  const limitedLines = lines.slice(0, maxCount);
   return (
     <>
-      {lines.map((line, index) => (
+      {limitedLines.map((line, index) => (
         <React.Fragment key={`desc-${index}`}>
           {renderPossibleLink(line)}
-          {index < lines.length - 1 && <br />}
+          {index < limitedLines.length - 1 && <br />}
         </React.Fragment>
       ))}
     </>
@@ -783,10 +785,9 @@ function App() {
             <h4>Patents</h4>
           </div>
         </div>
-        {Array.from(patents.entries()).map(([patentNumber, patent], idx) => (
+        {Array.from(patents.entries()).map(([_, patent], idx) => (
           <div key={idx} className="ml-4 text-[80%]">
-            {patentNumber} - {patent.Title}
-            <div className="ml-4 italic">{renderPossibleLink(patent.Link)}</div>
+            {renderPossibleLink(patent.Link)} - <span className="italic">{patent.Title}</span>
           </div>
         ))}
         <div className="pb-2" />
@@ -800,8 +801,8 @@ function App() {
         </div>
         {Array.from(publications.entries()).map(([title, publication], idx) => (
           <div key={idx} className="ml-4 text-[80%]">
-            <span className="italic">{title}</span>
-            <div className="ml-4">{publication.Publisher}<br/>{renderPossibleLink(publication.Link)}</div>
+            {renderPossibleLink(publication.Link)} - <span className="italic">{title}</span>
+            <div className="ml-4">{publication.Publisher}</div>
           </div>
         ))}
         <div className="pb-2" />
@@ -861,10 +862,7 @@ function App() {
         </div>
         {Array.from(references.entries()).map(([referenceName, reference], idx) => (
           <div key={idx} className="ml-4 text-[80%]">
-            <div className="font-bold">{referenceName}</div>
-            <div className="ml-4 italic">
-              {renderLineOrLines(reference)}
-            </div>
+            <span className="font-bold">{referenceName}</span> - <span className="italic">{renderLineOrLines(reference, isNotRecruiter ? null : 1)}</span>
           </div>
         ))}
         <div className="pb-2" />
