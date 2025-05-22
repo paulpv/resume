@@ -438,11 +438,17 @@ function App() {
     skills,
     patents,
     publications,
-    education,
     miscellaneous,
     hobbies,
     references,
   } = resumeData
+
+  const education = isNotRecruiter
+    ? resumeData.education
+    : (() => {
+        const first = Array.from(resumeData.education.entries())[0];
+        return first ? new Map([[ first[0], first[1] ]]) : new Map();
+      })();
 
   return (
     <div className="layout">
