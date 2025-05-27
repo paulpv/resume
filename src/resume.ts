@@ -14,6 +14,7 @@ export interface Contact {
 
 export interface Preferences {
   readonly Title: string;
+  readonly Salary: string;
   readonly Emphasis: ReadonlyArray<string>;
   readonly Technologies: ReadonlyArray<string>;
   readonly Locations: ReadonlyArray<string>;
@@ -204,6 +205,7 @@ type ResumeRawData = {
   miscellaneous: ReadonlyArray<string>,
   hobbies: ReadonlyArray<string>,
   references: ReadonlyMap<string, any>,
+  citizenship: string,
 };
 
 export class ResumeData {
@@ -220,6 +222,7 @@ export class ResumeData {
   public miscellaneous: ReadonlyArray<string>;
   public hobbies: ReadonlyArray<string>;
   public references: ReadonlyMap<string, any>;
+  public citizenship: string;
 
   constructor(resumeRawData: ResumeRawData) {
     const {
@@ -252,14 +255,18 @@ export class ResumeData {
     }
     this.projects = _projects;
 
-    const _skills = skills.map((skill: ReadonlyArray<any>) => {
-      if (skill.length !== 4) {
-        throw new Error('Invalid Skill');
-      }
-      const [Skill, Level, From, Last] = skill;
-      return { Skill, Level, From, Last };
-    });
-    this.skills = _skills;
+    if (skills) {
+      const _skills = skills.map((skill: ReadonlyArray<any>) => {
+        if (skill.length !== 4) {
+          throw new Error('Invalid Skill');
+        }
+        const [Skill, Level, From, Last] = skill;
+        return { Skill, Level, From, Last };
+      });
+      this.skills = _skills;
+    } else {
+      this.skills = [];
+    }
 
     const _patents = new Map();
     for (const [key, value] of Object.entries(resumeRawData.patents)) {
@@ -289,6 +296,8 @@ export class ResumeData {
       _references.set(key, value);
     }
     this.references = _references;
+
+    this.citizenship = resumeRawData.citizenship;
   }
 
   static fromJSON(json: any): ResumeData {
@@ -308,6 +317,7 @@ export class ResumeData {
       Miscellaneous: miscellaneous,
       Hobbies: hobbies,
       References: references,
+      Citizenship: citizenship,
       ...remainder
     } = json;
 
@@ -320,9 +330,11 @@ export class ResumeData {
     if (!projects || typeof projects !== 'object') {
       throw new Error('Invalid or missing Projects');
     }
+    /*
     if (!skills || !Array.isArray(skills)) {
       throw new Error('Invalid or missing Skills');
     }
+    */
     if (!patents || typeof patents !== 'object') {
       throw new Error('Invalid or missing Patents');
     }
@@ -332,9 +344,11 @@ export class ResumeData {
     if (!education || typeof education !== 'object') {
       throw new Error('Invalid or missing Education');
     }
+    /*
     if (!miscellaneous || !Array.isArray(miscellaneous)) {
       throw new Error('Invalid or missing Miscellaneous');
     }
+    */
     if (!hobbies || !Array.isArray(hobbies)) {
       throw new Error('Invalid or missing Hobbies');
     }
@@ -366,6 +380,7 @@ export class ResumeData {
       miscellaneous,
       hobbies,
       references,
+      citizenship,
     });
   }
 };

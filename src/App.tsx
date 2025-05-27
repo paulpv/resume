@@ -259,10 +259,11 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
 }
 
 function App() {
+  const defaultMode = "modeEverything";
   const [expandedExperience, setExpandedExperience] = useState<Record<number,boolean>>({});
   const toggleExperience = (idx: number) =>
     setExpandedExperience(e => ({ ...e, [idx]: !e[idx] }));
-  const [mode, setMode] = useState<string>("modeRecruiter")
+  const [mode, setMode] = useState<string>(defaultMode)
   useEffect(() => {
     if (mode === "modeRecruiter") {
       setExpandedExperience({})
@@ -443,6 +444,7 @@ function App() {
     miscellaneous,
     hobbies,
     references,
+    citizenship,
   } = resumeData
 
   const education = isNotRecruiter
@@ -462,11 +464,12 @@ function App() {
           <div className="flex-1 border-0 border-grey">
             <a target="_blank" rel="noopener noreferrer" href={APP_URL}>{APP_URL}</a> v{appModifiedTimestampString}
           </div>
-          <div className="flex-1 flex justify-center items-center">
+          <div className="flex-1 flex justify-center items-center no-print">
             Mode:&nbsp;
             <span className="no-print">
               <select
                 className="px-1 border rounded"
+                value={mode}
                 onChange={e => setMode(e.currentTarget.value)}
               >
                 <option value="modeRecruiter">Recruiter</option>
@@ -546,13 +549,16 @@ function App() {
         {/* Preferences Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
-          <div className="py-2">
+          <div className="py-2 print:py-1">
             <h4>Preferences</h4>
           </div>
         </div>
         <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-0 text-[80%]">
           <div className="text-right font-bold">Title:</div>
           <div className="text-left">{preferences.Title}</div>
+
+          <div className="text-right font-bold">Salary:</div>
+          <div className="text-left">{preferences.Salary}</div>
 
           <div className="text-right font-bold">Emphasis:</div>
           <div className="text-left">{preferences.Emphasis.join("/")}</div>
@@ -576,8 +582,8 @@ function App() {
           {Array.from(professionalExperience.entries()).map(([keyDateCompany, jobs], idxDateCompany) => {
             const isExpanded = expandedExperience[idxDateCompany] || isNotRecruiter;
             return (
-              <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 last:mb-0">
-                {idxDateCompany > 0 && <hr className="my-2" />}
+              <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 print:mb-1 last:mb-0">
+                {idxDateCompany > 0 && <hr className="my-2 print:my-0" />}
                 <div
                   className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 print:border-b-0 ${isProfessionalExperienceSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
                   style={{
@@ -596,7 +602,7 @@ function App() {
                     fill="none" stroke="currentColor" strokeWidth="2"
                     strokeLinecap="round" strokeLinejoin="round"
                     onClick={() => {
-                      console.log("toggleExperience", idxDateCompany, isExpanded)
+                      //console.log("toggleExperience", idxDateCompany, isExpanded)
                       toggleExperience(idxDateCompany)
                     }}
                     >
@@ -674,14 +680,14 @@ function App() {
           <>
             <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
               <hr className="m-0 p-0" />
-              <div ref={setProjectsHeaderElement} className="py-2">
+              <div ref={setProjectsHeaderElement} className="py-2 print:py-1">
                 <h4>Projects</h4>
               </div>
             </div>
             <div ref={setProjectsItemsElement}>
               {Array.from(projects.entries()).map(([keyDateProject, project], idxProject) => (
                 <div key={idxProject} className="text-[80%] ml-4 mb-2 last:mb-0">
-                  {idxProject > 0 && <hr className="my-2" />}
+                  {idxProject > 0 && <hr className="my-2 print:my-1" />}
                   <div 
                     className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 print:border-b-0 ${isProjectsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
                     style={{
@@ -740,7 +746,7 @@ function App() {
         )}
 
         {/* Skills Section */}
-        {isNotRecruiter && (
+        {skills && skills.length > 0 && isNotRecruiter && (
           <>
             {(() => {
               const [header, ...rest] = skills
@@ -748,7 +754,7 @@ function App() {
                 <>
                   <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
                     <hr className="m-0 p-0" />
-                    <div ref={setSkillsHeaderElement} className="py-2">
+                    <div ref={setSkillsHeaderElement} className="py-2 print:py-1">
                       <div 
                         className={`mr-2 grid grid-cols-[1fr_1fr_auto_auto] gap-x-4 font-bold items-center border-b-4 print:border-b-0 ${isSkillsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
                         >
@@ -781,7 +787,7 @@ function App() {
         {/* Patents Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
-          <div className="py-2">
+          <div className="py-2 print:py-1">
             <h4>Patents</h4>
           </div>
         </div>
@@ -795,7 +801,7 @@ function App() {
         {/* Publications Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
-          <div className="py-2">
+          <div className="py-2 print:py-1">
             <h4>Publications</h4>
           </div>
         </div>
@@ -810,7 +816,7 @@ function App() {
         {/* Education Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
-          <div className="py-2">
+          <div className="py-2 print:py-1">
             <h4>Education</h4>
           </div>
         </div>
@@ -822,11 +828,11 @@ function App() {
         <div className="pb-2" />
 
         {/* Miscellaneous Section */}
-        {isNotRecruiter && (
+        {miscellaneous && isNotRecruiter && (
           <>
             <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
               <hr className="m-0 p-0" />
-              <div className="py-2">
+              <div className="py-2 print:py-1">
                 <h4>Miscellaneous</h4>
               </div>
             </div>
@@ -842,7 +848,7 @@ function App() {
           <>
           <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
             <hr className="m-0 p-0" />
-            <div className="py-2">
+            <div className="py-2 print:py-1">
               <h4>Hobbies</h4>
             </div>
           </div>
@@ -856,7 +862,7 @@ function App() {
         {/* References Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
-          <div className="py-2">
+          <div className="py-2 print:py-1">
             <h4>References</h4>
           </div>
         </div>
@@ -865,6 +871,18 @@ function App() {
             <span className="font-bold">{referenceName}</span> - <span className="italic">{renderLineOrLines(reference, isNotRecruiter ? null : 1)}</span>
           </div>
         ))}
+        <div className="pb-2" />
+
+        {/* Citizenship Section */}
+        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+          <hr className="m-0 p-0" />
+          <div className="py-2 print:py-1">
+            <h4>Citizenship</h4>
+          </div>
+        </div>
+        <div className="ml-4 text-[80%]">
+          {citizenship}
+        </div>
         <div className="pb-2" />
 
       </div>
