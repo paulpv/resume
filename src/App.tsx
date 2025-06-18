@@ -255,10 +255,8 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
         </div>
         {summary && (
           <div className="mx-0 my-1 p-0">
-            <div className="text-[94%] font-bold">Summary:</div>
-            {summary.map((line, idx) => (
-              <div key={idx} className="text-[86%] pl-2">{line}</div>
-            ))}
+            <span className="text-[85%] font-bold">Summary:</span>
+            <span className="text-[85%] pl-2">{summary}</span>
           </div>
         )}
       </>
@@ -286,8 +284,8 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
         </div>
         {summary && (
           <div className="mb-2 p-0">
-            <span className="text-[86%] font-bold">Summary:</span>
-            <span className="text-[68%] pl-2">{summary.join(' ')}</span>
+            <span className="text-[85%] font-bold">Summary:</span>
+            <span className="text-[85%] pl-2">{summary}</span>
           </div>
         )}
       </>
@@ -296,7 +294,7 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
 }
 
 function App() {
-  const defaultMode = "modeEverything";
+  const defaultMode = "modeRecruiter";
   const [expandedExperience, setExpandedExperience] = useState<Record<number,boolean>>({});
   const toggleExperience = (idx: number) =>
     setExpandedExperience(e => ({ ...e, [idx]: !e[idx] }));
@@ -484,13 +482,6 @@ function App() {
     citizenship,
   } = resumeData
 
-  const education = isNotRecruiter
-    ? resumeData.education
-    : (() => {
-        const first = Array.from(resumeData.education.entries())[0];
-        return first ? new Map([[ first[0], first[1] ]]) : new Map();
-      })();
-
   return (
     <div className="layout">
 
@@ -581,7 +572,7 @@ function App() {
 
       </header>
 
-      <div className="content mx-2">
+      <div className="content mx-2 pb-2">
 
         {/* Preferences Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
@@ -593,6 +584,9 @@ function App() {
         <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-0 text-[80%]">
           <div className="text-right font-bold">Title:</div>
           <div className="text-left">{preferences.Title}</div>
+
+          <div className="text-right font-bold">Type:</div>
+          <div className="text-left">{preferences.Type}</div>
 
           <div className="text-right font-bold">Salary:</div>
           <div className="text-left">{preferences.Salary}</div>
@@ -615,12 +609,11 @@ function App() {
             <h4>Professional Experience</h4>
           </div>
         </div>
-        <div ref={setProfessionalExperienceItemsElement}>
+        <div ref={setProfessionalExperienceItemsElement} className="pb-2">
           {Array.from(professionalExperience.entries()).map(([keyDateCompany, jobs], idxDateCompany) => {
             const isExpanded = expandedExperience[idxDateCompany] || isNotRecruiter;
             return (
               <div key={idxDateCompany} className="text-[80%] ml-4 mb-2 print:mb-1 last:mb-0">
-                {idxDateCompany > 0 && <hr className="my-2 print:my-0" />}
                 <div
                   className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 print:border-b-0 ${isProfessionalExperienceSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
                   style={{
@@ -649,7 +642,6 @@ function App() {
                 {isExpanded
                   ? jobs.map((job, idxJob) => (
                       <div key={idxJob} className="ml-4">
-                        {idxJob > 0 && <hr className="my-2" />}
                         {Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
                           <div key={idxRole}>
                             {roleDate}: <span className="font-bold">{role}</span>
@@ -726,10 +718,9 @@ function App() {
                 <h4>Projects</h4>
               </div>
             </div>
-            <div ref={setProjectsItemsElement}>
+            <div ref={setProjectsItemsElement} className="pb-2">
               {Array.from(projects.entries()).map(([keyDateProject, project], idxProject) => (
                 <div key={idxProject} className="text-[80%] ml-4 mb-2 last:mb-0">
-                  {idxProject > 0 && <hr className="my-2 print:my-1" />}
                   <div 
                     className={`font-bold pb-1 sticky-bg sticky z-9 border-b-4 print:border-b-0 ${isProjectsSticky ? (theme === "dark" ? "border-black" : "border-white") : "border-transparent"}`}
                     style={{
@@ -789,7 +780,7 @@ function App() {
 
         {/* Skills Section */}
         {skills && skills.length > 0 && isNotRecruiter && (
-          <>
+          <div className="pb-2">
             {(() => {
               const [header, ...rest] = skills
               return (
@@ -822,56 +813,86 @@ function App() {
                 </>
               )
             })()}
-            <div className="pb-2" />
-          </>
+          </div>
         )}
 
         {/* Patents Section */}
-        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
-          <hr className="m-0 p-0" />
-          <div className="py-2 print:py-1">
-            <h4>Patents</h4>
+        {isNotRecruiter && (
+          <div>
+            <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+              <hr className="m-0 p-0" />
+              <div className="py-2 print:py-1">
+                <h4>Patents</h4>
+              </div>
+            </div>
+            <div className="pb-2">
+              {Array.from(patents.entries()).map(([_, patent], idx) => (
+                <div key={idx} className="ml-4 text-[80%]">
+                  {renderPossibleLink(patent.Link)} - <span className="italic">{patent.Title}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        {Array.from(patents.entries()).map(([_, patent], idx) => (
-          <div key={idx} className="ml-4 text-[80%]">
-            {renderPossibleLink(patent.Link)} - <span className="italic">{patent.Title}</span>
-          </div>
-        ))}
-        <div className="pb-2" />
+        )}
 
         {/* Publications Section */}
-        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
-          <hr className="m-0 p-0" />
-          <div className="py-2 print:py-1">
-            <h4>Publications</h4>
+        {isNotRecruiter && (
+          <div>
+            <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+              <hr className="m-0 p-0" />
+              <div className="py-2 print:py-1">
+                <h4>Publications</h4>
+              </div>
+            </div>
+            <div className="pb-2">
+              {Array.from(publications.entries()).map(([title, publication], idx) => (
+                <div key={idx} className="ml-4 text-[80%]">
+                  {renderPossibleLink(publication.Link)} - <span className="italic">{title}</span>
+                  <div className="ml-4">{publication.Publisher}</div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-        {Array.from(publications.entries()).map(([title, publication], idx) => (
-          <div key={idx} className="ml-4 text-[80%]">
-            {renderPossibleLink(publication.Link)} - <span className="italic">{title}</span>
-            <div className="ml-4">{publication.Publisher}</div>
-          </div>
-        ))}
-        <div className="pb-2" />
+        )}
 
         {/* Education Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
           <div className="py-2 print:py-1">
-            <h4>Education</h4>
+            {isNotRecruiter ?
+              <h4>Education</h4>
+            : (
+              <>
+                <span className="font-bold">Education:</span>
+                {(() => {
+                  const first = Array.from(resumeData.education.entries())[0];
+                  const where = first[0];
+                  const what = first[1];
+                  return (
+                    <span className="pb-2">
+                      <span className="ml-2 text-[80%]">
+                        <span className="font-bold">{where}</span> - <span className="italic">{what.toString()}</span>
+                      </span>
+                    </span>
+                  )
+                })()}
+              </>
+            )}
           </div>
         </div>
-        {Array.from(education.entries()).map(([where, what], idx) => (
-          <div key={idx} className="ml-4 text-[80%]">
-            <span className="font-bold">{where}</span> - <span className="italic">{what.toString()}</span>
+        {isNotRecruiter && (
+          <div className="pb-2">
+            {Array.from(resumeData.education.entries()).map(([where, what], idx) => (
+              <div key={idx} className="ml-4 text-[80%]">
+                <span className="font-bold">{where}</span> - <span className="italic">{what.toString()}</span>
+              </div>
+            ))}
           </div>
-        ))}
-        <div className="pb-2" />
+        )}
 
         {/* Miscellaneous Section */}
         {miscellaneous && isNotRecruiter && (
-          <>
+          <div className="pb-2">
             <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
               <hr className="m-0 p-0" />
               <div className="py-2 print:py-1">
@@ -881,54 +902,81 @@ function App() {
             <div className="ml-4 text-[80%]">
               {renderLineOrLines(miscellaneous)}
             </div>
-            <div className="pb-2" />
-          </>
+          </div>
         )}
 
         {/* Hobbies Section */}
         {isNotRecruiter && (
-          <>
-          <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
-            <hr className="m-0 p-0" />
-            <div className="py-2 print:py-1">
-              <h4>Hobbies</h4>
+          <div className="pb-2">
+            <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+              <hr className="m-0 p-0" />
+              <div className="py-2 print:py-1">
+                <h4>Hobbies</h4>
+              </div>
+            </div>
+            <div className="ml-4 text-[80%]">
+              {hobbies.join(", ")}
             </div>
           </div>
-          <div className="ml-4 text-[80%]">
-            {hobbies.join(", ")}
-          </div>
-          <div className="pb-2" />
-          </>
         )}
 
         {/* References Section */}
         <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
           <hr className="m-0 p-0" />
           <div className="py-2 print:py-1">
-            <h4>References</h4>
+            {isNotRecruiter ?
+              <h4>References</h4>
+            : (
+              <>
+                <span className="font-bold">References:</span>
+                {(() => {
+                  const first = Array.from(references.entries())[0];
+                  const referenceName = first[0];
+                  const reference = first[1];
+                  return (
+                    <span className="ml-2 text-[80%]">
+                      <span className="font-bold">{renderLineOrLines(referenceName)}</span> - <span className="italic">{renderLineOrLines(reference)}</span>
+                    </span>
+                  )
+                })()}
+              </>
+            )}
           </div>
         </div>
-        {Array.from(references.entries()).map(([referenceName, reference], idx) => (
-          <div key={idx} className="ml-4 text-[80%]">
-            <span className="font-bold">{referenceName}</span> - <span className="italic">{renderLineOrLines(reference, isNotRecruiter ? null : 1)}</span>
+        {isNotRecruiter && (
+          <div className="pb-2">
+            {Array.from(references.entries()).map(([referenceName, reference], idx) => (
+              <div key={idx} className="ml-4 text-[80%]">
+                • <span className="font-bold">{renderLineOrLines(referenceName)}</span> - <span className="italic">{renderLineOrLines(reference)}</span>
+              </div>
+            ))}
           </div>
-        ))}
-        <div className="pb-2" />
+        )}
 
         {/* Citizenship Section */}
-        <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
-          <hr className="m-0 p-0" />
-          <div className="py-2 print:py-1">
-            <h4>Citizenship</h4>
+        <div className="pb-2">
+          <div className="m-0 p-0 sticky-bg sticky top-0 z-10">
+            <hr className="m-0 p-0" />
+            <div className="py-2 print:py-1">
+              {isNotRecruiter ? 
+                <h4>Citizenship</h4>
+                : (
+                  <>
+                    <span className="font-bold">Citizenship:</span><span className="italic ml-2 text-[80%]">{citizenship}</span>
+                  </>
+                )}
+            </div>
           </div>
+          {isNotRecruiter && (
+            <div>
+              <div className="ml-4 text-[80%]">
+                {citizenship}
+              </div>
+            </div>
+          )}
         </div>
-        <div className="ml-4 text-[80%]">
-          {citizenship}
-        </div>
-        <div className="pb-2" />
 
       </div>
-      <div className="pb-2" />
 
     </div>
   )

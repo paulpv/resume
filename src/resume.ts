@@ -14,6 +14,7 @@ export interface Contact {
 
 export interface Preferences {
   readonly Title: string;
+  readonly Type: string;
   readonly Salary: string;
   readonly Emphasis: ReadonlyArray<string>;
   readonly Technologies: ReadonlyArray<string>;

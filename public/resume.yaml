@@ -9,12 +9,12 @@ Paul Peavyhouse:
     StackOverflow: http://swoo.by/pv/so
 
 Summary:
-  - Experienced Engineer with a passion for building
-  - user-friendly applications and learning new technologies.
+  Experienced engineer - always learning; dev-friendly code, user-friendly apps.
 
 Preferences:
   Title: Architect/Principal/Staff/Senior Software Developer/Engineer
-  Salary: $200K+ (negotiable)
+  Type: Fulltime (preferred) or Contract; On-Site (preferred), Hybrid, or Remote
+  Salary: $225K+ (negotiable)
   Emphasis: [ Mobile, Android, Java, Kotlin, Python, C++, C#, Qt ]
   Technologies: [ AI, Android, Audio/Video, Embedded, IoT, Mobile, RTC/WebRTC, Streaming ]
   Locations: [ Seattle, Denver, Nashville ]
@@ -25,21 +25,24 @@ Professional Experience:
       2020/12 - 2022/04: Senior Android Developer
       Description:
         - AP9 Android Open Source Project (AOSP) OEM 20-Point Touch 65"/75"/86"
-        - Interactive Flat Panel Display (IFPD), Telemetry (MixPanel), Audio (AEC/AGC/NS),
-        - Video (HDMI/DP/EDID/CEC/ARC/HDCP/DRM/…), Codecs (AAC/FLAC/G711/H.264/MP3/MP4/PCM/…),
+        - Interactive Flat Panel Display (IFPD), Telemetry (MixPanel), Firmware OTA,
+        - Mobile Device Management (MDM) & Enterprise Mobility Management (EMM),
+        - Audio (AEC/AGC/NS), Video (HDMI/DP/EDID/CEC/ARC/HDCP/DRM/…),
+        - Codecs (AAC/FLAC/G711/H.264/MP3/MP4/PCM/…), Network (Ethernet/Wi-Fi/Bluetooth/…),
         - AWS (S3, EC2, Route53, Lambda, CloudFront, Cognito, AppSync, DynamoDB, …),
-        - Firebase (Crashlytics), Atlassian (Confluence/Jira/BitBucket/Bamboo), GitLab, GitHub,
-        - Android Studio, AI/LLM/RAG/GPT [Cloud/Local]
+        - Firebase (Crashlytics), Atlassian (Confluence/Jira/BitBucket/Bamboo)
+        - GitLab, GitHub, Android Studio, AI/LLM/RAG/GPT [Cloud/Local]
       Major Contributions:
         - "Shipped all AP9 versions: POC/EVT/DVT/PVT/MP to 1.0 [2022/05] to 2.3 [2024/11]."
-        - On-Site Customer Support of CA school district with 1000s of AP9s.
+        - 500K+ panels shipped.
+        - "[Onsite] Customer Support of 1000s of school districts with 1000s of panels each."
+        - Designed/managed/automated "PromLab" of 20+ test panels with checkout system.
         - Migrated 100+ repositories from Atlassian BitBucket to GitLab.
         - Migrated 100+ build jobs from Atlassian Bamboo to GitLab.
         - Designed Firebase Wrapper for consistent Crashlytics of 30+ apps.
         - Designed Data Regionalization System Architecture that spanned multiple products.
         - Used Local AI/LLM to organize ~4000 Confluence wiki pages.
-        - Automated auditing millions of lines of AOSP/custom code migrated from Android 9(API28/P) to 11(API30/R).
-        - Designed and ran "PromLab" of 20+ test automated panels with checkout system.
+        - Automated auditing 2M+ of lines of AOSP/custom code migrated from Android 9 to 11.
         - "Starter Project 2: AudioTest App for testing AEC/AGC/NS; still used."
         - "Starter Project 1: MixPanel Telemetry Library; still used."
       Products:
@@ -52,10 +55,12 @@ Professional Experience:
   2015-2020 Pebblebee | Issaquah, WA:
     - 2015/02 - 2020/12: Senior Mobile/Android Developer | Tech Lead
       Description:
-        - Android, Internet-Of-Things (IoT), Bluetooth Low Energy (BLE, Bluetooth Smart),
-        - Bluetooth Tracking, Crowd GPS Lost-And-Found, Camera[2], ACRA/Acralyzer,
-        - BT GATT Services/Characteristics/Descriptors, ReactNative, NativeScript,
-        - Amazon Web Services (AWS) DynamoDB/NoSQL, Realm, Firebase, Crashlytics
+        - Architected, Designed, Developed & Supported Android/iOS apps,
+        - Internet-Of-Things (IoT), Bluetooth Low Energy (BLE, Bluetooth Smart), 
+        - Bluetooth Tracking, Crowd GPS Lost-And-Found, Camera[2], ACRA/Acralyzer, 
+        - BT GATT Services/Characteristics/Descriptors, ReactNative, NativeScript, 
+        - Amazon Web Services (AWS) DynamoDB/NoSQL, Realm, Firebase, Crashlytics; 
+        - Samsung Knox Management of background BLE scanning service
       Products:
         Pebblebee Finder:
           Android: http://swoo.by/pb-afinder
@@ -69,8 +74,15 @@ Professional Experience:
       2011/09 - 2012/02: Lead Mobile Software Development Engineer
       2010/09 - 2011/09: Mobile Software Development Engineer
       Description:
-        - Android/Glass/Wear, BlackBerry, iOS, and Windows CE/Mobile/Phone versions of Twisted Pair
-        - Solutions' Push-To-Talk (PTT) Radio-Over-IP (RoIP) Mobile Communicator (WAVE/MOTOTRBO);
+        - Architected, Designed, Developed & Supported Android/Glass/Wear, iOS, BlackBerry,
+        - and Windows CE/Mobile/Phone versions of Twisted Pair Solutions' Push-To-Talk (PTT)
+        - Radio-Over-IP (RoIP) Mobile Communicator (WAVE/MOTOTRBO);
+        - Mobile Device Management (MDM) & Enterprise Mobility Management (EMM)
+        - for Android/iOS/BlackBerry/WinCE;
+        - "On site customer support of WAVE/MOTOTRBO Mobile Communicator:"
+        - "2013: MGM Resorts (Grande/Mansion/Signature) Las Vegas, NV; Staff BlackBerry & Android Clients"
+        - "2012: Trimble Chantilly, VA; TrimView (Windows CE), TrimFleet (Android)"
+        - "2011: US Army Fort Bliss El Paso, TX; Nett Warrior"
         - Android SDK/NDK, Android Studio, Eclipse, Java/J2ME, Python, QT, Visual Studio/.NET/C#,
         - Xamarin, xCode; Git, SVN Hooks; Ant, CocoaPods, Gradle, Jenkins, Maven; Sonar, Jacoco,
         - Emma; AppCompat, Google Play/Maps/Location, ActionBarSherlock; JUnit, Mockito, OCMock,
@@ -86,6 +98,8 @@ Professional Experience:
     - 2010/06 - 2010/09: Senior Software Development Engineer in Test
       2009/05 - 2010/06: Software [Development] Engineer in Test
       Description:
+        - "Customer support of WAVE Communicator, including:"
+        - "* US Army (SOCOM, JSOC, DARPA), US Secret Service"
         - Design/Develop Python & C# Automation Framework; Establish Test Case Management,
         - Test Impact, Code Coverage & Code Review processes; Custom WireShark Dissector;
         - Improve Build System to drop symbols & source; Maintain TestTrack TCM;
@@ -332,55 +346,55 @@ Projects:
       - 'Defunct: CyanogenMod for Lenovo Yoga Android "blade" tablets'
 
 Skills:
-  - [ Skill,                                                                                     Level,        From, Last ]
-  - [ "AI/LLM/RAG/GPT [Cloud/Local]",                                                            Intermediate, 2021, 2025 ]
-  - [ "Amazon Web Services",                                                                     Intermediate, 2015, 2024 ]
-  - [ "Android/Glass/Wear, SDK, NDK, AppCompat",                                                 Advanced,     2008, 2025 ]
-  - [ "AOSP, OEM, IFPD, Telemetry, Audio, AWS",                                                  Advanced,     2020, 2024 ]
-  - [ "Audio/Video Processing/Testing",                                                          Intermediate, 1997, 2025 ]
-  - [ "Automotive Personal Computing",                                                           Advanced,     2003, 2008 ]
-  - [ "BlackBerry 7, 10, QT",                                                                    Advanced,     2008, 2014 ]
-  - [ "Bluetooth: LE, A2DP, SCO, RFCOMM, Serial",                                                Advanced,     2010, 2020 ]
-  - [ "Build/CI: Ant, Gradle, Maven, Jenkins",                                                   Advanced,     2010, 2025 ]
-  - [ "C/C++",                                                                                   Advanced,     1991, 2025 ]
-  - [ "C#, .NET, Silverlight, Linq, Mono",                                                       Advanced,     2000, 2025 ]
-  - [ "Code Coverage: Sonar, Jacoco, Emma",                                                      Advanced,     1998, 2024 ]
-  - [ "Computer Music/Sequencing",                                                               Intermediate, 1991, 2006 ]
-  - [ "Cryptography: Cipher, Hash, Key Exchange",                                                Advanced,     2002, 2015 ]
-  - [ "Digital Signal Processing (DSP)",                                                         Novice,       2003, 2005 ]
-  - [ "DirectX, OpenGL, Unity, 3D",                                                              Intermediate, 1995, 2019 ]
-  - [ "Eclipse",                                                                                 Advanced,     2008, 2016 ]
-  - [ "Edge: RPi/Jetson/ESP32/Arduino",                                                          Intermediate, 2015, 2025 ]
-  - [ "EE - Digital Logic (EEPROM/IC/PIC/MCU)",                                                  Intermediate, 2003, 2024 ]
-  - [ "EE - Power (AC/DC)",                                                                      Intermediate, 1994, 2024 ]
-  - [ "Email/Chat: Exchange, SMTP/POP, IM/XMPP",                                                 Advanced,     1996, 2005 ]
-  - [ "Firebase",                                                                                Intermediate, 2013, 2025 ]
-  - [ "HTML, JavaScript, Node.js",                                                               Advanced,     1994, 2025 ]
-  - [ "IIS, ISAPI, ASP[.NET]",                                                                   Advanced,     1995, 2017 ]
-  - [ "iOS: XCode, CocoaPods, Swift",                                                            Intermediate, 2010, 2024 ]
-  - [ "Java/J2ME, Kotlin",                                                                       Advanced,     1995, 2025 ]
-  - [ "MacOS",                                                                                   Advanced,     1998, 2025 ]
-  - [ "NativeScript",                                                                            Intermediate, 2017, 2019 ]
-  - [ "Network: Cell/WiFi, TCP/UDP, Wireshark [Dissector]",                                      Advanced,     1994, 2025 ]
-  - [ "Python",                                                                                  Advanced,     2005, 2025 ]
-  - [ "Qt 5/6",                                                                                  Intermediate, 2016, 2025 ]
-  - [ "Radio Control",                                                                           Intermediate, 2000, 2006 ]
-  - [ "React, ReactNative",                                                                      Intermediate, 2017, 2019 ]
-  - [ "Realm",                                                                                   Intermediate, 2015, 2024 ]
-  - [ "Scripting: Shell/Batch/JScript/VBScript",                                                 Advanced,     1998, 2025 ]
-  - [ "SCM: Git, SVN, G4, P4, SD, Hooks",                                                        Advanced,     1998, 2025 ]
-  - [ "SQL, MySQL, Access",                                                                      Intermediate, 2009, 2025 ]
-  - [ "Test (Auto): xUnit, xMockito, UI, Mobile",                                                Advanced,     1998, 2025 ]
-  - [ "Test (Manual): Modeling, Planning, PICT",                                                 Advanced,     1998, 2014 ]
-  - [ "Unix/Linux",                                                                              Advanced,     1991, 2025 ]
-  - [ "USB/HID",                                                                                 Intermediate, 2002, 2024 ]
-  - [ "Vue, Vuetify",                                                                            Intermediate, 2017, 2019 ]
-  - [ "Visual Basic",                                                                            Advanced,     1998, 2009 ]
-  - [ "VoIP, SIP, PSTN",                                                                         Advanced,     2002, 2014 ]
-  - [ "Windows [3.x to 11, DOS]",                                                                Advanced,     1989, 2025 ]
-  - [ "Windows Mobile [CE/5/6, XPe, Phone]",                                                     Advanced,     1999, 2014 ]
-  - [ "Windows PowerShell/Scripting",                                                            Intermediate, 2006, 2025 ]
-  - [ "Xamarin",                                                                                 Intermediate, 2010, 2018 ]
+  - [ Skill,                                                                Level,        From, Last ]
+  - [ "AI/LLM/RAG/GPT [Cloud/Local]",                                       Intermediate, 2021, 2025 ]
+  - [ "Amazon Web Services",                                                Intermediate, 2015, 2024 ]
+  - [ "Android/Glass/Wear, SDK, NDK, AppCompat",                            Advanced,     2008, 2025 ]
+  - [ "AOSP, OEM, IFPD, Telemetry, Audio, AWS",                             Advanced,     2020, 2024 ]
+  - [ "Audio/Video Processing/Testing",                                     Intermediate, 1997, 2025 ]
+  - [ "Automotive Personal Computing",                                      Advanced,     2003, 2008 ]
+  - [ "BlackBerry 7, 10, QT",                                               Advanced,     2008, 2014 ]
+  - [ "Bluetooth: LE, A2DP, SCO, RFCOMM, Serial",                           Advanced,     2010, 2020 ]
+  - [ "Build/CI: Ant, Gradle, Maven, Jenkins",                              Advanced,     2010, 2025 ]
+  - [ "C/C++",                                                              Advanced,     1991, 2025 ]
+  - [ "C#, .NET, Silverlight, Linq, Mono",                                  Advanced,     2000, 2025 ]
+  - [ "Code Coverage: Sonar, Jacoco, Emma",                                 Advanced,     1998, 2024 ]
+  - [ "Computer Music/Sequencing",                                          Intermediate, 1991, 2006 ]
+  - [ "Cryptography: Cipher, Hash, Key Exchange",                           Advanced,     2002, 2015 ]
+  - [ "Digital Signal Processing (DSP)",                                    Novice,       2003, 2005 ]
+  - [ "DirectX, OpenGL, Unity, 3D",                                         Intermediate, 1995, 2019 ]
+  - [ "Eclipse",                                                            Advanced,     2008, 2016 ]
+  - [ "Edge: RPi/Jetson/ESP32/Arduino",                                     Intermediate, 2015, 2025 ]
+  - [ "EE - Digital Logic (EEPROM/IC/PIC/MCU)",                             Intermediate, 2003, 2024 ]
+  - [ "EE - Power (AC/DC)",                                                 Intermediate, 1994, 2024 ]
+  - [ "Email/Chat: Exchange, SMTP/POP, IM/XMPP",                            Advanced,     1996, 2005 ]
+  - [ "Firebase",                                                           Intermediate, 2013, 2025 ]
+  - [ "HTML, JavaScript, Node.js",                                          Advanced,     1994, 2025 ]
+  - [ "IIS, ISAPI, ASP[.NET]",                                              Advanced,     1995, 2017 ]
+  - [ "iOS: XCode, CocoaPods, Swift",                                       Intermediate, 2010, 2024 ]
+  - [ "Java/J2ME, Kotlin",                                                  Advanced,     1995, 2025 ]
+  - [ "MacOS",                                                              Advanced,     1998, 2025 ]
+  - [ "NativeScript",                                                       Intermediate, 2017, 2019 ]
+  - [ "Network: Cell/WiFi, TCP/UDP, Wireshark [Dissector]",                 Advanced,     1994, 2025 ]
+  - [ "Python",                                                             Advanced,     2005, 2025 ]
+  - [ "Qt 5/6",                                                             Intermediate, 2016, 2025 ]
+  - [ "Radio Control",                                                      Intermediate, 2000, 2006 ]
+  - [ "React, ReactNative",                                                 Intermediate, 2017, 2019 ]
+  - [ "Realm",                                                              Intermediate, 2015, 2024 ]
+  - [ "Scripting: Shell/Batch/JScript/VBScript",                            Advanced,     1998, 2025 ]
+  - [ "SCM: Git, SVN, G4, P4, SD, Hooks",                                   Advanced,     1998, 2025 ]
+  - [ "SQL, MySQL, Access",                                                 Intermediate, 2009, 2025 ]
+  - [ "Test (Auto): xUnit, xMockito, UI, Mobile",                           Advanced,     1998, 2025 ]
+  - [ "Test (Manual): Modeling, Planning, PICT",                            Advanced,     1998, 2014 ]
+  - [ "Unix/Linux",                                                         Advanced,     1991, 2025 ]
+  - [ "USB/HID",                                                            Intermediate, 2002, 2024 ]
+  - [ "Vue, Vuetify",                                                       Intermediate, 2017, 2019 ]
+  - [ "Visual Basic",                                                       Advanced,     1998, 2009 ]
+  - [ "VoIP, SIP, PSTN",                                                    Advanced,     2002, 2014 ]
+  - [ "Windows [3.x to 11, DOS]",                                           Advanced,     1989, 2025 ]
+  - [ "Windows Mobile [CE/5/6, XPe, Phone]",                                Advanced,     1999, 2014 ]
+  - [ "Windows PowerShell/Scripting",                                       Intermediate, 2006, 2025 ]
+  - [ "Xamarin",                                                            Intermediate, 2010, 2018 ]
 
 Patents:
   WO2013116741:
@@ -429,17 +443,11 @@ Hobbies:
   - SCUBA
 
 References:
-  LinkedIn:
-    https://www.linkedin.com/in/paulpv/details/recommendations/
-  Promethean Inc:
-    Available upon request
-  Motorola Solutions:
-    - 1-800-367-5690 - www.theworknumber.com - company code 10300
-    - (Motorola company policy prohibits referrals from current employees)
-  Other: For privacy reasons, other references are available upon request
+  http://swoo.by/pv/refs: More available upon request
+  Motorola Solutions: 1-800-367-5690 - www.theworknumber.com - company code 10300
 
 Citizenship:
   U.S. Citizen - no visa sponsorship required to work in the U.S.
 
-_updated: 2025/05/14 22:57:00 PST
-_ruler123: 2345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
+_updated: 2025/06/18 15:46:29 PST
+_ruler102: 2345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012

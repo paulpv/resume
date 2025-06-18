@@ -55,8 +55,10 @@ body {
   */
 
   display: block;
-  font-size: clamp(12px, 2vw, 36px);
-  font-family: "Courier New", Courier, monospace;
+  font-size: clamp(12px, 2.4vw, 36px);
+
+  font-family: "Anonymous Pro", monospace;
+  font-style: normal;
 }
 
 select,
