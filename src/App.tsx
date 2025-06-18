@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react'
-import { ResumeData, Contact, ProjectDetail } from './resume'
+import { ResumeData, Contact, ProjectDetail, Job } from './resume'
 import yaml from 'js-yaml'
 
 declare const APP_URL: string
@@ -34,6 +34,43 @@ function timeToYYYYMMDDHHMM(time: Date): string {
 
 const appModifiedTimestampString = timeToYYYYMMDDHHMM(new Date(APP_MODIFIED_TIMESTAMP))
 const resumeModifiedTimestampString = timeToYYYYMMDDHHMM(new Date(RESUME_MODIFIED_TIMESTAMP))
+
+function parseDateToNumber(date: string): number {
+  if (!date || date.toLowerCase() === 'present') {
+    return Number.POSITIVE_INFINITY
+  }
+  const [yearStr, monthStr] = date.split('/')
+  const year = parseInt(yearStr, 10)
+  const month = monthStr ? parseInt(monthStr, 10) : 0
+  return year * 100 + month
+}
+
+function collapseJobRoles(jobs: readonly Job[]): Array<[string, string]> {
+  const roleMap = new Map<string, { start: string, startNum: number, end: string, endNum: number }>()
+  for (const job of jobs) {
+    for (const [range, role] of job.Roles.entries()) {
+      const [startRaw, endRaw] = range.split('-').map(s => s.trim())
+      const startNum = parseDateToNumber(startRaw)
+      const endNum = parseDateToNumber(endRaw)
+      const existing = roleMap.get(role)
+      if (existing) {
+        if (startNum < existing.startNum) {
+          existing.startNum = startNum
+          existing.start = startRaw
+        }
+        if (endNum > existing.endNum) {
+          existing.endNum = endNum
+          existing.end = endRaw
+        }
+      } else {
+        roleMap.set(role, { start: startRaw, startNum, end: endRaw, endNum })
+      }
+    }
+  }
+  return Array.from(roleMap.entries())
+    .sort((a, b) => b[1].startNum - a[1].startNum)
+    .map(([role, info]) => [`${info.start} - ${info.end}`, role])
+}
 
 function renderPossibleLink(value: string): React.ReactNode {
   const urlRegex = /https?:\/\/[^\s]+/g;
@@ -609,21 +646,21 @@ function App() {
                     <polyline points="6 9 12 15 18 9"></polyline>
                   </svg>
                 </div>
-                {jobs.map((job, idxJob) => (
-                  <div key={idxJob} className="ml-4">
-                    {isExpanded && idxJob > 0 && <hr className="my-2" />}
-                    {job.Roles && Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
-                      <div key={idxRole}>
-                        {roleDate}: <span className="font-bold">{role}</span>
-                      </div>
-                    ))}
-                    {isExpanded &&
-                    <>
-                      {job.Team && (
-                        <div>
-                          <span className="font-bold">Team:</span> {job.Team}
-                        </div>
-                      )}
+                {isExpanded
+                  ? jobs.map((job, idxJob) => (
+                      <div key={idxJob} className="ml-4">
+                        {idxJob > 0 && <hr className="my-2" />}
+                        {Array.from(job.Roles.entries()).map(([roleDate, role], idxRole) => (
+                          <div key={idxRole}>
+                            {roleDate}: <span className="font-bold">{role}</span>
+                          </div>
+                        ))}
+                        <>
+                          {job.Team && (
+                            <div>
+                              <span className="font-bold">Team:</span> {job.Team}
+                            </div>
+                          )}
                       {!job.Team && job.Description && renderDescription(job.Description, true, true)}
                       {job.MajorContributions && (
                         <div>
@@ -667,9 +704,14 @@ function App() {
                           </ul>
                         </div>
                       )}
-                    </>}
-                  </div>
-                ))}
+                        </>
+                      </div>
+                    ))
+                  : collapseJobRoles(jobs).map(([roleDate, role], idxRole) => (
+                      <div key={idxRole} className="ml-4">
+                        {roleDate}: <span className="font-bold">{role}</span>
+                      </div>
+                    ))}
               </div>
             )
           })}
