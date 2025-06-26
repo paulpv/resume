@@ -582,23 +582,23 @@ function App() {
           </div>
         </div>
         <div className="grid grid-cols-[max-content_1fr] gap-x-2 gap-y-0 text-[80%]">
-          <div className="text-right font-bold">Title:</div>
-          <div className="text-left">{preferences.Title}</div>
+          <div className="text-right">Title:</div>
+          <div className="text-left font-bold">{preferences.Title}</div>
 
-          <div className="text-right font-bold">Type:</div>
-          <div className="text-left">{preferences.Type}</div>
+          <div className="text-right">Type:</div>
+          <div className="text-left font-bold">{preferences.Type}</div>
 
-          <div className="text-right font-bold">Salary:</div>
-          <div className="text-left">{preferences.Salary}</div>
+          <div className="text-right">Salary:</div>
+          <div className="text-left font-bold">{preferences.Salary}</div>
 
-          <div className="text-right font-bold">Emphasis:</div>
-          <div className="text-left">{preferences.Emphasis.join("/")}</div>
+          <div className="text-right">Emphasis:</div>
+          <div className="text-left font-bold">{preferences.Emphasis.join("/")}</div>
 
-          <div className="text-right font-bold">Technologies:</div>
-          <div className="text-left">{preferences.Technologies.join(", ")}</div>
+          <div className="text-right">Technologies:</div>
+          <div className="text-left font-bold">{preferences.Technologies.join(", ")}</div>
 
-          <div className="text-right font-bold">Locations:</div>
-          <div className="text-left">{preferences.Locations.join(", ")} areas</div>
+          <div className="text-right">Locations:</div>
+          <div className="text-left font-bold">{preferences.Locations.join(", ")} areas</div>
         </div>
         <div className="pb-2" />
 
