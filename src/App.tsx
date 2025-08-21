@@ -294,7 +294,14 @@ function RenderContact({ contactName, contact, summary }: RenderContactProps) {
 }
 
 function App() {
-  const defaultMode = "modeRecruiter";
+  const defaultMode = (() => {
+    const params = new URLSearchParams(window.location.search)
+    const queryMode = params.get("mode")
+    if (queryMode === "everything") {
+      return "modeEverything"
+    }
+    return "modeRecruiter"
+  })();
   const [expandedExperience, setExpandedExperience] = useState<Record<number,boolean>>({});
   const toggleExperience = (idx: number) =>
     setExpandedExperience(e => ({ ...e, [idx]: !e[idx] }));
