@@ -9,6 +9,12 @@ Production version at:
 ## Why?
 https://swooby.com/pv/resume.2024/resume_reaction.wav
 
+## Modes
+The resume can be shown in different modes by adding a query parameter to the URL:
+
+* `?mode=recruiter` – show the recruiter view (default)
+* `?mode=everything` – show all details
+
 ## Development
 * `npm i`
 * `npm run dev`
