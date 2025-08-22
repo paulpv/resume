@@ -189,6 +189,11 @@ Projects:
     Link: https://swooby.com
     Description: Custom/Hobby/Personal Software Development
     AI Studies:
+      ChatGPT Read Aloud:
+        Link: https://github.com/swooby/chatgpt-extension
+        Description:
+          - "2025: ChatGPT Read Aloud Browser Extension"
+          - "JavaScript injection to automatically speak ChatGPT responses."
       AlfredAI-Flutter:
         Link: https://github.com/swooby/alfredai_flutter
         Description:
