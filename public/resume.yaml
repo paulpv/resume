@@ -20,6 +20,33 @@ Preferences:
   Locations: [ Seattle, Denver, Nashville ]
 
 Professional Experience:
+  LookAtWhatAICanDo | Seattle, WA:
+    2025/12 - Present: Founder/Owner
+    Link: https://lookatwhataicando.llc
+    Description: Practical investigations, research, and application of what AI can [and cannot] do.
+    Projects:
+      Shaide:
+        Link: https://github.com/LookAtWhatAiCanDo/Shaide
+        Description: WIP Android Notification AI Assistant
+      Phraims:
+        Link: https://github.com/LookAtWhatAiCanDo/Phraims
+        Description: WIP Qt WebKit base browser that replaces tabs with frames
+      CopilotTTS:
+         Link: https://github.com/LookAtWhatAiCanDo/CopilotTTS
+         Description: WIP Browser Extension GitHub Copilot Voice Agent
+      Chronicler:
+        Link: https://github.com/LookAtWhatAiCanDo/Chronicler
+        Description: WIP AI Auto-monitor and document GitHub organization repository changes
+      YoutubeTranscriptFetch:
+         Link: https://github.com/LookAtWhatAiCanDo/YoutubeTranscriptFetch
+         Description: WIP Python youtube-transcript-api wrapper to download YouTube transcripts
+      Codeoba:
+       Link: https://github.com/LookAtWhatAiCanDo/Codeoba
+       Description: WIP Kotlin Compose Multiplatform GitHub Copilot Voice Agent
+      Ideation:
+        Link: https://github.com/LookAtWhatAiCanDo/Ideation
+        Description: WIP Persistent storage of AI explorations
+
   2020-2024 Mynd.ai / Promethean | Seattle, WA:
     - 2022/04 - 2024/12: Staff [Android] Software Developer | ActivPanel 9 (AP9) Tech Lead
       2020/12 - 2022/04: Senior Android Developer
