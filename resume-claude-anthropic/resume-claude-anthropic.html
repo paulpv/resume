@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paul Alexander Peavyhouse — Resume</title>
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:  #1F5C99;
+    --dark:  #1A1A1A;
+    --mid:   #444444;
+    --light: #666666;
+    --comp-bg: #EEF4FB;
+    --font: 'Arial', sans-serif;
+  }
+
+  body {
+    font-family: var(--font);
+    font-size: 9.5pt;
+    color: var(--dark);
+    max-width: 8.5in;
+    margin: 0 auto;
+    padding: 0.5in;
+  }
+
+  /* Header */
+  h1 {
+    font-size: 22pt;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+
+  .contact-line {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    font-size: 8pt;
+    color: var(--mid);
+    margin-bottom: 6px;
+  }
+
+  .contact-line a       { color: var(--blue); text-decoration: none; }
+  .contact-line .sep    { color: var(--mid); padding: 0 3px; }
+
+  .summary {
+    font-style: italic;
+    text-align: center;
+    color: var(--mid);
+    font-size: 9pt;
+    margin: 6px 0 8px;
+  }
+
+  hr, header { border-bottom: 1.5px solid var(--blue); padding-bottom: 6px; }
+
+  /* Sections */
+  section { margin-top: 10px; }
+
+  h2 {
+    font-size: 10.5pt;
+    color: var(--blue);
+    border-bottom: 1px solid var(--blue);
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  /* Competencies */
+  .competency-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+  }
+
+  .competency-cell {
+    background: var(--comp-bg);
+    padding: 5px 7px;
+  }
+
+  .competency-heading {
+    font-weight: bold;
+    font-size: 9pt;
+    color: var(--blue);
+    margin-bottom: 2px;
+  }
+
+  .competency-detail { font-size: 8pt; color: var(--mid); }
+
+  /* Job entries */
+  .job { margin-top: 7px; break-inside: avoid; }
+
+  .job-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+  .job-company  { font-weight: bold; font-size: 10pt; }
+  .job-location { font-size: 9pt; color: var(--mid); flex: 1; }
+  .job-dates    { font-style: italic; font-size: 9pt; color: var(--light); white-space: nowrap; }
+  .job-title    { font-style: italic; color: var(--blue); font-size: 9pt; margin-bottom: 2px; }
+
+  /* Bullets */
+  ul {
+    padding-left: 18px;
+    margin: 2px 0;
+  }
+
+  li {
+    font-size: 8.5pt;
+    line-height: 1.35;
+    margin-bottom: 1.5px;
+  }
+
+  /* Skills */
+  .skills-table { width: 100%; border-collapse: collapse; }
+
+  .skill-label {
+    font-weight: bold;
+    color: var(--blue);
+    font-size: 8.5pt;
+    width: 110px;
+    vertical-align: top;
+    padding: 1.5px 0;
+  }
+
+  .skill-value {
+    font-size: 8.5pt;
+    color: var(--mid);
+    padding: 1.5px 0;
+  }
+
+  /* Education */
+  .edu-entry  { margin-top: 5px; }
+
+  .edu-main { display: flex; justify-content: space-between; align-items: baseline; }
+
+  .edu-institution { font-weight: bold; font-size: 9.5pt; }
+  .edu-detail      { font-size: 9pt; color: var(--mid); }
+  .edu-note        { font-style: italic; font-size: 8pt; color: var(--light); }
+
+  /* Print */
+  @media print {
+    body          { padding: 0; font-size: 9pt; }
+    a             { color: inherit; text-decoration: none; }
+    .contact-line a, h2, .job-title, .competency-heading, .skill-label { color: var(--blue); }
+    .job          { break-inside: avoid; }
+  }
+
+  @page { size: letter; margin: 0.5in; }
+</style>
+</head>
+<body>
+  
+    <header>
+      <h1>Paul Alexander Peavyhouse</h1>
+      <div class="contact-line">
+        <span>Seattle, WA</span>
+        <span class="sep">&bull;</span>
+        <span>619-796-6299</span>
+        <span class="sep">&bull;</span>
+        <a href="mailto:pv@swoo.by">pv@swoo.by</a>
+        <span class="sep">&bull;</span>
+        <span>LinkedIn: <a href="http://swoo.by/pv/li">swoo.by/pv/li</a></span><span class="sep">&bull;</span><span>GitHub: <a href="http://swoo.by/pv/gh">swoo.by/pv/gh</a></span><span class="sep">&bull;</span><span>Resume: <a href="http://swoo.by/pv/r">swoo.by/pv/r</a></span>
+      </div>
+      <div class="summary">Senior/Staff Android Engineer — Architecting high-impact mobile apps across voice/video, IoT, AI, and large-scale AOSP platforms. 25+ years shipping products users love.</div>
+    </header>
+  
+  <section>
+    <h2>CORE COMPETENCIES</h2>
+    <div class="competency-grid">
+      
+        <div class="competency-cell">
+          <div class="competency-heading">Android / Kotlin / AOSP</div>
+          <div class="competency-detail">Jetpack Compose, SDK/NDK, OEM, MDM/EMM, Firebase</div>
+        </div>
+        <div class="competency-cell">
+          <div class="competency-heading">AI / LLM Integration</div>
+          <div class="competency-detail">Local & cloud AI, RAG, GPT, OpenAI Realtime API</div>
+        </div>
+        <div class="competency-cell">
+          <div class="competency-heading">Audio / Video / RTC</div>
+          <div class="competency-detail">VoIP/SIP, PTT/RoIP, AEC/AGC/NS, HDMI/DP, Codecs</div>
+        </div>
+    </div>
+  </section>
+  
+  <section>
+    <h2>PROFESSIONAL EXPERIENCE</h2>
+    
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">LookAtWhatAICanDo, LLC</span>
+      <span class="job-location"> &mdash; Seattle, WA</span>
+      <span class="job-dates">Dec 2025 – Present</span>
+    </div>
+    <div class="job-title">Founder / Owner — Practical AI Research & Application</div>
+    <ul><li>Shaide: WIP Android Notification AI Assistant.</li><li>Codeoba: WIP Kotlin Compose Multiplatform GitHub Copilot Voice Agent.</li><li>Chronicler: WIP AI auto-monitor that documents GitHub organization repository changes.</li><li>Phraims: WIP Qt WebKit base browser replacing tabs with frames.</li><li>Ideation: WIP persistent storage of AI explorations.</li></ul>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Mynd.ai / Promethean</span>
+      <span class="job-location"> &mdash; Seattle, WA</span>
+      <span class="job-dates">Dec 2020 – Dec 2024</span>
+    </div>
+    <div class="job-title">Staff Android Software Developer — ActivPanel 9 Tech Lead</div>
+    <ul><li>Shipped all AP9 stages (POC/EVT/DVT/PVT/MP) from 1.0 (May 2022) through 2.3 (Nov 2024); 500K+ panels deployed.</li><li>Led full Android stack on AOSP OEM 20-point touch 65–86" Interactive Flat Panel Display: audio (AEC/AGC/NS), video (HDMI/DP/EDID/CEC/ARC/HDCP/DRM), codecs (H.264/AAC/FLAC/MP4…), networking, MDM/EMM, firmware OTA, telemetry.</li><li>Designed and shipped MixPanel Telemetry Library (still in use) and Firebase/Crashlytics wrapper spanning 30+ apps.</li><li>Designed Data Regionalization System Architecture spanning multiple products.</li><li>Automated audit of 2M+ lines of AOSP code migrated from Android 9 → 11; used local AI/LLM to organize ~4,000 Confluence wiki pages.</li><li>Designed PromLab: 20+ automated test panels with checkout system; migrated 100+ repos and build jobs from Atlassian to GitLab.</li><li>On-site customer support of thousands of school districts with thousands of panels each.</li></ul>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Pebblebee</span>
+      <span class="job-location"> &mdash; Issaquah, WA</span>
+      <span class="job-dates">Feb 2015 – Dec 2020</span>
+    </div>
+    <div class="job-title">Senior Mobile / Android Developer — Tech Lead</div>
+    <ul><li>Architected, designed, developed, and supported Pebblebee Finder and Pebblebee Stone Android and iOS apps.</li><li>IoT Bluetooth LE tracking with Crowd GPS lost-and-found; full BLE GATT Services/Characteristics/Descriptors stack; Samsung Knox background scanning.</li><li>AWS DynamoDB/NoSQL, Realm, Firebase/Crashlytics backends; ReactNative and NativeScript cross-platform work.</li></ul>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Twisted Pair Solutions (a Motorola Solutions company)</span>
+      <span class="job-location"> &mdash; Seattle, WA</span>
+      <span class="job-dates">May 2009 – Sep 2014</span>
+    </div>
+    <div class="job-title">Staff Principal Software Engineer [Mobile]</div>
+    <ul><li>Architected, designed, developed, and supported WAVE Mobile Communicator and MOTOTRBO Anywhere: Push-To-Talk (PTT) Radio-Over-IP (RoIP) across Android/Glass/Wear, iOS, BlackBerry, and Windows CE/Mobile.</li><li>Real-time audio streaming with AMR/G711/GSM/Opus/Speex/PCM codecs; cryptography (Diffie-Hellman, Elliptic Curve, AES, HMAC, X.509/SSL); MDM/EMM.</li><li>On-site customer deployments: US Army Fort Bliss TX (Nett Warrior), MGM Resorts Las Vegas NV, Trimble Chantilly VA.</li><li>Two patents awarded: WO2013116741 (TIP-RING-SLEEVE PTT) and WO2013154722 (Pulsed Input PTT).</li></ul>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Google</span>
+      <span class="job-location"> &mdash; Seattle, WA</span>
+      <span class="job-dates">Jul 2005 – Jan 2009</span>
+    </div>
+    <div class="job-title">Software Development Engineer in Test — GOOG-411 / Google Voice; Google Pack / Chrome Auto-Update</div>
+    <ul><li>Designed and built SIPp and pjproject/pjsip automation frameworks for GOOG-411 and Google Voice Java/C++ VoIP backend; performance and scalability testing with Empirix Hammer G5.</li><li>Built Adobe AIR test harness for Flash client on Google App Engine + Wowza Media Server.</li><li>Designed Python XMLRPC remote automation harness to solve a company-wide automation need; C# Windows Logon Service for Vista UAC automation.</li></ul>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Microsoft</span>
+      <span class="job-location"> &mdash; Redmond, WA</span>
+      <span class="job-dates">May 1998 – Jul 2005</span>
+    </div>
+    <div class="job-title">Software Development Engineer in Test — RTC / Exchange / NetDocs</div>
+    <ul><li>RoundTable: Windows CE PSTN/VoIP/SIP audio-gain video-panorama USB device; tested client/device software, drivers, and sound quality against TIA-810, G.168, P.34x standards.</li><li>Exchange Conferencing Server and Office Conferencing Server: web-based schedulable audio/video/data conference service (comparable to WebEx/LiveMeeting); setup, MCU, firewall/DMZ, performance, automation.</li></ul>
+  </div>
+  </section>
+  
+  <section>
+    <h2>SELECTED PROJECTS</h2>
+    
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">swooby.com — AI Studies</span>
+      <span class="job-location"> &mdash; github.com/swooby</span>
+      <span class="job-dates">2025</span>
+    </div>
+    <div class="job-title">Personal AI / Android / RTC Research</div>
+    <ul><li>AlfredAI: Kotlin Android Push-To-Talk AI assistant — OpenAI Realtime WebRTC API, Phone + Wear + Bluetooth audio routing.</li><li>AlfredAI-Flutter: Dart/Flutter implementation of AlfredAI.</li><li>langchain_dart openai_realtime_dart WebRTC: Fork adding WebRTC to the Dart Realtime API; Dart equivalent of the WebRTC addition to OpenAI's WebSocket-only Realtime JavaScript API.</li><li>openai-realtime-push-to-talk: Fork of OpenAI's Realtime console adding PTT, interrupt handling, and code cleanup.</li><li>openai-realtime-api-beta: Fork adding WebRTC to OpenAI's Realtime API for A/B testing WebRTC vs WebSocket behavior.</li><li>openai-openapi-kotlin: Kotlin generation of OpenAI's complete OpenAPI specification.</li><li>ChatGPT Read Aloud: Browser extension that automatically speaks ChatGPT responses via JS injection.</li><li>PhoneWearRemote: Android Phone + Wear app used to improve AlfredAI.</li></ul>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">DistroAV (OBS-NDI Plugin)</span>
+      <span class="job-location"> &mdash; distroav.org • github.com/DistroAV</span>
+      <span class="job-dates">Feb 2023 – Present</span>
+    </div>
+    <div class="job-title">Administrator / Maintainer / Lead Developer</div>
+    <ul><li>OBS Studio NDI Plugin (est. Oct 2016): ~6M downloads, ~10K DAU, ~4K GitHub stars, ~400 forks.</li></ul>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">NightVsKnight</span>
+      <span class="job-location"> &mdash; Seattle, WA</span>
+      <span class="job-dates">2019 – Present</span>
+    </div>
+    <div class="job-title">Founder / Owner — Custom Audio/Video Streaming & KVM Platform</div>
+    <ul><li>Personal challenge to picture-in-picture stream two 21:9 gaming PCs simultaneously; custom .NET code integrating Windows Audio, USB switches, HDMI Matrix Switch, OBS Studio, and Vocoder.</li><li>AgentSmith: software-based Matrix KVM combining NDI, USBIP, and Moonlight (NVIDIA GameStream) to create a novel disruptive remote control/streaming platform.</li><li>QtNdiMonitorCapture: Qt6 app simulating NDI Tools' Studio Monitor and Screen Capture.</li><li>NvMaxineSdkDotNet: C#/.NET wrapper around NVIDIA's Audio Effects (NvAudioEffects) C++ SDK.</li><li>VoiceMod: C# voice modulator using CSCore and NVIDIA Maxine AFX-SDK noise suppression/denoiser.</li></ul>
+  </div>
+  <div class="job">
+    <div class="job-header">
+      <span class="job-company">Night55</span>
+      <span class="job-location"> &mdash; Bozeman, MT</span>
+      <span class="job-dates">1997 – 1999</span>
+    </div>
+    <div class="job-title">Co-Founder — Vibe & Sonique MP3 Players</div>
+    <ul><li>Original creator of Vibe MP3 player; co-creator of Sonique MP3 player. Acquired by Lycos in 1999 for $38.8M.</li></ul>
+  </div>
+  </section>
+  
+  <section>
+    <h2>SKILLS</h2>
+    
+  <table class="skills-table">
+    
+      <tr>
+        <td class="skill-label">Mobile / Android</td>
+        <td class="skill-value">Android SDK/NDK, AOSP/OEM, Jetpack Compose, Kotlin, Java, MDM/EMM, Wear, Glass</td>
+      </tr>
+      <tr>
+        <td class="skill-label">AI / ML</td>
+        <td class="skill-value">LLM, RAG, GPT, MCP, Local AI, OpenAI Realtime API, WebRTC, WebSocket</td>
+      </tr>
+      <tr>
+        <td class="skill-label">Audio / Video</td>
+        <td class="skill-value">AEC/AGC/NS, VoIP/SIP, PTT/RoIP, HDMI/DP/CEC/EDID, H.264/AAC/Opus/PCM/…, NDI, OBS</td>
+      </tr>
+      <tr>
+        <td class="skill-label">Languages</td>
+        <td class="skill-value">Kotlin, Java, C/C++, C#/.NET, Python, Dart/Flutter, JavaScript/Node.js, Shell</td>
+      </tr>
+      <tr>
+        <td class="skill-label">Cloud / Backend</td>
+        <td class="skill-value">AWS (S3/EC2/Lambda/DynamoDB/…), Firebase, MixPanel, GraphQL/AppSync</td>
+      </tr>
+      <tr>
+        <td class="skill-label">IoT / Embedded</td>
+        <td class="skill-value">Bluetooth LE, BLE GATT, IoT, ESP32/Arduino/RPi, USB/HID, PCB design</td>
+      </tr>
+      <tr>
+        <td class="skill-label">Build / CI</td>
+        <td class="skill-value">Gradle, Maven, GitLab CI, Jenkins, Android Studio, Git</td>
+      </tr>
+  </table>
+  </section>
+  
+  <section>
+    <h2>EDUCATION</h2>
+    
+  <div class="edu-entry">
+    <div class="edu-main">
+      <span class="edu-institution">Montana State University</span>
+      <span class="edu-detail">Computer Science &bull; Bozeman, MT</span>
+    </div>
+    <div class="edu-note">MSU Solar Vehicle Project — SunRayce 95, 24th/60 teams overall (2nd/20 rookie teams)</div>
+  </div>
+  <div class="edu-entry">
+    <div class="edu-main">
+      <span class="edu-institution">Dobyns-Bennett High School</span>
+      <span class="edu-detail">AP Calculus & AP Computer Science &bull; Kingsport, TN</span>
+    </div>
+    
+  </div>
+  </section>
+  
+  <section>
+    <h2>PATENTS &amp; PUBLICATIONS</h2>
+    <ul><li>WO2013116741 — TIP-RING-RING-SLEEVE Push-To-Talk System and Methods</li><li>WO2013154722 — Pulsed Input Push-To-Talk Systems, Methods and Apparatus</li><li>"Using AJAX to Enable Client RPC Requests" — Google App Engine, Google Code, May 2008</li><li>"View Real-Time Traffic Data on the Road" — Car PC Hacks, O'Reilly & Associates, Jul 2005 (ISBN 0-596-00871-6)</li></ul>
+  </section>
+</body>
+</html>
