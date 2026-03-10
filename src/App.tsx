@@ -673,19 +673,21 @@ function App() {
                       )}
                       {job.Products && (
                         <div>
-                          <span className="font-bold">Products:</span>
+                          <span className="font-bold">{job.ProductsLabel}:</span>
                           <ul>
                             {Array.from(job.Products.entries()).map(([productName, productValue], idxProduct) => (
                               <li key={idxProduct}>
                                 <span className="whitespace-nowrap">{productName}</span>:&nbsp;
                                 {typeof productValue === "string" ? (
                                   renderPossibleLink(productValue)
-                                ) : (
+                                ) : (productValue && typeof productValue === "object") ? (
                                   <ul>
                                     {Object.entries(productValue as Record<string, string>).map(([key, value], idxValue) => (
                                       <li key={idxValue}>{key}: {renderPossibleLink(value)}</li>
                                     ))}
                                   </ul>
+                                ) : (
+                                  <span>{String(productValue)}</span>
                                 )}
                               </li>
                             ))}

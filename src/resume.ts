@@ -27,6 +27,7 @@ export class Job {
   readonly Description: ReadonlyArray<string>;
   readonly MajorContributions: ReadonlyArray<string>;
   readonly Products?: ReadonlyMap<string, any>;
+  readonly ProductsLabel: "Products" | "Projects";
   readonly Info: ReadonlyArray<string>;
 
   constructor(json: Record<string, any>) {
@@ -34,6 +35,7 @@ export class Job {
       Description: _description,
       "Major Contributions": MajorContributions,
       Products: _products,
+      Projects: _projects,
       Info,
       Team,
       ...roles
@@ -53,10 +55,12 @@ export class Job {
 
     this.Description = _description;
     this.MajorContributions = MajorContributions;
+    this.ProductsLabel = _products !== undefined ? "Products" : "Projects";
 
-    if (_products) {
+    const productsOrProjects = _products ?? _projects;
+    if (productsOrProjects) {
       const products = new Map();
-      for (const [productName, productValue] of Object.entries(_products)) {
+      for (const [productName, productValue] of Object.entries(productsOrProjects)) {
         products.set(productName, productValue);
       }
       this.Products = products;
