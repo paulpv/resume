@@ -1,0 +1,14 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "tsx resume-claude-anthropic.jsx",
+    "build:custom": "tsx resume-claude-anthropic.jsx resume-claude-anthropic.yaml Paul_Peavyhouse_Resume_Anthropic.pdf"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^4.1.6",
+    "js-yaml": "^4.1.0",
+    "react": "^18.3.1"
+  }
+}
